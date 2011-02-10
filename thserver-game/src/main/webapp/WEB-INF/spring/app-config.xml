@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
+
+	<context:property-placeholder location="classpath:business.properties" />
+
+	<context:component-scan annotation-config="true"
+		base-package="com.jpizarro.th.server" />
+
+	<!-- ======================= Spring Infrastructure ==================== -->
+
+	<!-- For translating native persistence exceptions to Spring's DataAccessException 
+		hierarchy. -->
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<!-- Data source. -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		p:driverClassName="${datasource.driver}" p:url="${datasource.url}"
+		p:username="${datasource.username}" p:password="${datasource.password}" />
+
+	<!-- Hibernate Session Factory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<!--p:dataSource-ref="dataSource" p:configLocation="classpath:/hibernate.cfg.xml" />-->
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation">
+            <value>classpath:/hibernate.cfg.xml</value>
+        </property>
+<!--        <property  name="configurationClass">-->
+<!--            <value>org.hibernate.cfg.AnnotationConfiguration</value>-->
+<!--          </property>        -->
+          <property name="hibernateProperties">
+          	<value>classpath:/hibernate.properties</value>
+<!--            <props>-->
+<!--              <prop key="hibernate.bytecode.provider">javassist</prop>-->
+<!--              <prop key="hibernate.show_sql">true</prop>-->
+<!--              <prop key="hibernate.cache.use_second_level_cache">false</prop>-->
+<!--              <prop key="hibernate.hbm2ddl.auto">update</prop>-->
+<!--            </props>-->
+          </property>
+
+    </bean>
+
+	<!-- Transaction manager for a single Hibernate SessionFactory. -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<!-- Enable the configuration of transactional behavior based on annotations. -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- ======================== Business Objects ======================== -->
+
+	<!-- Accessors. -->
+	<!--<bean id="userAccessor"
+		class="com.jpizarro.th.server.user.model.persistence.accessor.UserAccessorHibernate"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="teamAccessor"
+		class="com.jpizarro.th.server.team.model.persistence.accessor.TeamAccessorHibernate"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="gameAccessor"
+		class="com.jpizarro.th.server.game.model.persistence.accessor.GameAccessorHibernate"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="placeAccessor"
+		class="com.jpizarro.th.server.place.model.persistence.accessor.PlaceAccessorHibernate"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="messageAccessor"
+		class="com.jpizarro.th.server.message.model.persistence.accessor.MessageAccessorHibernate"
+		p:sessionFactory-ref="sessionFactory" />-->
+
+<!--	 <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy"> -->
+<!--		<security:filter-chain-map path-type="ant">-->
+<!--					<security:filter-chain pattern="**" -->
+<!--				filters="authenticationFilter" /> -->
+<!--			<security:filter-chain pattern="**" -->
+<!--				filters=" securityContextPersistenceFilterWithASCFalse, basicAuthenticationFilter, -->
+<!--				exceptionTranslationFilter, filterSecurityInterceptor" /> -->
+<!--			<security:filter-chain -->
+<!--				pattern="/**" filters=" securityContextPersistenceFilterWithASCTrue, formLoginFilter, -->
+<!--				exceptionTranslationFilter, filterSecurityInterceptor" />-->
+<!--		</security:filter-chain-map> -->
+<!--	</bean> -->
+
+	<bean id="httpSessionContextIntegrationFilter"
+		class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+	</bean>
+
+	<security:authentication-manager alias="authenticationManager">
+		<!-- <security:authentication-provider ref="customAuthenticationProvider"/>-->
+<!--		<security:authentication-provider>-->
+<!--			<security:user-service>-->
+<!--				<security:user password="admin" name="admin"-->
+<!--					authorities="ROLE_ADMIN" />-->
+<!--			</security:user-service>-->
+<!--		</security:authentication-provider>-->
+	</security:authentication-manager>
+	<!-- <bean id="customAuthenticationProvider" class="com.jpizarro.th.server.view.web.application.CustomAuthenticationProvider">
+	</bean>-->
+<!--	<bean id="userServiceAuthenticationManager"-->
+<!--    	class="com.jpizarro.th.server.view.web.application.UserServiceAuthenticationManagerImpl">-->
+<!--	</bean>-->
+<!--	<bean id="authenticationFilter" class=-->
+<!--		"org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">-->
+<!--		  <property name="authenticationManager" ref="userServiceAuthenticationManager"/>-->
+<!--		  <property name="filterProcessesUrl" value="/j_spring_security_check"/>-->
+<!--	</bean> -->
+	
+	
+
+	<security:http auto-config="true" access-denied-page="/static/AccessDenied.html">
+<!--		<security:intercept-url pattern="/ws/login*"-->
+<!--			access="IS_AUTHENTICATED_ANONYMOUSLY" />-->
+<!--		<security:intercept-url pattern="/login*"-->
+<!--			access="IS_AUTHENTICATED_ANONYMOUSLY" />-->
+<!--		 <security:intercept-url pattern="/**" access="ROLE_USER" />-->
+<!--		 <security:form-login login-page='/login'/>-->
+	</security:http>
+
+	<!-- ******************************************************************* -->
+	<!-- Axis2. -->
+	<!-- ******************************************************************* -->
+	<!-- Configure spring to give a hook to axis2 without a ServletContext -->
+	<!--<bean id="applicationContext"
+		class="org.apache.axis2.extensions.spring.receivers.ApplicationContextHolder" />-->
+
+	<!-- <bean id="springAwareService" class="com.jpizarro.th.server.view.axis.SpringAwareService"> 
+		</bean> -->
+
+	<!--<bean id="wSGameService" class="com.jpizarro.th.server.game.view.axis.WSGameService">
+	</bean>-->
+
+	<!--<bean id="wSUserService" class="com.jpizarro.th.server.user.view.axis.WSUserService">
+	</bean>-->
+
+	<!-- just another bean / interface with a wired implementation, that's injected 
+		by Spring into the Web Service -->
+	<!-- <bean id="myBean" class="com.jpizarro.th.server.view.axis.MyBeanImpl"> 
+		<property name="val" value="Springe, emerge thyself" /> </bean> -->
+
+</beans>

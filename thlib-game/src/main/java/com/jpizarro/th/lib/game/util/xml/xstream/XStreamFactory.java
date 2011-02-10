@@ -13,8 +13,8 @@ import com.jpizarro.th.lib.generic.util.xml.xstream.CalendarConverter;
 import com.jpizarro.th.lib.message.entity.MessageTO;
 import com.jpizarro.th.lib.team.entity.TeamTO;
 import com.jpizarro.th.lib.team.entity.list.TeamsTO;
+import com.jpizarro.th.lib.team.entity.list.UsersTO;
 import com.jpizarro.th.lib.user.entity.UserTO;
-import com.jpizarro.th.lib.user.entity.list.UsersTO;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.XppDriver;
 
