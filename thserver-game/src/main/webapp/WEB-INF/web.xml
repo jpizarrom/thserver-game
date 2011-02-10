@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	version="2.4">
 
-	<display-name>thserver-user</display-name>
+	<display-name>thserver-game</display-name>
 
 	<!-- There are three means to configure Wickets configuration mode and they 
 		are tested in the order given. 1) A system property: -Dwicket.configuration 
@@ -94,23 +94,23 @@
 	<!-- Spring MVC. -->
 	<!-- ******************************************************************* -->
 	<!-- Handles all requests into the application -->
-	<!--<servlet>
+	<servlet>
 		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/spring/*.xml
+				/WEB-INF/spring/rest-servlet.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-	</servlet>-->
+	</servlet>
 		
 	<!-- Maps all /app requests to the DispatcherServlet for handling -->
-	<!--<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
 		<url-pattern>/app/*</url-pattern>
-	</servlet-mapping>-->
+	</servlet-mapping>
 
 	<!-- ******************* -->
 	<!-- Context Parameters -->
