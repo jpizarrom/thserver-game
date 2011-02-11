@@ -14,6 +14,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("game")
 @Entity
 public class Game {
 	

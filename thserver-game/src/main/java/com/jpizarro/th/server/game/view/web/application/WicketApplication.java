@@ -1,4 +1,4 @@
-package com.jpizarro.th.server.team.view.web.application;
+package com.jpizarro.th.server.game.view.web.application;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.Request;
