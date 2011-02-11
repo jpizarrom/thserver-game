@@ -80,7 +80,10 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public GamesTO findGamesByCity(String city, int startIndex, int count) {
+	public GamesTO findGamesByCity(String city, Integer startIndex, Integer count) {
+		if (startIndex == null) startIndex = 0;
+		if (count == null) count = 5;
+		
 		GameCTO gameCTO = gameAccessor.findNotFinishedByCity(city, 
 				startIndex, count);
 		List<GameTO> gameTOList = new ArrayList<GameTO>();
@@ -91,8 +94,11 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public GamesTO findGamesByLocation(int latitude, int longitude,
-			int accurate, int startIndex, int count) {
+	public GamesTO findGamesByLocation(Integer latitude, Integer longitude,
+			Integer accurate, Integer startIndex, Integer count) {
+		if (startIndex == null) startIndex = 0;
+		if (count == null) count = 5;
+		
 		GameCTO gameCTO = gameAccessor.findNotFinishedByLocation(
 				latitude, longitude, accurate, startIndex, count);
 		List<GameTO> gameTOList = new ArrayList<GameTO>();
@@ -119,7 +125,10 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public GamesTO findActiveGames(int startIndex, int count) {
+	public GamesTO findActiveGames(Integer startIndex, Integer count) {
+		if (startIndex == null) startIndex = 0;
+		if (count == null) count = 5;
+
 		GameCTO gameCTO = this.gameAccessor.findActiveGames(startIndex, count);
 		GamesTO gameTOList = new GamesTO();
 		gameTOList.setHasMore(gameCTO.isHasMore());
@@ -130,8 +139,24 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public GamesTO findNotFinishedGames(int startIndex, int count) {
+	public GamesTO findNotFinishedGames(Integer startIndex, Integer count) {
+		if (startIndex == null) startIndex = 0;
+		if (count == null) count = 5;
+
 		GameCTO gameCTO = this.gameAccessor.findNotFinishedGames(startIndex, count);
+		GamesTO gameTOList = new GamesTO();
+		gameTOList.setHasMore(gameCTO.isHasMore());
+		for (Game game:gameCTO.getGameList()) {
+			gameTOList.getGames().add(gameTOFromGame(game));
+		}
+		return gameTOList;
+	}
+	
+	public GamesTO findFinishedGames(Integer startIndex, Integer count) {
+		if (startIndex == null) startIndex = 0;
+		if (count == null) count = 5;
+
+		GameCTO gameCTO = this.gameAccessor.findFinishedGames(startIndex, count);
 		GamesTO gameTOList = new GamesTO();
 		gameTOList.setHasMore(gameCTO.isHasMore());
 		for (Game game:gameCTO.getGameList()) {

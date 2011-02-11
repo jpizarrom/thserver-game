@@ -23,7 +23,7 @@ public interface GameAccessor extends GenericAccessor<Game, Long> {
 	
 	public GameCTO findNotFinishedGames(int startIndex, int count);
 	
-	public List<Game> findFinishedGames(int startIndex, int count);
+	public GameCTO findFinishedGames(int startIndex, int count);
 	
 	public Integer countFinishedGames();
 }

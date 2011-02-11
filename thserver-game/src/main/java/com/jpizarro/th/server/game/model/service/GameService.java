@@ -19,10 +19,10 @@ public interface GameService extends GenericService <GameTO, Long>{
 	
 	public List<String> findCitiesWithGames();
 	
-	public GamesTO findGamesByCity(String city, int startIndex, int count);
+	public GamesTO findGamesByCity(String city, Integer startIndex, Integer count);
 	
-	public GamesTO findGamesByLocation(int latitude, int longitude, int accurate, 
-			int startIndex, int count);
+	public GamesTO findGamesByLocation(Integer latitude, Integer longitude, Integer accurate, 
+			Integer startIndex, Integer count);
 	
 	public Integer countActiveGames();
 	
@@ -30,9 +30,11 @@ public interface GameService extends GenericService <GameTO, Long>{
 	
 	public Integer countNotFinishedGames();
 	
-	public GamesTO findActiveGames(int startIndex, int count);
+	public GamesTO findActiveGames(Integer startIndex, Integer count);
 	
-	public GamesTO findNotFinishedGames(int startIndex, int count);
+	public GamesTO findNotFinishedGames(Integer startIndex, Integer count);
+	
+	public GamesTO findFinishedGames(Integer startIndex, Integer count);
 	
 	public TeamsTO findTeamsByGame(Long gameId) throws InstanceNotFoundException;
 	

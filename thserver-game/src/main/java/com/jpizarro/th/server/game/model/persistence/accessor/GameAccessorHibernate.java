@@ -136,18 +136,27 @@ implements GameAccessor {
 	}
 
 	@Override
-	public List<Game> findFinishedGames(int startIndex, int count) {
+	public GameCTO findFinishedGames(int startIndex, int count) {
 		Criteria criteria = getSession().createCriteria(Game.class);
 		criteria.addOrder(Order.asc("city"));
+		criteria.setFirstResult(startIndex);
+		criteria.setMaxResults(count);
 		criteria.add(Restrictions.eq("finished", true));
-		return criteria.list();
+		List resultList = criteria.list();
+		
+		boolean hasMore = false;
+		if (resultList.size() == count + 1) {
+			resultList = resultList.subList(0, resultList.size() - 1);
+			hasMore = true;
+		}
+		return new GameCTO(resultList, hasMore);
 	}
 
 	@Override
 	public Integer countFinishedGames() {
 		Criteria criteria = getSession().createCriteria(Game.class);
 		criteria.addOrder(Order.asc("city"));
-		criteria.add(Restrictions.ne("finished", true));
+		criteria.add(Restrictions.eq("finished", true));
 		return new Integer(criteria.list().size());
 	}
 

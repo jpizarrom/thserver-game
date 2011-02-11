@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -99,70 +100,71 @@ public class GameController implements GenericController <GameTO, Long>{
 		return r; 
 	}
 
-	public void create(GameTO entity) throws DuplicateInstanceException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public GameTO find(Long id) throws InstanceNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean exists(Long id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public GameTO update(GameTO entity) throws InstanceNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void remove(Long id) throws InstanceNotFoundException {
-		// TODO Auto-generated method stub
-		
-	}
-
+	@RequestMapping(method=RequestMethod.GET, value="/CitiesWithGames")
+	@ResponseBody
 	public List<String> findCitiesWithGames() {
 		// TODO Auto-generated method stub
-		return null;
+		return gameService.findCitiesWithGames();
 	}
 
-	public GamesTO findGamesByCity(String city, int startIndex, int count) {
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping(method=RequestMethod.GET, value="/GamesByCity/{city}")
+	public GamesTO findGamesByCity(@PathVariable String city, 
+			@RequestParam(value="startIndex",required=false) Integer startIndex, 
+			@RequestParam(value="count",required=false) Integer count) {
+		return gameService.findGamesByCity(city, startIndex, count);
 	}
 
 	public GamesTO findGamesByLocation(int latitude, int longitude,
 			int accurate, int startIndex, int count) {
 		// TODO Auto-generated method stub
-		return null;
+		return gameService.findGamesByLocation(latitude, longitude, 
+				accurate, startIndex, count);
 	}
-
+	
+	@RequestMapping(method=RequestMethod.GET, value="/countActiveGames")
+	@ResponseBody
 	public Integer countActiveGames() {
 		// TODO Auto-generated method stub
-		return null;
+		return gameService.countActiveGames();
 	}
-
+	@RequestMapping(method=RequestMethod.GET, value="/countFinishedGames")
+	@ResponseBody
 	public Integer countFinishedGames() {
 		// TODO Auto-generated method stub
-		return null;
+		return gameService.countFinishedGames();
 	}
-
+	@RequestMapping(method=RequestMethod.GET, value="/countNotFinishedGames")
+	@ResponseBody
 	public Integer countNotFinishedGames() {
 		// TODO Auto-generated method stub
-		return null;
+		return gameService.countNotFinishedGames();
 	}
 
-	public GamesTO findActiveGames(int startIndex, int count) {
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping(method=RequestMethod.GET, value="/ActiveGames")
+	@ResponseBody
+	public GamesTO findActiveGames(
+			@RequestParam(value="startIndex",required=false) Integer startIndex, 
+			@RequestParam(value="count",required=false) Integer count) {
+
+		return gameService.findActiveGames(startIndex, count);
 	}
 
-	public GamesTO findNotFinishedGames(int startIndex, int count) {
+	@RequestMapping(method=RequestMethod.GET, value="/NotFinishedGames")
+	@ResponseBody
+	public GamesTO findNotFinishedGames(
+			@RequestParam(value="startIndex",required=false) Integer startIndex, 
+			@RequestParam(value="count",required=false) Integer count) {
 		// TODO Auto-generated method stub
-		return null;
+		return gameService.findNotFinishedGames(startIndex, count);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/FinishedGames")
+	@ResponseBody
+	public GamesTO findFinishedGames(
+			@RequestParam(value="startIndex",required=false) Integer startIndex, 
+			@RequestParam(value="count",required=false) Integer count) {
+		// TODO Auto-generated method stub
+		return gameService.findFinishedGames(startIndex, count);
 	}
 
 	public TeamsTO findTeamsByGame(Long gameId)
