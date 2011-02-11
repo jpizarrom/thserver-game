@@ -1,5 +1,6 @@
 package com.jpizarro.th.server.game.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
+import com.jpizarro.th.lib.game.entity.TeamTO;
+import com.jpizarro.th.lib.game.entity.list.GameCTO;
 import com.jpizarro.th.lib.game.entity.list.GamesTO;
 import com.jpizarro.th.lib.game.entity.list.TeamsTO;
 import com.jpizarro.th.lib.game.entity.response.GenericGameResponseTO;
@@ -14,6 +17,7 @@ import com.jpizarro.th.lib.game.entity.response.InGameUserInfoTO;
 import com.jpizarro.th.server.game.model.entity.Game;
 import com.jpizarro.th.server.game.model.entity.Place;
 import com.jpizarro.th.server.game.model.entity.Team;
+import com.jpizarro.th.server.game.model.entity.User;
 import com.jpizarro.th.server.game.model.persistence.accessor.GameAccessor;
 import com.jpizarro.th.server.game.model.persistence.accessor.PlaceAccessor;
 import com.jpizarro.th.server.game.model.persistence.accessor.TeamAccessor;
@@ -72,84 +76,118 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	public List<String> findCitiesWithGames() {
-		// TODO Auto-generated method stub
-		return null;
+		return gameAccessor.findCitiesWithGames();
 	}
 
 	@Override
 	public GamesTO findGamesByCity(String city, int startIndex, int count) {
-		// TODO Auto-generated method stub
-		return null;
+		GameCTO gameCTO = gameAccessor.findNotFinishedByCity(city, 
+				startIndex, count);
+		List<GameTO> gameTOList = new ArrayList<GameTO>();
+		for (Game game:gameCTO.getGameList()) {
+			gameTOList.add(gameTOFromGame(game));
+		}
+		return new GamesTO(gameTOList, gameCTO.isHasMore());
 	}
 
 	@Override
 	public GamesTO findGamesByLocation(int latitude, int longitude,
 			int accurate, int startIndex, int count) {
-		// TODO Auto-generated method stub
-		return null;
+		GameCTO gameCTO = gameAccessor.findNotFinishedByLocation(
+				latitude, longitude, accurate, startIndex, count);
+		List<GameTO> gameTOList = new ArrayList<GameTO>();
+		for (Game game:gameCTO.getGameList()) {
+			gameTOList.add(gameTOFromGame(game));
+		}
+		return new GamesTO(gameTOList, gameCTO.isHasMore());
 	}
 
 	@Override
 	public Integer countActiveGames() {
-		// TODO Auto-generated method stub
-		return null;
+		return gameAccessor.countActiveGames();
 	}
 
 	@Override
 	public Integer countFinishedGames() {
-		// TODO Auto-generated method stub
-		return null;
+		return gameAccessor.countFinishedGames();
 	}
 
 	@Override
 	public Integer countNotFinishedGames() {
 		// TODO Auto-generated method stub
-		return null;
+		return gameAccessor.countNotFinishedGames();
 	}
 
 	@Override
 	public GamesTO findActiveGames(int startIndex, int count) {
-		// TODO Auto-generated method stub
-		return null;
+		GameCTO gameCTO = this.gameAccessor.findActiveGames(startIndex, count);
+		GamesTO gameTOList = new GamesTO();
+		gameTOList.setHasMore(gameCTO.isHasMore());
+		for (Game game:gameCTO.getGameList()) {
+			gameTOList.getGames().add(gameTOFromGame(game));
+		}
+		return gameTOList;
 	}
 
 	@Override
 	public GamesTO findNotFinishedGames(int startIndex, int count) {
-		// TODO Auto-generated method stub
-		return null;
+		GameCTO gameCTO = this.gameAccessor.findNotFinishedGames(startIndex, count);
+		GamesTO gameTOList = new GamesTO();
+		gameTOList.setHasMore(gameCTO.isHasMore());
+		for (Game game:gameCTO.getGameList()) {
+			gameTOList.getGames().add(gameTOFromGame(game));
+		}
+		return gameTOList;
 	}
 
 	@Override
-	public TeamsTO findTeamsByGame(long gameId)
+	public TeamsTO findTeamsByGame(Long gameId)
 			throws InstanceNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Game g = gameAccessor.find(gameId);
+		List<TeamTO> teams = new ArrayList<TeamTO>();
+		TeamsTO teamsTO = new TeamsTO();
+		
+		for ( Team t:g.getTeams()){
+			TeamTO to = teamTOFromTeam(t);
+			teams.add(to);
+		}
+		teamsTO.setTeams(teams);
+		return teamsTO;
 	}
 
 	@Override
-	public GenericGameResponseTO takePlace(String username, long placeId,
+	public GenericGameResponseTO takePlace(String username, Long placeId,
 			InGameUserInfoTO inGameUserInfoTO)
 			throws InstanceNotFoundException, DuplicateInstanceException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	private GameTO gameTOFromGame(Game game){
-		return GameUtils.gameTOFromGame(game);
-	
-	}
-
 	@Override
-	public GenericGameResponseTO startOrContinueGame(String username)
+	public GenericGameResponseTO startOrContinueGame(Long gameId, Long userId, Long teamId)
 			throws InstanceNotFoundException, TimeOutException {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userAccessor.find(userId);
+		Team team = teamAccessor.find(teamId);
+		GenericGameResponseTO ggrTO = new GenericGameResponseTO();
+		Game game = team.getGame();
+		
+		if (!game.isFinished() ) {		
+		}
+		
+		return ggrTO;
 	}
 
 	@Override
 	public GameTO createGame(CreateGameTO createGameTO) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	private GameTO gameTOFromGame(Game game){
+		return GameUtils.gameTOFromGame(game);
+	}
+	private TeamTO teamTOFromTeam(Team team){
+		return GameUtils.teamTOFromTeam(team);
 	}
 
 }

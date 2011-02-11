@@ -34,13 +34,13 @@ public interface GameService extends GenericService <GameTO, Long>{
 	
 	public GamesTO findNotFinishedGames(int startIndex, int count);
 	
-	public TeamsTO findTeamsByGame(long gameId) throws InstanceNotFoundException;
+	public TeamsTO findTeamsByGame(Long gameId) throws InstanceNotFoundException;
 	
-	public GenericGameResponseTO takePlace(String username, long placeId, 
+	public GenericGameResponseTO takePlace(String username, Long placeId, 
 			InGameUserInfoTO inGameUserInfoTO)
 	throws InstanceNotFoundException, DuplicateInstanceException;
 	
-	public GenericGameResponseTO startOrContinueGame(String username)
+	public GenericGameResponseTO startOrContinueGame(Long gameId, Long userId, Long teamId)
 	throws InstanceNotFoundException, TimeOutException;
 	
 	public GameTO createGame(CreateGameTO createGameTO);

@@ -48,7 +48,7 @@ public class GameUtils {
 		return gameTO;
 	}
 
-	private static TeamTO teamTOFromTeam(Team team){
+	public static TeamTO teamTOFromTeam(Team team){
 		TeamTO teamTO = new TeamTO();
 		teamTO.setTeamId( team.getTeamId());
 
