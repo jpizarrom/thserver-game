@@ -39,7 +39,7 @@ public class Place {
 	private Set<Team> teamsCanSeeMe = new HashSet<Team>();
 	private Set<Team> teamsHaveMe = new HashSet<Team>();
 	
-//	private Set<User> usersCanSeeMe = new HashSet<User>();
+	private Set<User> usersCanSeeMe = new HashSet<User>();
 	
 	public Place() {
 		super();
@@ -141,18 +141,18 @@ public class Place {
 		this.teamsHaveMe = teamsHaveMe;
 	}
 
-//	@ManyToMany(
-//			fetch = FetchType.LAZY,
-//			mappedBy = "placesICanSee",
-//			targetEntity = User.class)
-//	@AccessType(value = "field")
-//	public Set<User> getUsersCanSeeMe() {
-//		return usersCanSeeMe;
-//	}
-//
-//	public void setUsersCanSeeMe(Set<User> usersCanSeeMe) {
-//		this.usersCanSeeMe = usersCanSeeMe;
-//	}
+	@ManyToMany(
+			fetch = FetchType.LAZY,
+			mappedBy = "placesICanSee",
+			targetEntity = User.class)
+	@AccessType(value = "field")
+	public Set<User> getUsersCanSeeMe() {
+		return usersCanSeeMe;
+	}
+
+	public void setUsersCanSeeMe(Set<User> usersCanSeeMe) {
+		this.usersCanSeeMe = usersCanSeeMe;
+	}
 
 	@Override
 	public String toString() {
