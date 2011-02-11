@@ -167,10 +167,17 @@ public class GameController implements GenericController <GameTO, Long>{
 		return gameService.findFinishedGames(startIndex, count);
 	}
 
-	public TeamsTO findTeamsByGame(Long gameId)
-			throws InstanceNotFoundException {
+	@RequestMapping(method=RequestMethod.GET, value="/{gameId}/teams")
+	@ResponseBody
+	public TeamsTO findTeamsByGame(@PathVariable Long gameId) {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			return gameService.findTeamsByGame(gameId);
+		} catch (InstanceNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new TeamsTO();
 	}
 
 	public GenericGameResponseTO takePlace(String username, Long placeId,

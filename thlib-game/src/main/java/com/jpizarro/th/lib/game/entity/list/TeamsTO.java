@@ -3,7 +3,9 @@ package com.jpizarro.th.lib.game.entity.list;
 import java.util.List;
 
 import com.jpizarro.th.lib.game.entity.TeamTO;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+@XStreamAlias("teamlist")
 public class TeamsTO {
 	private Integer count;
 	private Integer start;

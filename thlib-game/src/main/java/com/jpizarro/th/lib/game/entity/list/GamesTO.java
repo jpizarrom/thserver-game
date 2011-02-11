@@ -6,7 +6,7 @@ import java.util.List;
 import com.jpizarro.th.lib.game.entity.GameTO;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
-@XStreamAlias("games")
+@XStreamAlias("gameslist")
 public class GamesTO {
 	private Integer count;
 	private Integer start;
