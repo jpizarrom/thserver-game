@@ -2,6 +2,9 @@ package com.jpizarro.th.lib.game.entity.list;
 
 import java.util.List;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("cities")
 public class CitiesTO {
 	private Integer count;
 	private Integer start;

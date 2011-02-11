@@ -10,11 +10,6 @@ import com.jpizarro.th.lib.game.entity.response.InGameUserInfoTO;
 import com.jpizarro.th.lib.game.entity.response.UpdateLocationResponseTO;
 import com.jpizarro.th.lib.generic.util.exception.THException;
 import com.jpizarro.th.lib.generic.util.xml.xstream.CalendarConverter;
-import com.jpizarro.th.lib.message.entity.MessageTO;
-import com.jpizarro.th.lib.team.entity.TeamTO;
-import com.jpizarro.th.lib.team.entity.list.TeamsTO;
-import com.jpizarro.th.lib.team.entity.list.UsersTO;
-import com.jpizarro.th.lib.user.entity.UserTO;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.XppDriver;
 
@@ -30,14 +25,14 @@ public class XStreamFactory
 
 		
 		xstream.addImplicitCollection(GamesTO.class, "games", GameTO.class);
-		xstream.addImplicitCollection(TeamsTO.class, "teams", TeamTO.class);
-		xstream.addImplicitCollection(UsersTO.class, "users", UserTO.class);
+//		xstream.addImplicitCollection(TeamsTO.class, "teams", TeamTO.class);
+//		xstream.addImplicitCollection(UsersTO.class, "users", UserTO.class);
 		
 		xstream.addImplicitCollection(CitiesTO.class, "cities");
 		
-		xstream.alias("user", UserTO.class);
+//		xstream.alias("user", UserTO.class);
 		xstream.alias("game", GameTO.class);
-		xstream.alias("team", TeamTO.class);
+//		xstream.alias("team", TeamTO.class);
 		xstream.alias("goal", GoalTO.class);
 		xstream.alias("hint", HintTO.class);
 		
@@ -48,10 +43,10 @@ public class XStreamFactory
 		xstream.alias("city", String.class);
 		
 		xstream.alias("games", GamesTO.class);
-		xstream.alias("teams", TeamsTO.class);
-		xstream.alias("users", UsersTO.class);
+//		xstream.alias("teams", TeamsTO.class);
+//		xstream.alias("users", UsersTO.class);
 		xstream.alias("cities", CitiesTO.class);
-		xstream.alias("message", MessageTO.class);
+//		xstream.alias("message", MessageTO.class);
 		
 		xstream.alias("genericGameResponse", GenericGameResponseTO.class);
 		xstream.alias("updateLocationReponse", UpdateLocationResponseTO.class);
@@ -67,7 +62,7 @@ public class XStreamFactory
 //		xstream.aliasField("hideHints", GenericGameResponseTO.class, "hideHintTOList");
 		
 //		xstream.aliasField("user", InGameUserInfoTO.class, "inGameUserInfoTOs");
-		xstream.aliasField("users", TeamTO.class, "userTOList");
+//		xstream.aliasField("users", TeamTO.class, "userTOList");
 		
 		xstream.alias("exception", THException.class);
 		

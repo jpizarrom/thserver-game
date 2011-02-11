@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.jpizarro.th.lib.game.entity.GoalTO;
 import com.jpizarro.th.lib.game.entity.HintTO;
-import com.jpizarro.th.lib.message.entity.MessageTO;
 
 public class GenericGameResponseTO implements Serializable {
 
@@ -22,7 +21,7 @@ public class GenericGameResponseTO implements Serializable {
 	private List<HintTO> userSeeHintTOList = new ArrayList<HintTO>();
 	private List<HintTO> teamSeeHintTOList = new ArrayList<HintTO>();
 	private GoalTO goal;
-	private List<MessageTO> myMessages = new ArrayList<MessageTO>();
+//	private List<MessageTO> myMessages = new ArrayList<MessageTO>();
 	private boolean hasFinished = false;	
 
 	public GenericGameResponseTO() {
@@ -102,11 +101,11 @@ public class GenericGameResponseTO implements Serializable {
 		this.hasFinished = hasFinished;
 	}
 
-	public List<MessageTO> getMyMessages() {
-		return myMessages;
-	}
-
-	public void setMyMessages(List<MessageTO> myMessages) {
-		this.myMessages = myMessages;
-	}
+//	public List<MessageTO> getMyMessages() {
+//		return myMessages;
+//	}
+//
+//	public void setMyMessages(List<MessageTO> myMessages) {
+//		this.myMessages = myMessages;
+//	}
 }

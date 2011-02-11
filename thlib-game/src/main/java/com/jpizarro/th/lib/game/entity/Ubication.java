@@ -2,6 +2,9 @@ package com.jpizarro.th.lib.game.entity;
 
 import java.io.Serializable;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("ubication")
 public class Ubication implements Serializable {
 	/**
 	 * 

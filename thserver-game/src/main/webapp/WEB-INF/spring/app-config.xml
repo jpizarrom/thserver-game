@@ -61,9 +61,19 @@
 	<!-- ======================== Business Objects ======================== -->
 
 	<!-- Accessors. -->
-<!--	<bean id="messageAccessor"-->
-<!--		class="com.jpizarro.th.server.message.model.persistence.accessor.MessageAccessorHibernate"-->
-<!--		p:sessionFactory-ref="sessionFactory" />-->
+	
+	<bean id="userAccessor"
+		class="com.jpizarro.th.server.game.model.persistence.accessor.UserAccessorHibernate"
+		p:sessionFactory-ref="sessionFactory" />
+	<bean id="gameAccessor"
+		class="com.jpizarro.th.server.game.model.persistence.accessor.GameAccessorHibernate"
+		p:sessionFactory-ref="sessionFactory" />
+	<bean id="teamAccessor"
+		class="com.jpizarro.th.server.game.model.persistence.accessor.TeamAccessorHibernate"
+		p:sessionFactory-ref="sessionFactory" />
+	<bean id="placeAccessor"
+		class="com.jpizarro.th.server.game.model.persistence.accessor.PlaceAccessorHibernate"
+		p:sessionFactory-ref="sessionFactory" />
 
 <!--	 <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy"> -->
 <!--		<security:filter-chain-map path-type="ant">-->

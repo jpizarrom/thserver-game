@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jpizarro.th.lib.game.entity.GameTO;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+@XStreamAlias("games")
 public class GamesTO {
 	private Integer count;
 	private Integer start;

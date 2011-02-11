@@ -3,6 +3,9 @@ package com.jpizarro.th.lib.game.entity;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("game")
 public class GameTO implements Serializable{
 	
 	/**
