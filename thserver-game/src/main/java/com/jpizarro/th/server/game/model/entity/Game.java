@@ -14,9 +14,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-
-@XStreamAlias("game")
 @Entity
 public class Game {
 	
@@ -168,16 +165,5 @@ public class Game {
 //	public void removePlace(Place place) {
 //		this.places.remove(place);
 //		place.setGame(null);
-//	}
-//
-//	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
-//	@AccessType(value="field")
-//	public Set<Message> getMessages() {
-//		return messages;
-//	}
-//
-//	public void setMessages(Set<Message> messages) {
-//		this.messages = messages;
-//	}
-	
+//	}	
 }

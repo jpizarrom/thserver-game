@@ -20,12 +20,8 @@ import org.hibernate.annotations.AccessType;
 @Entity
 public class Team {
 	private long teamId;
-	private String name;
-	private String description;
 	private Game game;
 	
-//	private Set<User> users = new HashSet<User>();
-//
 	private Set<Place> placesICanSee = new HashSet<Place>();
 	private Set<Place> placesIHave = new HashSet<Place>();
 	
@@ -33,22 +29,6 @@ public class Team {
 
 	public void setTeamId(int teamId) {
 		this.teamId = teamId;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	@Id
@@ -74,20 +54,6 @@ public class Team {
 	public void setTeamId(long teamId) {
 		this.teamId = teamId;
 	}
-
-//	@OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
-//	public Set<User> getUsers() {
-//		return users;
-//	}
-//
-//	public void setUsers(Set<User> users) {
-//		this.users = users;
-//	}
-//	
-//	public void addUser(User user) {
-//		this.users.add(user);
-//		user.setTeam(this);
-//	}
 
 	@ManyToMany(
 			fetch = FetchType.LAZY,
@@ -121,12 +87,4 @@ public class Team {
 	public void setPlacesIHave(Set<Place> placesIHave) {
 		this.placesIHave = placesIHave;
 	}
-
-	@Override
-	public String toString() {
-		return "Team [teamId=" + teamId + ", name=" + name + ", description="
-				+ description + ", game=" + game + "]";
-	}
-
-
 }

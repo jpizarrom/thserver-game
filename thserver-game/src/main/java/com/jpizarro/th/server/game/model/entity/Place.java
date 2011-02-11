@@ -27,12 +27,6 @@ import com.jpizarro.th.server.game.model.entity.Game;
 public class Place {
 	private long placeId;
 	
-	private int latitude;
-	private int longitude;
-
-	private String name;
-	private String description;
-	
 	private Game game;
 	private String type = new String();
 	
@@ -45,10 +39,8 @@ public class Place {
 		super();
 	}
 
-	public Place(Game game, int latitude, int longitude) {
+	public Place(Game game) {
 		super();
-		this.latitude = latitude;
-		this.longitude = longitude;
 		this.game = game;
 	}
 
@@ -64,38 +56,6 @@ public class Place {
 
 	public void setPlaceId(long placeId) {
 		this.placeId = placeId;
-	}
-
-	public int getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(int latitude) {
-		this.latitude = latitude;
-	}
-
-	public int getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(int longitude) {
-		this.longitude = longitude;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -153,13 +113,4 @@ public class Place {
 	public void setUsersCanSeeMe(Set<User> usersCanSeeMe) {
 		this.usersCanSeeMe = usersCanSeeMe;
 	}
-
-	@Override
-	public String toString() {
-		return "Place [description=" + description + ", game=" + game.getGameId()
-				+ ", latitude=" + latitude + ", longitude=" + longitude
-				+ ", name=" + name + ", placeId=" + placeId + ", type=" + type
-				+ "]";
-	}
-
 }

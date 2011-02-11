@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
 import com.jpizarro.th.lib.game.entity.list.GamesTO;
 import com.jpizarro.th.lib.game.entity.list.TeamsTO;
@@ -20,6 +21,8 @@ import com.jpizarro.th.server.game.model.persistence.accessor.UserAccessor;
 import com.jpizarro.th.server.game.util.GameUtils;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
+
+import es.sonxurxo.androidrunner.model.service.game.util.exception.TimeOutException;
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -134,6 +137,19 @@ public class GameServiceImpl implements GameService {
 	private GameTO gameTOFromGame(Game game){
 		return GameUtils.gameTOFromGame(game);
 	
+	}
+
+	@Override
+	public GenericGameResponseTO startOrContinueGame(String username)
+			throws InstanceNotFoundException, TimeOutException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GameTO createGame(CreateGameTO createGameTO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

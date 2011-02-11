@@ -2,6 +2,7 @@ package com.jpizarro.th.server.game.model.service;
 
 import java.util.List;
 
+import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
 import com.jpizarro.th.lib.game.entity.list.GamesTO;
 import com.jpizarro.th.lib.game.entity.list.TeamsTO;
@@ -11,9 +12,13 @@ import com.jpizarro.th.server.generic.model.persistence.util.exceptions.Duplicat
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
 import com.jpizarro.th.server.generic.model.service.GenericService;
 
+import es.sonxurxo.androidrunner.model.service.game.util.exception.TimeOutException;
+
 
 public interface GameService extends GenericService <GameTO, Long>{
+	
 	public List<String> findCitiesWithGames();
+	
 	public GamesTO findGamesByCity(String city, int startIndex, int count);
 	
 	public GamesTO findGamesByLocation(int latitude, int longitude, int accurate, 
@@ -26,6 +31,7 @@ public interface GameService extends GenericService <GameTO, Long>{
 	public Integer countNotFinishedGames();
 	
 	public GamesTO findActiveGames(int startIndex, int count);
+	
 	public GamesTO findNotFinishedGames(int startIndex, int count);
 	
 	public TeamsTO findTeamsByGame(long gameId) throws InstanceNotFoundException;
@@ -33,5 +39,10 @@ public interface GameService extends GenericService <GameTO, Long>{
 	public GenericGameResponseTO takePlace(String username, long placeId, 
 			InGameUserInfoTO inGameUserInfoTO)
 	throws InstanceNotFoundException, DuplicateInstanceException;
+	
+	public GenericGameResponseTO startOrContinueGame(String username)
+	throws InstanceNotFoundException, TimeOutException;
+	
+	public GameTO createGame(CreateGameTO createGameTO);
 	
 }
