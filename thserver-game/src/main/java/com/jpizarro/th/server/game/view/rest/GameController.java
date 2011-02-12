@@ -19,10 +19,12 @@ import com.jpizarro.th.lib.game.entity.list.GamesTO;
 import com.jpizarro.th.lib.game.entity.list.TeamsTO;
 import com.jpizarro.th.lib.game.entity.response.GenericGameResponseTO;
 import com.jpizarro.th.lib.game.entity.response.InGameUserInfoTO;
+import com.jpizarro.th.lib.user.entity.UserTO;
 import com.jpizarro.th.server.game.model.service.GameService;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
 import com.jpizarro.th.server.generic.view.rest.GenericController;
+import com.jpizarro.th.server.user.view.rest.client.UserRestClient;
 
 import es.sonxurxo.androidrunner.model.service.game.util.exception.TimeOutException;
 
@@ -32,6 +34,9 @@ public class GameController implements GenericController <GameTO, Long>{
 	@Autowired
 	private GameService gameService;
 	private String XML_VIEW_NAME = "users";
+	
+	@Autowired
+	private UserRestClient userRestClient;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}",
 			headers="Accept=application/xml")
@@ -196,6 +201,13 @@ public class GameController implements GenericController <GameTO, Long>{
 	public GameTO createGame(CreateGameTO createGameTO) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/{id}/rest",
+			headers="Accept=application/xml")
+	@ResponseBody
+	public UserTO getEntityRest(@PathVariable Long id) {
+		return userRestClient.getEntity(id);
 	}
 	
 	

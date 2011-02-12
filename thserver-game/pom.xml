@@ -502,6 +502,8 @@
 								<!--<source>thlib</source> -->
 								<source>../../generic/thlib-generic/src/main/java/</source>
 								<source>../../game/thlib-game/src/main/java/</source>
+								
+								<source>../../user/thlib-user/src/main/java/</source>
 							</sources>
 						</configuration>
 					</execution>
@@ -538,7 +540,7 @@
 					</requestLog>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>8070</port>
+							<port>8075</port>
 						</connector>
 					</connectors>
 				</configuration>
