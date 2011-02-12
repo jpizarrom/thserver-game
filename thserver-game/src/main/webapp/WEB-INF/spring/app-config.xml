@@ -12,7 +12,7 @@
 	<context:property-placeholder location="classpath:business.properties" />
 
 	<context:component-scan annotation-config="true"
-		base-package="com.jpizarro.th.server" />
+		base-package="com.jpizarro.th" />
 
 	<!-- ======================= Spring Infrastructure ==================== -->
 

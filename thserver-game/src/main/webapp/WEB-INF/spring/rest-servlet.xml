@@ -25,6 +25,13 @@
 <!--	            <entry key="user" value="com.jpizarro.th.lib.user.entity.UserTO" />-->
 <!--	        </map>-->
 <!--	    </property>-->
+			<property name="annotatedClasses">
+				<list>
+					<value>com.jpizarro.th.lib.user.entity.UserTO</value>
+					<value>com.jpizarro.th.lib.game.entity.GameTO</value>
+				</list>
+			</property>
+
 	</bean>
 
 	<bean id="xmlView"
@@ -66,6 +73,6 @@
   <property name="ignoreAcceptHeader" value="true" />
 </bean>
 
-<!--<import resource="rest-client.xml"/>-->
+<import resource="rest-client.xml"/>
 
 </beans>
