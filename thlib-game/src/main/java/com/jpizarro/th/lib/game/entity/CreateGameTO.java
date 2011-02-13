@@ -5,6 +5,9 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("creategame")
 public class CreateGameTO {
 	private long gameId;
 	private Calendar startDate;

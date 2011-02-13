@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
@@ -43,9 +44,11 @@ public class GameServiceImpl implements GameService {
 	private PlaceAccessor placeAccessor;
 
 	@Override
-	public void create(GameTO entity) throws DuplicateInstanceException {
-		// TODO Auto-generated method stub
-		
+	@Transactional
+	public GameTO create(GameTO entity) throws DuplicateInstanceException {
+		Game g = GameUtils.gameTOFromGame(entity);
+		gameAccessor.create(g);
+		return GameUtils.gameTOFromGame(g);
 	}
 
 	@Override
@@ -62,16 +65,18 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
+	@Transactional
 	public GameTO update(GameTO entity) throws InstanceNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Game g = GameUtils.gameTOFromGame(entity);
+		g = gameAccessor.update(g);
+		return GameUtils.gameTOFromGame(g);
 	}
 
 	@Override
+	@Transactional
 	public void remove(Long id) throws InstanceNotFoundException {
 		// TODO Auto-generated method stub
 		gameAccessor.remove(id);
-		
 	}
 
 	@Override
@@ -203,9 +208,11 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public GameTO createGame(CreateGameTO createGameTO) {
+	public GameTO createGame(CreateGameTO createGameTO) throws DuplicateInstanceException {
 		// TODO Auto-generated method stub
-		return null;
+		Game g = GameUtils.createGameTOFromGame(createGameTO);
+		gameAccessor.create(g);
+		return GameUtils.gameTOFromGame(g);
 	}
 
 	private GameTO gameTOFromGame(Game game){

@@ -3,6 +3,7 @@ package com.jpizarro.th.server.game.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
 import com.jpizarro.th.lib.game.entity.TeamTO;
 import com.jpizarro.th.lib.game.entity.UserTO;
@@ -47,12 +48,43 @@ public class GameUtils {
 		gameTO.setLongitude( game.getLongitude());
 		return gameTO;
 	}
-
+	public static Game gameTOFromGame(GameTO to){
+		Game g = new Game();
+		g.setGameId(to.getGameId());
+		g.setStartDate(to.getStartDate());
+		g.setFinishDate(to.getFinishDate());
+		
+		g.setMaxTeams(to.getMaxTeams());
+		g.setMaxUserPerTeam(to.getMaxUserPerTeam());
+		
+		g.setLatitude(to.getLatitude());
+		g.setLongitude(to.getLongitude());
+		g.setCity(to.getCity());
+		
+		return g;
+		
+	}
+	public static Game createGameTOFromGame(CreateGameTO to) {
+		Game g = new Game();
+		g.setGameId(to.getGameId());
+		g.setStartDate(to.getStartDate());
+		g.setFinishDate(to.getFinishDate());
+		
+		g.setMaxTeams(to.getMaxTeams());
+		g.setMaxUserPerTeam(to.getMaxUserPerTeam());
+		
+		g.setLatitude(to.getLatitude());
+		g.setLongitude(to.getLongitude());
+		g.setCity(to.getCity());
+		
+		return g;
+	}
 	public static TeamTO teamTOFromTeam(Team team){
 		TeamTO teamTO = new TeamTO();
 		teamTO.setTeamId( team.getTeamId());
 
 		return teamTO;
 	}
+
 	
 }

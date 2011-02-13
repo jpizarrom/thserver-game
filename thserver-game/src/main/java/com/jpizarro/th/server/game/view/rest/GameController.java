@@ -35,9 +35,6 @@ public class GameController implements GenericController <GameTO, Long>{
 	private GameService gameService;
 	private String XML_VIEW_NAME = "users";
 	
-	@Autowired
-	private UserRestClient userRestClient;
-	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}",
 			headers="Accept=application/xml")
 	@ResponseBody
@@ -78,10 +75,10 @@ public class GameController implements GenericController <GameTO, Long>{
 
 	@Override
 	@RequestMapping(method=RequestMethod.PUT, value="/{id}")
+	@ResponseBody
 	public GameTO updateEntity(@PathVariable Long id, @RequestBody GameTO entity) {
-		// TODO Auto-generated method stub
+		entity.setGameId(id);
 		try {
-			entity.setGameId(id);
 			return gameService.update(entity);
 		} catch (InstanceNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -90,17 +87,17 @@ public class GameController implements GenericController <GameTO, Long>{
 		return null;
 	}
 
-	@Override
-	@RequestMapping(method=RequestMethod.POST, value="/")
+//	@Override
+//	@RequestMapping(method=RequestMethod.POST)
+//	@ResponseBody
 	public GameTO addEntity(@RequestBody GameTO body) {
 		// TODO Auto-generated method stub
-		GameTO r = new GameTO();
+		GameTO r = null;
 		try {
-			gameService.create(body);
+			r = gameService.create(body);
 		} catch (DuplicateInstanceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return r; 
 		}
 		return r; 
 	}
@@ -113,6 +110,7 @@ public class GameController implements GenericController <GameTO, Long>{
 	}
 
 	@RequestMapping(method=RequestMethod.GET, value="/GamesByCity/{city}")
+	@ResponseBody
 	public GamesTO findGamesByCity(@PathVariable String city, 
 			@RequestParam(value="startIndex",required=false) Integer startIndex, 
 			@RequestParam(value="count",required=false) Integer count) {
@@ -182,7 +180,7 @@ public class GameController implements GenericController <GameTO, Long>{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return new TeamsTO();
+		return null;
 	}
 
 	public GenericGameResponseTO takePlace(String username, Long placeId,
@@ -198,8 +196,16 @@ public class GameController implements GenericController <GameTO, Long>{
 		return null;
 	}
 
-	public GameTO createGame(CreateGameTO createGameTO) {
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping(method=RequestMethod.POST)
+	@ResponseBody
+	public GameTO createGame(@RequestBody CreateGameTO createGameTO) {
+		GameTO g = null;
+		try {
+			g = gameService.createGame(createGameTO);
+		} catch (DuplicateInstanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return g;
 	}
 }
