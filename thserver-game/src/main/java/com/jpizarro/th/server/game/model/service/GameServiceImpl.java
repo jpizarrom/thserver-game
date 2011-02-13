@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
+import com.jpizarro.th.lib.game.entity.PlaceTO;
 import com.jpizarro.th.lib.game.entity.TeamTO;
 import com.jpizarro.th.lib.game.entity.list.GameCTO;
 import com.jpizarro.th.lib.game.entity.list.GamesTO;
@@ -223,6 +224,19 @@ public class GameServiceImpl implements GameService {
 	}
 	private TeamTO teamTOFromTeam(Team team){
 		return GameUtils.teamTOFromTeam(team);
+	}
+
+	@Override
+	public boolean addHint(Long gameId, PlaceTO to)
+			throws InstanceNotFoundException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<TeamTO> getTeams(Long gameId) throws InstanceNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
