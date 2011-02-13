@@ -506,6 +506,7 @@
 								<source>../../user/thlib-user/src/main/java/</source>
 								<source>../../team/thlib-team/src/main/java/</source>
 								<source>../../place/thlib-place/src/main/java/</source>
+								<source>../../msg/thlib-msg/src/main/java/</source>
 							</sources>
 						</configuration>
 					</execution>
