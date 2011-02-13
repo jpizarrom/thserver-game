@@ -43,5 +43,9 @@
         <constructor-arg ref="restTemplate"/>
         <constructor-arg ref="credentials"/>
     </bean>
+    <bean id="placeRestClient" class="com.jpizarro.th.server.user.view.rest.client.PlaceRestClient">
+        <constructor-arg ref="restTemplate"/>
+        <constructor-arg ref="credentials"/>
+    </bean>
 
 </beans>

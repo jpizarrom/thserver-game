@@ -19,14 +19,16 @@ import com.jpizarro.th.lib.game.entity.list.GamesTO;
 import com.jpizarro.th.lib.game.entity.list.TeamsTO;
 import com.jpizarro.th.lib.game.entity.response.GenericGameResponseTO;
 import com.jpizarro.th.lib.game.entity.response.InGameUserInfoTO;
+import com.jpizarro.th.lib.place.entity.PlaceTO;
 import com.jpizarro.th.lib.team.entity.TeamTO;
 import com.jpizarro.th.lib.user.entity.UserTO;
 import com.jpizarro.th.server.game.model.service.GameService;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
 import com.jpizarro.th.server.generic.view.rest.GenericController;
+import com.jpizarro.th.server.user.view.rest.client.PlaceRestClient;
 import com.jpizarro.th.server.user.view.rest.client.UserRestClient;
-import com.jpizarro.th.server.user.view.rest.client.TeamRestClient;;
+import com.jpizarro.th.server.user.view.rest.client.TeamRestClient;
 
 import es.sonxurxo.androidrunner.model.service.game.util.exception.TimeOutException;
 
@@ -41,6 +43,8 @@ public class TestController{
 	private UserRestClient userRestClient;
 	@Autowired
 	private TeamRestClient teamRestClient;
+	@Autowired
+	private PlaceRestClient placeRestClient;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/users/{id}",
 			headers="Accept=application/xml")
@@ -102,6 +106,37 @@ public class TestController{
 		body.setTeamId(id);
 		body.setDescription("juan desc");
 		return teamRestClient.updateEntity(id, body);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/places/{id}",
+			headers="Accept=application/xml")
+	@ResponseBody
+	public PlaceTO getEntityPlace(@PathVariable Long id) {
+		return placeRestClient.getEntity(id);
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE, value="/places/{id}",
+			headers="Accept=application/xml")
+	@ResponseBody
+	public Object removeEntityPlace(@PathVariable Long id) {
+		return placeRestClient.removeEntity(id);
+	}
+
+	@RequestMapping(method=RequestMethod.POST, value="/places",
+			headers="Accept=application/xml")
+	@ResponseBody
+	public Object addEntityPlace() {
+		PlaceTO to = new PlaceTO();
+		to.setName("joteiro");
+		return placeRestClient.addEntity(to);
+	}
+	@RequestMapping(method=RequestMethod.PUT, value="/places/{id}")
+	@ResponseBody
+	public PlaceTO updateEntityPlace(@PathVariable Long id) {
+		PlaceTO body = new PlaceTO();
+		body.setPlaceId(id);
+		body.setDescription("juan desc");
+		return placeRestClient.updateEntity(id, body);
 	}
 	
 }
