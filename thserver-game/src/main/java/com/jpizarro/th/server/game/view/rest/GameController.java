@@ -203,12 +203,35 @@ public class GameController implements GenericController <GameTO, Long>{
 		return null;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/{id}/rest",
+	@RequestMapping(method=RequestMethod.GET, value="/rest/{id}",
 			headers="Accept=application/xml")
 	@ResponseBody
 	public UserTO getEntityRest(@PathVariable Long id) {
 		return userRestClient.getEntity(id);
 	}
 	
+	@RequestMapping(method=RequestMethod.DELETE, value="/rest/{id}",
+			headers="Accept=application/xml")
+	@ResponseBody
+	public Object removeEntityRest(@PathVariable Long id) {
+		return userRestClient.removeEntity(id);
+	}
+
+	@RequestMapping(method=RequestMethod.POST, value="/rest",
+			headers="Accept=application/xml")
+	@ResponseBody
+	public Object addEntityRest() {
+		UserTO to = new UserTO();
+		to.setUsername("joteiro");
+		return userRestClient.addEntity(to);
+	}
+	@RequestMapping(method=RequestMethod.PUT, value="/rest/{id}")
+	@ResponseBody
+	public UserTO updateEntityRest(@PathVariable Long id) {
+		UserTO body = new UserTO();
+		body.setUserId(id);
+		body.setName("juan");
+		return userRestClient.updateEntity(id, body);
+	}
 	
 }
