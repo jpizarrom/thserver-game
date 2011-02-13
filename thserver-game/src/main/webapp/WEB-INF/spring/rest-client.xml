@@ -47,5 +47,9 @@
         <constructor-arg ref="restTemplate"/>
         <constructor-arg ref="credentials"/>
     </bean>
+    <bean id="messageRestClient" class="com.jpizarro.th.server.user.view.rest.client.MessageRestClient">
+        <constructor-arg ref="restTemplate"/>
+        <constructor-arg ref="credentials"/>
+    </bean>
 
 </beans>
