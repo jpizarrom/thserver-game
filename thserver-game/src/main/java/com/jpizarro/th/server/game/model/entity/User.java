@@ -56,5 +56,9 @@ public class User {
 	public void setPlacesICanSee(Set<Place> placesICanSee) {
 		this.placesICanSee = placesICanSee;
 	}
+	
+	public void addPlaceICanSee(Place place) {
+		this.placesICanSee.add(place);
+	}
 
 }

@@ -21,9 +21,10 @@ public interface GameAccessor extends GenericAccessor<Game, Long> {
 	
 	public Integer countNotFinishedGames();
 	
+	public Integer countFinishedGames();
+	
 	public GameCTO findNotFinishedGames(int startIndex, int count);
 	
 	public GameCTO findFinishedGames(int startIndex, int count);
 	
-	public Integer countFinishedGames();
 }

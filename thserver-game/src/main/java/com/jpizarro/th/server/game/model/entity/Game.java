@@ -147,6 +147,10 @@ public class Game {
 	public void setTeams(Set<Team> teams) {
 		this.teams = teams;
 	}
+	public void addTeam(Team team) {
+		this.teams.add(team);
+		team.setGame(this);
+	}
 
 	@OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
 	public Set<Place> getPlaces() {

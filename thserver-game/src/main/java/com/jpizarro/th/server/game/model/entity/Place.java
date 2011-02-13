@@ -113,4 +113,14 @@ public class Place {
 	public void setUsersCanSeeMe(Set<User> usersCanSeeMe) {
 		this.usersCanSeeMe = usersCanSeeMe;
 	}
+	
+	public void addTeamCanSeeMe(Team t){
+		this.teamsCanSeeMe.add(t);
+	}
+	public void addTeamHaveMe(Team t){
+		this.teamsHaveMe.add(t);
+	}
+	public void addUserCanSeeMe(User user) {
+		this.usersCanSeeMe.add(user);
+	}
 }

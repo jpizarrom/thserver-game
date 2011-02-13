@@ -87,4 +87,11 @@ public class Team {
 	public void setPlacesIHave(Set<Place> placesIHave) {
 		this.placesIHave = placesIHave;
 	}
+	
+	public void addPlaceICanSee(Place place){
+		this.placesICanSee.add(place);
+	}
+	public void addPlaceIHave(Place place){
+		this.placesIHave.add(place);
+	}
 }

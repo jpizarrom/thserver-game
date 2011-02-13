@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
+import com.jpizarro.th.lib.game.entity.PlaceTO;
+import com.jpizarro.th.lib.game.entity.TeamTO;
 import com.jpizarro.th.lib.game.entity.list.GamesTO;
 import com.jpizarro.th.lib.game.entity.list.TeamsTO;
 import com.jpizarro.th.lib.game.entity.response.GenericGameResponseTO;
@@ -47,5 +49,11 @@ public interface GameService extends GenericService <GameTO, Long>{
 	
 	public GameTO createGame(CreateGameTO createGameTO)
 	throws DuplicateInstanceException;
+
+	public boolean addHint(Long gameId, PlaceTO to)
+	throws InstanceNotFoundException;
+	
+	public List<TeamTO> getTeams(Long gameId)
+	throws InstanceNotFoundException;
 	
 }
