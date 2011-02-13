@@ -171,6 +171,7 @@ public class TestController{
 	public MessageTO updateEntityMessage(@PathVariable Long id) {
 		MessageTO body = new MessageTO();
 		body.setMessageId(id);
+		body.setSender(1);
 		body.setMessageBody("juan desc");
 		return messageRestClient.updateEntity(id, body);
 	}
