@@ -28,6 +28,8 @@
 			<property name="annotatedClasses">
 				<list>
 					<value>com.jpizarro.th.lib.game.entity.GameTO</value>
+					<value>com.jpizarro.th.lib.game.entity.CreateGameTO</value>
+					
 					<value>com.jpizarro.th.lib.user.entity.UserTO</value>
 					<value>com.jpizarro.th.lib.team.entity.TeamTO</value>
 					<value>com.jpizarro.th.lib.place.entity.PlaceTO</value>

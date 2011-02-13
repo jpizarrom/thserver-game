@@ -186,6 +186,7 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
+	@Transactional
 	public GenericGameResponseTO takePlace(String username, Long placeId,
 			InGameUserInfoTO inGameUserInfoTO)
 			throws InstanceNotFoundException, DuplicateInstanceException {
@@ -194,6 +195,7 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
+	@Transactional
 	public GenericGameResponseTO startOrContinueGame(Long gameId, Long userId, Long teamId)
 			throws InstanceNotFoundException, TimeOutException {
 		User user = userAccessor.find(userId);
@@ -208,6 +210,7 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
+	@Transactional
 	public GameTO createGame(CreateGameTO createGameTO) throws DuplicateInstanceException {
 		// TODO Auto-generated method stub
 		Game g = GameUtils.createGameTOFromGame(createGameTO);
