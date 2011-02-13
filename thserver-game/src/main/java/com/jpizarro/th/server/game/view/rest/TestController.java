@@ -19,12 +19,14 @@ import com.jpizarro.th.lib.game.entity.list.GamesTO;
 import com.jpizarro.th.lib.game.entity.list.TeamsTO;
 import com.jpizarro.th.lib.game.entity.response.GenericGameResponseTO;
 import com.jpizarro.th.lib.game.entity.response.InGameUserInfoTO;
+import com.jpizarro.th.lib.team.entity.TeamTO;
 import com.jpizarro.th.lib.user.entity.UserTO;
 import com.jpizarro.th.server.game.model.service.GameService;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
 import com.jpizarro.th.server.generic.view.rest.GenericController;
 import com.jpizarro.th.server.user.view.rest.client.UserRestClient;
+import com.jpizarro.th.server.user.view.rest.client.TeamRestClient;;
 
 import es.sonxurxo.androidrunner.model.service.game.util.exception.TimeOutException;
 
@@ -37,6 +39,8 @@ public class TestController{
 	
 	@Autowired
 	private UserRestClient userRestClient;
+	@Autowired
+	private TeamRestClient teamRestClient;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/users/{id}",
 			headers="Accept=application/xml")
@@ -67,6 +71,37 @@ public class TestController{
 		body.setUserId(id);
 		body.setName("juan");
 		return userRestClient.updateEntity(id, body);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/teams/{id}",
+			headers="Accept=application/xml")
+	@ResponseBody
+	public TeamTO getEntityTeam(@PathVariable Long id) {
+		return teamRestClient.getEntity(id);
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE, value="/teams/{id}",
+			headers="Accept=application/xml")
+	@ResponseBody
+	public Object removeEntityTeam(@PathVariable Long id) {
+		return teamRestClient.removeEntity(id);
+	}
+
+	@RequestMapping(method=RequestMethod.POST, value="/teams",
+			headers="Accept=application/xml")
+	@ResponseBody
+	public Object addEntityTeam() {
+		TeamTO to = new TeamTO();
+		to.setName("joteiro");
+		return teamRestClient.addEntity(to);
+	}
+	@RequestMapping(method=RequestMethod.PUT, value="/teams/{id}")
+	@ResponseBody
+	public TeamTO updateEntityTeam(@PathVariable Long id) {
+		TeamTO body = new TeamTO();
+		body.setTeamId(id);
+		body.setDescription("juan desc");
+		return teamRestClient.updateEntity(id, body);
 	}
 	
 }

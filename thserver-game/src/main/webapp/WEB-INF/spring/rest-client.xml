@@ -39,5 +39,9 @@
         <constructor-arg ref="restTemplate"/>
         <constructor-arg ref="credentials"/>
     </bean>
+         <bean id="teamRestClient" class="com.jpizarro.th.server.user.view.rest.client.TeamRestClient">
+        <constructor-arg ref="restTemplate"/>
+        <constructor-arg ref="credentials"/>
+    </bean>
 
 </beans>

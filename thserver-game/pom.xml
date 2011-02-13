@@ -504,6 +504,7 @@
 								<source>../../game/thlib-game/src/main/java/</source>
 								
 								<source>../../user/thlib-user/src/main/java/</source>
+								<source>../../team/thlib-team/src/main/java/</source>
 							</sources>
 						</configuration>
 					</execution>
