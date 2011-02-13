@@ -31,6 +31,7 @@
 					<value>com.jpizarro.th.lib.user.entity.UserTO</value>
 					<value>com.jpizarro.th.lib.team.entity.TeamTO</value>
 					<value>com.jpizarro.th.lib.place.entity.PlaceTO</value>
+					<value>com.jpizarro.th.lib.message.entity.MessageTO</value>
 				</list>
 			</property>
 
