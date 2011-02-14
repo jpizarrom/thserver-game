@@ -111,5 +111,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/thlib-team"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/thlib-place"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/thlib-message"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/thlib-server-generic"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
