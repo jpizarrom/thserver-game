@@ -6,6 +6,7 @@ import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
 import com.jpizarro.th.lib.game.entity.PlaceTO;
 import com.jpizarro.th.lib.game.entity.TeamTO;
+import com.jpizarro.th.lib.game.entity.list.CitiesTO;
 import com.jpizarro.th.lib.game.entity.list.GamesTO;
 import com.jpizarro.th.lib.game.entity.list.TeamsTO;
 import com.jpizarro.th.lib.game.entity.response.GenericGameResponseTO;
@@ -19,7 +20,7 @@ import es.sonxurxo.androidrunner.model.service.game.util.exception.TimeOutExcept
 
 public interface GameService extends GenericService <GameTO, Long>{
 	
-	public List<String> findCitiesWithGames();
+	public CitiesTO findCitiesWithGames();
 	
 	public GamesTO findGamesByCity(String city, Integer startIndex, Integer count);
 	

@@ -3,15 +3,25 @@ package com.jpizarro.th.lib.game.entity.list;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import com.jpizarro.th.lib.game.entity.GameTO;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("gameslist")
+@Root
 public class GamesTO {
+	@Element(required=false)
 	private Integer count;
+	@Element(required=false)
 	private Integer start;
+	@Element(required=false)
 	private Integer total;
+	@ElementList(required=false)
 	private List<GameTO> games;
+	@Element(required=false)
 	private boolean hasMore;
 	
 	public GamesTO() {

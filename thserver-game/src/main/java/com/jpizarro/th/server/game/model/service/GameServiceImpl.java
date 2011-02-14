@@ -11,6 +11,7 @@ import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
 import com.jpizarro.th.lib.game.entity.PlaceTO;
 import com.jpizarro.th.lib.game.entity.TeamTO;
+import com.jpizarro.th.lib.game.entity.list.CitiesTO;
 import com.jpizarro.th.lib.game.entity.list.GameCTO;
 import com.jpizarro.th.lib.game.entity.list.GamesTO;
 import com.jpizarro.th.lib.game.entity.list.TeamsTO;
@@ -81,8 +82,12 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public List<String> findCitiesWithGames() {
-		return gameAccessor.findCitiesWithGames();
+	public CitiesTO findCitiesWithGames() {
+		CitiesTO c = new CitiesTO();
+		for (String s :gameAccessor.findCitiesWithGames())
+				c.getCities().add(s);
+			
+		return c;
 	}
 
 	@Override

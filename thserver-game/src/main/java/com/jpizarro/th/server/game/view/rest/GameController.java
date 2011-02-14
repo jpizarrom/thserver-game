@@ -15,11 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
+import com.jpizarro.th.lib.game.entity.list.CitiesTO;
 import com.jpizarro.th.lib.game.entity.list.GamesTO;
 import com.jpizarro.th.lib.game.entity.list.TeamsTO;
 import com.jpizarro.th.lib.game.entity.response.GenericGameResponseTO;
 import com.jpizarro.th.lib.game.entity.response.InGameUserInfoTO;
 import com.jpizarro.th.lib.user.entity.UserTO;
+import com.jpizarro.th.lib.user.util.GameRestURL;
 import com.jpizarro.th.server.game.model.service.GameService;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
@@ -29,13 +31,13 @@ import com.jpizarro.th.server.user.view.rest.client.UserRestClient;
 import es.sonxurxo.androidrunner.model.service.game.util.exception.TimeOutException;
 
 @Controller
-@RequestMapping("/games")
+@RequestMapping(GameRestURL.ENTITY)
 public class GameController implements GenericController <GameTO, Long>{
 	@Autowired
 	private GameService gameService;
 	private String XML_VIEW_NAME = "users";
 	
-	@RequestMapping(method=RequestMethod.GET, value="/{id}",
+	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.ENTITY_ID,
 			headers="Accept=application/xml")
 	@ResponseBody
 	public GameTO getEntity(@PathVariable Long id) {
@@ -53,7 +55,7 @@ public class GameController implements GenericController <GameTO, Long>{
 //		return new ModelAndView(XML_VIEW_NAME, BindingResult.MODEL_KEY_PREFIX+"object", to);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/{id}")
+	@RequestMapping(method=RequestMethod.DELETE, value=GameRestURL.ENTITY_ID)
 	public ModelAndView removeEntity(@PathVariable Long id) {
 		boolean ret = true;
 		try {
@@ -74,7 +76,7 @@ public class GameController implements GenericController <GameTO, Long>{
 	}
 
 	@Override
-	@RequestMapping(method=RequestMethod.PUT, value="/{id}")
+	@RequestMapping(method=RequestMethod.PUT, value=GameRestURL.ENTITY_ID)
 	@ResponseBody
 	public GameTO updateEntity(@PathVariable Long id, @RequestBody GameTO entity) {
 		entity.setGameId(id);
@@ -102,14 +104,14 @@ public class GameController implements GenericController <GameTO, Long>{
 		return r; 
 	}
 
-	@RequestMapping(method=RequestMethod.GET, value="/CitiesWithGames")
+	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.FIND_CITIES_WITH_GAMES)
 	@ResponseBody
-	public List<String> findCitiesWithGames() {
+	public CitiesTO findCitiesWithGames() {
 		// TODO Auto-generated method stub
 		return gameService.findCitiesWithGames();
 	}
 
-	@RequestMapping(method=RequestMethod.GET, value="/GamesByCity/{city}")
+	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.FIND_GAMES_BY_CITY)
 	@ResponseBody
 	public GamesTO findGamesByCity(@PathVariable String city, 
 			@RequestParam(value="startIndex",required=false) Integer startIndex, 
@@ -124,26 +126,26 @@ public class GameController implements GenericController <GameTO, Long>{
 				accurate, startIndex, count);
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/countActiveGames")
+	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.COUNT_ACTIVE_GAMES)
 	@ResponseBody
 	public Integer countActiveGames() {
 		// TODO Auto-generated method stub
 		return gameService.countActiveGames();
 	}
-	@RequestMapping(method=RequestMethod.GET, value="/countFinishedGames")
+	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.COUNT_FINISHED_GAMES)
 	@ResponseBody
 	public Integer countFinishedGames() {
 		// TODO Auto-generated method stub
 		return gameService.countFinishedGames();
 	}
-	@RequestMapping(method=RequestMethod.GET, value="/countNotFinishedGames")
+	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.COUNT_NOTFINISHED_GAMES)
 	@ResponseBody
 	public Integer countNotFinishedGames() {
 		// TODO Auto-generated method stub
 		return gameService.countNotFinishedGames();
 	}
 
-	@RequestMapping(method=RequestMethod.GET, value="/ActiveGames")
+	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.FIND_ACTIVE_GAMES)
 	@ResponseBody
 	public GamesTO findActiveGames(
 			@RequestParam(value="startIndex",required=false) Integer startIndex, 
@@ -152,7 +154,7 @@ public class GameController implements GenericController <GameTO, Long>{
 		return gameService.findActiveGames(startIndex, count);
 	}
 
-	@RequestMapping(method=RequestMethod.GET, value="/NotFinishedGames")
+	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.FIND_NOTFINISHED_GAMES)
 	@ResponseBody
 	public GamesTO findNotFinishedGames(
 			@RequestParam(value="startIndex",required=false) Integer startIndex, 
@@ -161,7 +163,7 @@ public class GameController implements GenericController <GameTO, Long>{
 		return gameService.findNotFinishedGames(startIndex, count);
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/FinishedGames")
+	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.FIND_FINISHED_GAMES)
 	@ResponseBody
 	public GamesTO findFinishedGames(
 			@RequestParam(value="startIndex",required=false) Integer startIndex, 
@@ -170,7 +172,7 @@ public class GameController implements GenericController <GameTO, Long>{
 		return gameService.findFinishedGames(startIndex, count);
 	}
 
-	@RequestMapping(method=RequestMethod.GET, value="/{gameId}/teams")
+	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.FIND_TEAMS_BY_GAME)
 	@ResponseBody
 	public TeamsTO findTeamsByGame(@PathVariable Long gameId) {
 		// TODO Auto-generated method stub

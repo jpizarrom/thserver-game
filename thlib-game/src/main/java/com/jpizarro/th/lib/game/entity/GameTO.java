@@ -2,41 +2,68 @@ package com.jpizarro.th.lib.game.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamConverter;
+import com.jpizarro.th.lib.generic.util.xml.xstream.CalendarConverter;
 
 @XStreamAlias("game")
+@Root
 public class GameTO implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 9042114067071410684L;
-	
+	@Element(required=false)
 	private long gameId;
+	@Element(required=false)
 	private String name;
+	@Element(required=false)
 	private String description;
-	private Calendar startDate;
-	private Calendar finishDate;
+	
+	@XStreamConverter(CalendarConverter.class)
+	@Element(required=false)
+	private GregorianCalendar startDate;
+	
+	@XStreamConverter(CalendarConverter.class)
+	@Element(required=false)
+	private GregorianCalendar finishDate;
+	@Element(required=false)
 	private String city;
-
+	
+	@Element(required=false)
 	private int availablePlaces;
+	@Element(required=false)
 	private int availableHints;
+	@Element(required=false)
 	private int availableGoals;
 	
+	@Element(required=false)
 	private int currentTeams;
+	@Element(required=false)
 	private int currentUsers;
+	@Element(required=false)
 	private int currentMessages;
 	
+	@Element(required=false)
 	private int maxTeams;
+	@Element(required=false)
 	private int maxUserPerTeam;
 	
+	@Element(required=false)
 	private int latitude;
+	@Element(required=false)
 	private int longitude;
 	
 	public GameTO() {}
 	
-	public GameTO(long gameId, Calendar startDate, Calendar finishDate,
+	public GameTO(long gameId, GregorianCalendar startDate, GregorianCalendar finishDate,
 			String city, int availablePlaces, int availableHints,
 			int availableGoals, int currentTeams, int currentUsers,
 			int currentMessages, int maxTeams, int maxUserPerTeam,
@@ -63,16 +90,16 @@ public class GameTO implements Serializable{
 	public void setGameId(long gameId) {
 		this.gameId = gameId;
 	}
-	public Calendar getStartDate() {
+	public GregorianCalendar getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Calendar startDate) {
+	public void setStartDate(GregorianCalendar startDate) {
 		this.startDate = startDate;
 	}
-	public Calendar getFinishDate() {
+	public GregorianCalendar getFinishDate() {
 		return finishDate;
 	}
-	public void setFinishDate(Calendar finishDate) {
+	public void setFinishDate(GregorianCalendar finishDate) {
 		this.finishDate = finishDate;
 	}
 	public String getCity() {

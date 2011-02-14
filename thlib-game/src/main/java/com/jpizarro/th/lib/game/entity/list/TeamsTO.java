@@ -2,14 +2,26 @@ package com.jpizarro.th.lib.game.entity.list;
 
 import java.util.List;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import com.jpizarro.th.lib.game.entity.TeamTO;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("teamlist")
+@Root
 public class TeamsTO {
+	@Element(required=false)
 	private Integer count;
+	
+	@Element(required=false)
 	private Integer start;
+	
+	@Element(required=false)
 	private Integer total;
+	
+	@ElementList(required=false)
 	private List<TeamTO> teams;
 //	private Users users;
 	public Integer getCount() {

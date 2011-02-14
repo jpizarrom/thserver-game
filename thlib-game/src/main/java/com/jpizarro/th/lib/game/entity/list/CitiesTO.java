@@ -1,15 +1,22 @@
 package com.jpizarro.th.lib.game.entity.list;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
+import com.jpizarro.th.lib.game.entity.GameTO;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("cities")
+@Root
 public class CitiesTO {
 	private Integer count;
 	private Integer start;
 	private Integer total;
-	private List<String> cities;
+	@ElementList
+	private List<String> cities = new ArrayList<String>();
 	public Integer getCount() {
 		return count;
 	}

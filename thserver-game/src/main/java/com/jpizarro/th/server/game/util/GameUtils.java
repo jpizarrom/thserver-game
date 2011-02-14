@@ -1,6 +1,7 @@
 package com.jpizarro.th.server.game.util;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import com.jpizarro.th.lib.game.entity.CreateGameTO;
@@ -18,8 +19,10 @@ public class GameUtils {
 		gameTO.setGameId(game.getGameId());
 		gameTO.setName(game.getName());
 		gameTO.setDescription(game.getDescription());
-		gameTO.setStartDate( game.getStartDate());
-		gameTO.setFinishDate( game.getFinishDate());
+		if (game.getStartDate() != null)
+			gameTO.setStartDate( new GregorianCalendar(game.getStartDate().getTimeZone()));
+		if (game.getFinishDate() != null)
+			gameTO.setFinishDate( new GregorianCalendar(game.getFinishDate().getTimeZone()));
 		gameTO.setCity( game.getCity());
 		int pP = 0, hP = 0, gP = 0;
 		for (Place place:game.getPlaces()){
