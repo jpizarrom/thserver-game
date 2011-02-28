@@ -23,6 +23,8 @@ import com.jpizarro.th.lib.message.entity.MessageTO;
 import com.jpizarro.th.lib.place.entity.PlaceTO;
 import com.jpizarro.th.lib.team.entity.TeamTO;
 import com.jpizarro.th.lib.user.entity.UserTO;
+import com.jpizarro.th.lib.user.entity.response.LoginResultTO;
+import com.jpizarro.th.lib.user.util.UserRestURL;
 import com.jpizarro.th.server.game.model.service.GameService;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
@@ -79,6 +81,14 @@ public class TestController{
 		body.setUserId(id);
 		body.setName("juan");
 		return userRestClient.updateEntity(id, body);
+	}
+	@RequestMapping(method=RequestMethod.GET, value="/users"+UserRestURL.LOGIN)
+	@ResponseBody
+	public LoginResultTO login(
+			@RequestParam(value="username",required=true) String username, 
+			@RequestParam(value="password",required=true) String password
+			){
+		return userRestClient.login(username, password);
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/teams/{id}",
