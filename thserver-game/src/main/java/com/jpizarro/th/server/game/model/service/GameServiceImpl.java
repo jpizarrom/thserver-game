@@ -11,6 +11,7 @@ import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
 import com.jpizarro.th.lib.game.entity.PlaceTO;
 import com.jpizarro.th.lib.game.entity.TeamTO;
+import com.jpizarro.th.lib.game.entity.UserTO;
 import com.jpizarro.th.lib.game.entity.list.CitiesTO;
 import com.jpizarro.th.lib.game.entity.list.GameCTO;
 import com.jpizarro.th.lib.game.entity.list.GamesTO;
@@ -242,6 +243,12 @@ public class GameServiceImpl implements GameService {
 	public List<TeamTO> getTeams(Long gameId) throws InstanceNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public UserTO findUser(Long id) throws InstanceNotFoundException {
+		// TODO Auto-generated method stub
+		User u = userAccessor.find(id);
+		return GameUtils.userTOFromUser(u);
 	}
 
 }

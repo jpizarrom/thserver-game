@@ -6,6 +6,7 @@ import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
 import com.jpizarro.th.lib.game.entity.PlaceTO;
 import com.jpizarro.th.lib.game.entity.TeamTO;
+import com.jpizarro.th.lib.game.entity.UserTO;
 import com.jpizarro.th.lib.game.entity.list.CitiesTO;
 import com.jpizarro.th.lib.game.entity.list.GamesTO;
 import com.jpizarro.th.lib.game.entity.list.TeamsTO;
@@ -55,6 +56,9 @@ public interface GameService extends GenericService <GameTO, Long>{
 	throws InstanceNotFoundException;
 	
 	public List<TeamTO> getTeams(Long gameId)
+	throws InstanceNotFoundException;
+	
+	public UserTO findUser(Long id) 
 	throws InstanceNotFoundException;
 	
 }

@@ -18,14 +18,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 
+import com.jpizarro.th.server.game.view.web.pages.home.anonymous.AnonymousHomePage;
+import com.jpizarro.th.server.game.view.web.pages.home.user.UserHomePage;
+import com.jpizarro.th.server.game.view.web.session.WicketSession;
+
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.
  */
 @Component
-public class WicketApplication extends WebApplication
+public class WicketApplication extends AuthenticatedWebApplication
 { 
-//	@Autowired
-//	private UserServiceAuthenticationManager userServiceAuthenticationManager;
+	@Autowired
+	private CustomAuthenticationManager customAuthenticationManager;
 	
 //	@Autowired
 //	private UserService userService;
@@ -33,7 +37,11 @@ public class WicketApplication extends WebApplication
 //	@Autowired
 //	private GameService gameService;
 		
-    /**
+    public CustomAuthenticationManager getCustomAuthenticationManager() {
+		return customAuthenticationManager;
+	}
+
+	/**
      * Constructor
      */
 	public WicketApplication()
@@ -60,17 +68,17 @@ public class WicketApplication extends WebApplication
 	 */
 	public Class<? extends WebPage> getHomePage()
 	{
-//		WicketSession session = WicketSession.get();
-//		if (session.isSignedIn() && !session.isSessionInvalidated()) {
-//			for (String role : session.getRoles()) {
+		WicketSession session = WicketSession.get();
+		if (session.isSignedIn() && !session.isSessionInvalidated()) {
+			for (String role : session.getRoles()) {
 //				if (role.equals("ROLE_ADMIN"))
 //					return HomePage.class;
-//				if (role.equals("ROLE_USER"))
-//					return UserHomePage.class;
-//			}
-//		}
-//		return AnonymousHomePage.class;
-		return null;
+				if (role.equals("ROLE_USER"))
+					return UserHomePage.class;
+			}
+		}
+		return AnonymousHomePage.class;
+//		return null;
 	}
 	
 //	@Override
@@ -93,5 +101,15 @@ public class WicketApplication extends WebApplication
 	public static WicketApplication get() {
         return (WicketApplication) Application.get();
     }
+
+	@Override
+	protected Class<? extends WebPage> getSignInPageClass() {
+		return AnonymousHomePage.class;
+	}
+
+	@Override
+	protected Class<? extends AuthenticatedWebSession> getWebSessionClass() {
+		return WicketSession.class;
+	}
 
 }

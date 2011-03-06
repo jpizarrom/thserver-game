@@ -88,6 +88,12 @@ public class GameUtils {
 
 		return teamTO;
 	}
+	public static UserTO userTOFromUser(User u) {
+		// TODO Auto-generated method stub
+		UserTO to = new UserTO();
+		to.setUserId(u.getUserId());
+		return to;
+	}
 
 	
 }

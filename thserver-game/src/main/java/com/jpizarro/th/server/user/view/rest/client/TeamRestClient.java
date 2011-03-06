@@ -10,7 +10,8 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.jpizarro.th.lib.team.entity.TeamTO;
-import com.jpizarro.th.lib.user.entity.UserTO;
+import com.jpizarro.th.lib.team.util.TeamRestURL;
+import com.jpizarro.th.lib.team.entity.UserTO;
 import com.jpizarro.th.server.generic.view.rest.GenericController;
 
 @Service
@@ -71,4 +72,10 @@ public class TeamRestClient implements GenericController <TeamTO, Long> {
         	restTemplate.delete(UTLENTITY, vars);
         return true;
 	}
+	
+	public UserTO getEntityUser(Long id) {
+        Map<String, String> vars = new HashMap<String, String>();
+        vars.put("id", String.valueOf(id));
+        return restTemplate.getForObject(URL + TeamRestURL.USER_BY_ID, UserTO.class, vars);
+    }
 }
