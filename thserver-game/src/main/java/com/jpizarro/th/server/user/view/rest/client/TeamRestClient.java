@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.commons.httpclient.Credentials;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -78,4 +79,11 @@ public class TeamRestClient implements GenericController <TeamTO, Long> {
         vars.put("id", String.valueOf(id));
         return restTemplate.getForObject(URL + TeamRestURL.USER_BY_ID, UserTO.class, vars);
     }
+	
+	public TeamTO addUser(Long id, Long userid) {
+        Map<String, String> vars = new HashMap<String, String>();
+        vars.put("id", String.valueOf(id));
+        vars.put("userid", String.valueOf(userid));
+        return restTemplate.getForObject(URL + TeamRestURL.ADD_USER_TO_TEAM, TeamTO.class, vars);
+	}
 }

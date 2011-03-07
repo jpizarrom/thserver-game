@@ -22,6 +22,7 @@ import com.jpizarro.th.lib.game.entity.response.InGameUserInfoTO;
 import com.jpizarro.th.lib.message.entity.MessageTO;
 import com.jpizarro.th.lib.place.entity.PlaceTO;
 import com.jpizarro.th.lib.team.entity.TeamTO;
+import com.jpizarro.th.lib.team.util.TeamRestURL;
 import com.jpizarro.th.lib.user.entity.UserTO;
 import com.jpizarro.th.lib.user.entity.response.LoginResultTO;
 import com.jpizarro.th.lib.user.util.UserRestURL;
@@ -52,21 +53,21 @@ public class TestController{
 	@Autowired
 	private MessageRestClient messageRestClient;
 	
-	@RequestMapping(method=RequestMethod.GET, value="/users/{id}",
+	@RequestMapping(method=RequestMethod.GET, value="/"+UserRestURL.ENTITY+UserRestURL.ENTITY_ID,
 			headers="Accept=application/xml")
 	@ResponseBody
 	public UserTO getEntityRest(@PathVariable Long id) {
 		return userRestClient.getEntity(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/users/{id}",
+	@RequestMapping(method=RequestMethod.DELETE, value="/"+UserRestURL.ENTITY+UserRestURL.ENTITY_ID,
 			headers="Accept=application/xml")
 	@ResponseBody
 	public Object removeEntityRest(@PathVariable Long id) {
 		return userRestClient.removeEntity(id);
 	}
 
-	@RequestMapping(method=RequestMethod.POST, value="/users",
+	@RequestMapping(method=RequestMethod.POST, value="/"+UserRestURL.ENTITY,
 			headers="Accept=application/xml")
 	@ResponseBody
 	public Object addEntityRest() {
@@ -74,7 +75,7 @@ public class TestController{
 		to.setUsername("joteiro");
 		return userRestClient.addEntity(to);
 	}
-	@RequestMapping(method=RequestMethod.PUT, value="/users/{id}")
+	@RequestMapping(method=RequestMethod.PUT, value="/"+UserRestURL.ENTITY+UserRestURL.ENTITY_ID)
 	@ResponseBody
 	public UserTO updateEntityRest(@PathVariable Long id) {
 		UserTO body = new UserTO();
@@ -82,7 +83,7 @@ public class TestController{
 		body.setName("juan");
 		return userRestClient.updateEntity(id, body);
 	}
-	@RequestMapping(method=RequestMethod.GET, value="/users"+UserRestURL.LOGIN)
+	@RequestMapping(method=RequestMethod.GET, value="/"+UserRestURL.ENTITY+UserRestURL.LOGIN)
 	@ResponseBody
 	public com.jpizarro.th.lib.game.entity.UserTO login(
 			@RequestParam(value="username",required=true) String username, 
@@ -90,9 +91,10 @@ public class TestController{
 			){
 		com.jpizarro.th.lib.game.entity.UserTO r = null;
         LoginResultTO lr = userRestClient.login(username, password);
-        com.jpizarro.th.lib.team.entity.UserTO t = teamRestClient.getEntityUser(lr.getUserId());
+//        com.jpizarro.th.lib.team.entity.UserTO t = teamRestClient.getEntityUser(lr.getUserId());
         try {
 			r = gameService.findUser(lr.getUserId());
+			r.setGameId(1);
 		} catch (InstanceNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,21 +102,27 @@ public class TestController{
         return r;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/teams/{id}",
+	@RequestMapping(method=RequestMethod.GET, value="/"+TeamRestURL.ENTITY+TeamRestURL.ENTITY_ID,
 			headers="Accept=application/xml")
 	@ResponseBody
 	public TeamTO getEntityTeam(@PathVariable Long id) {
 		return teamRestClient.getEntity(id);
 	}
+	@RequestMapping(method=RequestMethod.GET, value="/"+TeamRestURL.ENTITY+TeamRestURL.ADD_USER_TO_TEAM,
+			headers="Accept=application/xml")
+	@ResponseBody
+	public TeamTO addUser(@PathVariable Long id) {
+		return teamRestClient.getEntity(id);
+	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/teams/{id}",
+	@RequestMapping(method=RequestMethod.DELETE, value="/"+TeamRestURL.ENTITY+TeamRestURL.ENTITY_ID,
 			headers="Accept=application/xml")
 	@ResponseBody
 	public Object removeEntityTeam(@PathVariable Long id) {
 		return teamRestClient.removeEntity(id);
 	}
 
-	@RequestMapping(method=RequestMethod.POST, value="/teams",
+	@RequestMapping(method=RequestMethod.POST, value="/"+TeamRestURL.ENTITY,
 			headers="Accept=application/xml")
 	@ResponseBody
 	public Object addEntityTeam() {
@@ -122,7 +130,7 @@ public class TestController{
 		to.setName("joteiro");
 		return teamRestClient.addEntity(to);
 	}
-	@RequestMapping(method=RequestMethod.PUT, value="/teams/{id}")
+	@RequestMapping(method=RequestMethod.PUT, value="/"+TeamRestURL.ENTITY+TeamRestURL.ENTITY_ID)
 	@ResponseBody
 	public TeamTO updateEntityTeam(@PathVariable Long id) {
 		TeamTO body = new TeamTO();
