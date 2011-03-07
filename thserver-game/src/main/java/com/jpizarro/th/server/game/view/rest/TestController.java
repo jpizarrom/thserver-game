@@ -111,8 +111,8 @@ public class TestController{
 	@RequestMapping(method=RequestMethod.GET, value="/"+TeamRestURL.ENTITY+TeamRestURL.ADD_USER_TO_TEAM,
 			headers="Accept=application/xml")
 	@ResponseBody
-	public TeamTO addUser(@PathVariable Long id) {
-		return teamRestClient.getEntity(id);
+	public TeamTO addUser(@PathVariable Long id, @PathVariable Long userid) {
+		return teamRestClient.addUser(id, userid);
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/"+TeamRestURL.ENTITY+TeamRestURL.ENTITY_ID,
