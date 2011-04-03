@@ -481,6 +481,13 @@
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
                 <configuration>
+<!-- 				<webApp>${basedir}/target/myfunkywebapp</webApp> -->
+<!-- 		          <contextHandlers>             -->
+<!-- 		            <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext"> -->
+<!-- 		              <war>${basedir}../../user/thserver-user/target//myother.war</war> -->
+<!-- 		              <contextPath>/other</contextPath> -->
+<!-- 		            </contextHandler> -->
+<!-- 		          </contextHandlers> -->
                 </configuration>
 			</plugin>
 			<!--<plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-eclipse-plugin</artifactId> 
