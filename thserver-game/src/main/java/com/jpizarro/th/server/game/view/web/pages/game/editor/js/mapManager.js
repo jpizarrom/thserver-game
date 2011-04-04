@@ -216,16 +216,12 @@ function createGame() {
 	for (var i in game.items) {
 		if (game.items[i] != null) {
 			item = game.items[i];
-			/*if (item instanceof Question) {
-				parameters['type_' + item.id] = 'QUE';
-			}
-			else if (item instanceof Bonus) {
-				parameters['type_' + item.id] = 'BON';
-				parameters['questionId_' + item.id] = item.associatedQuestion.id;
+			if (item instanceof Goal) {
+				parameters['type_' + item.id] = 'GOA';
 			}
 			else {
-				parameters['type_' + item.id] = 'COI';
-			}*/
+				parameters['type_' + item.id] = 'HIN';
+			}
 			parameters['itemId_' + item.id] = item.id;
 			parameters['itemLatitude_' + item.id] = (item.marker.position.lat()*1000000).toFixed(0);
 			parameters['itemLongitude_' + item.id] = (item.marker.position.lng()*1000000).toFixed(0);

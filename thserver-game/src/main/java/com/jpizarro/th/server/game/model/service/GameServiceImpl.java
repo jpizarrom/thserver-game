@@ -1,7 +1,9 @@
 package com.jpizarro.th.server.game.model.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import com.jpizarro.th.lib.game.entity.list.TeamsTO;
 import com.jpizarro.th.lib.game.entity.response.GenericGameResponseTO;
 import com.jpizarro.th.lib.game.entity.response.InGameUserInfoTO;
 import com.jpizarro.th.server.game.model.entity.Game;
+import com.jpizarro.th.server.game.model.entity.Hint;
 import com.jpizarro.th.server.game.model.entity.Place;
 import com.jpizarro.th.server.game.model.entity.Team;
 import com.jpizarro.th.server.game.model.entity.User;
@@ -49,7 +52,7 @@ public class GameServiceImpl implements GameService {
 	@Override
 	@Transactional
 	public GameTO create(GameTO entity) throws DuplicateInstanceException {
-		Game g = GameUtils.gameTOFromGame(entity);
+		Game g = GameUtils.gameFromGameTO(entity);
 		gameAccessor.create(g);
 		return GameUtils.gameTOFromGame(g);
 	}
@@ -70,7 +73,7 @@ public class GameServiceImpl implements GameService {
 	@Override
 	@Transactional
 	public GameTO update(GameTO entity) throws InstanceNotFoundException {
-		Game g = GameUtils.gameTOFromGame(entity);
+		Game g = GameUtils.gameFromGameTO(entity);
 		g = gameAccessor.update(g);
 		return GameUtils.gameTOFromGame(g);
 	}
@@ -220,8 +223,22 @@ public class GameServiceImpl implements GameService {
 	@Transactional
 	public GameTO createGame(CreateGameTO createGameTO) throws DuplicateInstanceException {
 		// TODO Auto-generated method stub
-		Game g = GameUtils.createGameTOFromGame(createGameTO);
+		Game g = GameUtils.createGameFromGameTO(createGameTO);
 		gameAccessor.create(g);
+		Set<Place> places = new HashSet<Place>();
+		for (PlaceTO itemTO : createGameTO.getPlaces()) {
+			Hint h = new Hint();
+			h.setGame(g);
+			this.placeAccessor.create(h);
+		}
+
+		
+		try {
+			g = this.gameAccessor.find(g.getGameId());
+		} catch (InstanceNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return GameUtils.gameTOFromGame(g);
 	}
 

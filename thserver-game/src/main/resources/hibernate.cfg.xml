@@ -15,8 +15,8 @@
         <mapping class="com.jpizarro.th.server.game.model.entity.Team" />
         
         <mapping class="com.jpizarro.th.server.game.model.entity.Place" />
-<!--        <mapping class="com.jpizarro.th.server.game.model.entity.Hint" />-->
-<!--        <mapping class="com.jpizarro.th.server.game.model.entity.Goal" />-->
+        <mapping class="com.jpizarro.th.server.game.model.entity.Hint" />
+        <mapping class="com.jpizarro.th.server.game.model.entity.Goal" />
 <!--        -->
 <!--        <mapping class="com.jpizarro.th.server.message.model.entity.Message" />-->
         

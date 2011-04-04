@@ -2,6 +2,10 @@ function Hint(id, marker) {
 	this.id = id;
 	this.marker = marker;
 }
+function Goal(id, marker) {
+	this.id = id;
+	this.marker = marker;
+}
 
 function Game(maxTeams, maxUserPerTeam, latitude, longitude, city) {
 	this.maxTeams = maxTeams;

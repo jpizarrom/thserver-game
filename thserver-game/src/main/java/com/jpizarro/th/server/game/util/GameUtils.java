@@ -51,7 +51,7 @@ public class GameUtils {
 		gameTO.setLongitude( game.getLongitude());
 		return gameTO;
 	}
-	public static Game gameTOFromGame(GameTO to){
+	public static Game gameFromGameTO(GameTO to){
 		Game g = new Game();
 		g.setGameId(to.getGameId());
 		g.setStartDate(to.getStartDate());
@@ -67,7 +67,7 @@ public class GameUtils {
 		return g;
 		
 	}
-	public static Game createGameTOFromGame(CreateGameTO to) {
+	public static Game createGameFromGameTO(CreateGameTO to) {
 		Game g = new Game();
 		g.setGameId(to.getGameId());
 		g.setStartDate(to.getStartDate());

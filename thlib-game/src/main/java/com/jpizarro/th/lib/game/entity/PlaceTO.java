@@ -8,13 +8,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("place")
 public class PlaceTO implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6003312565456112948L;
 	
 	private long placeId;
+	private String type = new String();
 	
 
 	public PlaceTO() {
@@ -33,6 +29,14 @@ public class PlaceTO implements Serializable {
 
 	public void setPlaceId(long placeId) {
 		this.placeId = placeId;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getType() {
+		return type;
 	}
 
 }
