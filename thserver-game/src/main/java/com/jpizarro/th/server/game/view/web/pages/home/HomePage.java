@@ -5,7 +5,7 @@ import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
 
-import com.jpizarro.th.server.game.view.web.components.map.osm.MapPanel;
+import com.jpizarro.th.server.game.view.web.components.map.googlemaps.MapPanel;
 import com.jpizarro.th.server.game.view.web.pages.BasePage;
 
 /**
@@ -14,11 +14,13 @@ import com.jpizarro.th.server.game.view.web.pages.BasePage;
 public abstract class HomePage extends BasePage {
 	
 	private static final String JQUERY_URL = "js/jquery-1.3.2.min.js";
+	private static final String MAP_MANAGER_URL = "js/mapManager.js";
 
 	// TODO Add any page properties or variables here
     public HomePage() {
     	super();
     	add(HeaderContributor.forJavaScript(JQUERY_URL));
+    	add(HeaderContributor.forJavaScript(new ResourceReference(MapPanel.class, MAP_MANAGER_URL)));
     	add(new MapPanel("mapPanel"));
 
         // Add the simplest type of label

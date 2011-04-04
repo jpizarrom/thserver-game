@@ -12,7 +12,7 @@ public class MapPanel extends Panel {
 	public MapPanel(String id) {
 		super(id);
 		// TODO Auto-generated constructor stub
-    	add(HeaderContributor.forJavaScript(new ResourceReference(MapPanel.class, MAP_MANAGER_URL)));
+//    	add(HeaderContributor.forJavaScript(new ResourceReference(MapPanel.class, MAP_MANAGER_URL)));
 		add(HeaderContributor.forJavaScript(GOOGLE_MAPS_API_URL));
 	}
 
