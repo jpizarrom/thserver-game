@@ -1,6 +1,7 @@
 package com.jpizarro.th.server.game.view.web.components.user.details;
 
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
@@ -15,7 +16,14 @@ public class UserDetailsPanel extends Panel {
 	public UserDetailsPanel(String id, String username) {
 		super(id);
 		this.add(new Label("login", username));
-
+		this.add(new BookmarkablePageLink("homePageLink", WicketApplication.get().getHomePage()));
+		this.add(new Link("logoutLink") {
+			@Override
+			public void onClick() {
+				WicketSession.get().signOut();
+				setResponsePage(WicketApplication.get().getHomePage());
+			}
+		});
 	}
 
 

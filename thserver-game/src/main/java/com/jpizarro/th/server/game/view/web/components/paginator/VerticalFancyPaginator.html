@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns:wicket="http://wicket.apache.org/">
+<body>
+
+<wicket:panel>
+	<div wicket:id="paginatorBox" class="paginator">
+		<div class="paginatorTitle">
+			PAGES
+		</div>
+		<div class="first">
+			<a wicket:id="firstPageLink" href="#">
+				1
+			</a>
+		</div>
+		
+		<br/>
+		
+		<div wicket:id="currentPageItem">
+			<span wicket:id="currentPageLabel" class="current">[3]</span>
+			<br/>
+		</div>
+			
+		<div class="last">
+			<a wicket:id="lastPageLink" href="#">
+				<span wicket:id="lastPageLabel">
+					[23]
+				</span>
+			</a>
+		</div>
+			
+		<br/><br/>
+		<div wicket:id="previousPageItem" class="previous">
+			<a class="IR" wicket:id="previousPageLink" href="#">
+				<span>
+					Previous
+				</span>
+			</a>
+		</div>
+		<div wicket:id="nextPageItem" class="next">
+			<a class="IR" wicket:id="nextPageLink" href="#">
+				<span>
+					Next
+				</span>
+			</a>
+		</div>
+	</div>
+</wicket:panel>
+
+</body>
+</html>

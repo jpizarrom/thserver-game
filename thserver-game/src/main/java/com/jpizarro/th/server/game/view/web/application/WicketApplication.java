@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 
+import com.jpizarro.th.server.game.model.service.GameService;
 import com.jpizarro.th.server.game.view.web.pages.home.anonymous.AnonymousHomePage;
 import com.jpizarro.th.server.game.view.web.pages.home.user.UserHomePage;
 import com.jpizarro.th.server.game.view.web.session.WicketSession;
@@ -35,8 +36,8 @@ public class WicketApplication extends AuthenticatedWebApplication
 	@Autowired
 	private UserService userService;
 	
-//	@Autowired
-//	private GameService gameService;
+	@Autowired
+	private GameService gameService;
 		
     public CustomAuthenticationManager getCustomAuthenticationManager() {
 		return customAuthenticationManager;
@@ -119,5 +120,14 @@ public class WicketApplication extends AuthenticatedWebApplication
 	public UserService getUserService() {
 		return userService;
 	}
+
+	public void setGameService(GameService gameService) {
+		this.gameService = gameService;
+	}
+
+	public GameService getGameService() {
+		return gameService;
+	}
+	
 
 }

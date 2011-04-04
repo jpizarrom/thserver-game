@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:wicket="http://wicket.apache.org/">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<wicket:extend>
+		
+		<div id="container">
+			<div id="gameInfoAndMap" class="topSection">
+				<div id="gameInfo" class="leftSubSection">
+			
+					<div id="gameInfoTitle" class="subSectionTitle">
+						<div>
+							<wicket:message key="gameEditor.gameInfo"/> :
+						</div>
+					</div>
+					<div id="gameInfoContent" class="subSectionContent">
+						<div class="infoContentLine">
+							<div class="infoContentLineTitle">
+								<wicket:message key="gameEditor.city"/> :
+							</div>
+							<div class="infoContentLineContent">
+								<span id="citySpan" class="gameLocationInfoSpan">
+									<wicket:message key="gameEditor.notEstablished"/>
+								</span>
+								<div id="cityOptionsDiv">
+								</div>
+							</div>
+						</div>
+						<div class="infoContentLine">
+							<div class="infoContentLineTitle">
+								 <wicket:message key="gameEditor.latitude"/> :
+							</div>
+							<div class="infoContentLineContent">
+								<span id="latitudeSpan" class="gameLocationInfoSpan">
+									<wicket:message key="gameEditor.notEstablished"/>
+								</span>
+							</div>
+						</div>
+						<div class="infoContentLine">
+							<div class="infoContentLineTitle">
+								<wicket:message key="gameEditor.longitude"/> :
+							</div>
+							<div class="infoContentLineContent">
+								<span id="longitudeSpan" class="gameLocationInfoSpan">
+									<wicket:message key="gameEditor.notEstablished"/>
+								</span>
+							</div>
+						</div>
+						<div id="showCityOptions" class="littleLink" >
+							(<a href="#" onclick="changeCityClicked()"><wicket:message key="gameEditor.changeLocation"/></a>)
+						</div>
+						
+						<div class="infoContentLine">
+							<div class="infoContentLineTitle">
+								<wicket:message key="gameEditor.maxTeams"/> :
+							</div>
+							<div class="infoContentLineContent">
+								<span id="maxTeamsSpan" class="gameInfoSpan">
+										?
+								</span>
+								<input id="maxTeamsInput" type="text" size="10" maxlength="9" class="gameInfoInput"/>
+							</div>
+						</div>
+						<div class="infoContentLine">
+							<div class="infoContentLineTitle">
+								<wicket:message key="gameEditor.maxUserPerTeam"/> :
+							</div>
+							<div class="infoContentLineContent">
+								<span id="maxUserPerTeamSpan" class="gameInfoSpan">
+										?
+								</span>
+								<input id="maxUserPerTeamInput" type="text" size="10" maxlength="9" class="gameInfoInput"/>
+							</div>
+						</div>
+							
+							
+						
+					</div>
+					<div class="infoContentLine">
+						<div id="changeGameInfo" class="littleLink" >
+							(<a href="#changeGameInfo" onclick="editGameInfo()">edit</a>)
+						</div>
+					</div>
+					
+				</div>
+				
+				<div wicket:id="mapPanel" class="rightSubSection">
+				</div>
+
+			</div>
+
+
+			<div id="itemInfoAndItemsList" class="bottomSection">
+				<div id="itemsList" class="rightSubSection">
+					<div id="itemsTitle" class="subSectionTitle">
+						<wicket:message key="gameEditor.items"/> :
+					</div>
+					<div id="itemsContent" class="subSectionContent">
+					
+						<div id="addHint">
+							<input id="addHintButton" type="button" value="Add Hint" onclick="selectOnClickAction(addHint)"/>
+						</div>
+						<table id="itemsTable" cellpadding="0" cellspacing="0" border="1" class="itemsTable">
+								<tr>
+									<th>
+										<wicket:message key="gameEditor.itemId"/>
+									</th>
+									<th>
+										<wicket:message key="gameEditor.itemType"/>
+									</th>
+									<th>
+										<wicket:message key="gameEditor.latitude"/>
+									</th>
+									<th>
+										<wicket:message key="gameEditor.longitude"/>
+									</th>
+								</tr>
+							</table>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<input type="button" id="submitButton" onclick="createGame()" value="Create Game!!"/>
+		</wicket:extend>
+	</body>
+</html>

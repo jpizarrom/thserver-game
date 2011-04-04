@@ -7,6 +7,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
 import com.jpizarro.th.server.game.view.web.components.user.details.UserDetailsPanel;
+import com.jpizarro.th.server.game.view.web.components.user.login.LoginPanel;
 import com.jpizarro.th.server.game.view.web.session.WicketSession;
 
 public abstract class BasePage extends WebPage {
@@ -26,8 +27,8 @@ public abstract class BasePage extends WebPage {
 			add(new UserDetailsPanel("loginPanel", WicketSession.get().getLoginResultTO().getUsername()));
 		}
 		else {
-			add(new Label("loginPanel", "loginPanel"));
-//			add(new LoginPanel("loginPanel"));
+//			add(new Label("loginPanel", "loginPanel"));
+			add(new LoginPanel("loginPanel"));
 		}
 			add(new Label("title", getTitle()));
 	}
