@@ -20,7 +20,7 @@ public class PlaceRestClient implements GenericController <PlaceTO, Long> {
 	private Credentials credentials;
 	
 	private static final String HOST = "http://localhost";
-	private static final String PORT = ":8073";
+	private static final String PORT = ":8070";
 	private static final String APPNAME = "/thserver-place/app";
 	private static final String WSNAME = "/places";
 	private static final String URL = HOST + PORT + APPNAME+ WSNAME;

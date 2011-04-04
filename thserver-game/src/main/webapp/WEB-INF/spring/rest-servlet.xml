@@ -24,7 +24,7 @@
 <!--	        <map>-->
 <!--	            <entry key="user" value="com.jpizarro.th.lib.user.entity.UserTO" />-->
 <!--	        </map>-->
-<!--	    </property>-->
+<!-- 	    </property> -->
 			<property name="annotatedClasses">
 				<list>
 					<value>com.jpizarro.th.lib.game.entity.GameTO</value>

@@ -20,7 +20,7 @@ public class MessageRestClient implements GenericController <MessageTO, Long> {
 	private Credentials credentials;
 	
 	private static final String HOST = "http://localhost";
-	private static final String PORT = ":8074";
+	private static final String PORT = ":8070";
 	private static final String APPNAME = "/thserver-message/app";
 	private static final String WSNAME = "/messages";
 	private static final String URL = HOST + PORT + APPNAME+ WSNAME;

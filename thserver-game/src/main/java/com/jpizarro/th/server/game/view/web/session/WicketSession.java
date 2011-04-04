@@ -65,7 +65,7 @@ public class WicketSession extends AuthenticatedWebSession {
 
 	public LoginResultTO getLoginResultTO() {
 		// TODO Auto-generated method stub
-		return loginResultTO;
+		return null;
 	}
 
 }

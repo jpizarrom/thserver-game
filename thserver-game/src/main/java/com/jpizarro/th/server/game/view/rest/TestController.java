@@ -53,8 +53,7 @@ public class TestController{
 	@Autowired
 	private MessageRestClient messageRestClient;
 	
-	@RequestMapping(method=RequestMethod.GET, value="/"+UserRestURL.ENTITY+UserRestURL.ENTITY_ID,
-			headers="Accept=application/xml")
+	@RequestMapping(method=RequestMethod.GET, value="/"+UserRestURL.ENTITY+UserRestURL.ENTITY_ID)
 	@ResponseBody
 	public UserTO getEntityRest(@PathVariable Long id) {
 		return userRestClient.getEntity(id);
@@ -102,8 +101,7 @@ public class TestController{
         return r;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/"+TeamRestURL.ENTITY+TeamRestURL.ENTITY_ID,
-			headers="Accept=application/xml")
+	@RequestMapping(method=RequestMethod.GET, value="/"+TeamRestURL.ENTITY+TeamRestURL.ENTITY_ID)
 	@ResponseBody
 	public TeamTO getEntityTeam(@PathVariable Long id) {
 		return teamRestClient.getEntity(id);

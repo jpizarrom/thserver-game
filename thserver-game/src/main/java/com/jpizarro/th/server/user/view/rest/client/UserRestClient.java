@@ -22,7 +22,7 @@ public class UserRestClient implements GenericController <UserTO, Long> {
 	private Credentials credentials;
 	
 	private static final String HOST = "http://localhost";
-	private static final String PORT = ":8071";
+	private static final String PORT = ":8070";
 	private static final String APPNAME = "/thserver-user/app";
 	private static final String WSNAME = "/users";
 	private static final String URL = HOST + PORT + APPNAME+ WSNAME;

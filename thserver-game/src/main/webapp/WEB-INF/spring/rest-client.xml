@@ -35,20 +35,112 @@
             </list>
         </property>
     </bean>
+
+<!--  User -->
+ 	<bean id="xstreamMarshallerUser" class="org.springframework.oxm.xstream.XStreamMarshaller">
+		<property name="autodetectAnnotations" value="true" />
+			<property name="annotatedClasses">
+				<list>				
+					<value>com.jpizarro.th.lib.user.entity.UserTO</value>									
+				</list>
+			</property>
+	</bean>
+	<bean id="xmlMessageConverterUser"
+		class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+		<constructor-arg ref="xstreamMarshallerUser" />
+	</bean>
+    <bean id="restTemplateUser" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg ref="httpClientFactory"/>
+        <property name="messageConverters">
+            <list>
+                <ref bean="xmlMessageConverterUser" />
+                <bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
      <bean id="userRestClient" class="com.jpizarro.th.server.user.view.rest.client.UserRestClient">
-        <constructor-arg ref="restTemplate"/>
+        <constructor-arg ref="restTemplateUser"/>
         <constructor-arg ref="credentials"/>
     </bean>
-         <bean id="teamRestClient" class="com.jpizarro.th.server.user.view.rest.client.TeamRestClient">
-        <constructor-arg ref="restTemplate"/>
+
+<!-- Team -->
+ 	<bean id="xstreamMarshallerTeam" class="org.springframework.oxm.xstream.XStreamMarshaller">
+		<property name="autodetectAnnotations" value="true" />
+			<property name="annotatedClasses">
+				<list>				
+					<value>com.jpizarro.th.lib.team.entity.TeamTO</value>
+				</list>
+			</property>
+	</bean>
+	<bean id="xmlMessageConverterTeam"
+		class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+		<constructor-arg ref="xstreamMarshallerTeam" />
+	</bean>
+    <bean id="restTemplateTeam" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg ref="httpClientFactory"/>
+        <property name="messageConverters">
+            <list>
+                <ref bean="xmlMessageConverterTeam" />
+                <bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="teamRestClient" class="com.jpizarro.th.server.user.view.rest.client.TeamRestClient">
+        <constructor-arg ref="restTemplateTeam"/>
         <constructor-arg ref="credentials"/>
+    </bean>
+
+<!-- Place -->
+ 	<bean id="xstreamMarshallerPlace" class="org.springframework.oxm.xstream.XStreamMarshaller">
+		<property name="autodetectAnnotations" value="true" />
+			<property name="annotatedClasses">
+				<list>				
+					<value>com.jpizarro.th.lib.place.entity.PlaceTO</value>
+				</list>
+			</property>
+	</bean>
+	<bean id="xmlMessageConverterPlace"
+		class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+		<constructor-arg ref="xstreamMarshallerPlace" />
+	</bean>
+    <bean id="restTemplatePlace" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg ref="httpClientFactory"/>
+        <property name="messageConverters">
+            <list>
+                <ref bean="xmlMessageConverterPlace" />
+                <bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+            </list>
+        </property>
     </bean>
     <bean id="placeRestClient" class="com.jpizarro.th.server.user.view.rest.client.PlaceRestClient">
-        <constructor-arg ref="restTemplate"/>
+        <constructor-arg ref="restTemplatePlace"/>
         <constructor-arg ref="credentials"/>
     </bean>
+
+<!-- MSG -->
+ 	<bean id="xstreamMarshallerMessage" class="org.springframework.oxm.xstream.XStreamMarshaller">
+		<property name="autodetectAnnotations" value="true" />
+			<property name="annotatedClasses">
+				<list>				
+					<value>com.jpizarro.th.lib.message.entity.MessageTO</value>
+				</list>
+			</property>
+	</bean>
+	<bean id="xmlMessageConverterMessage"
+		class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+		<constructor-arg ref="xstreamMarshallerPlace" />
+	</bean>
+    <bean id="restTemplateMessage" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg ref="httpClientFactory"/>
+        <property name="messageConverters">
+            <list>
+                <ref bean="xmlMessageConverterMessage" />
+                <bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
     <bean id="messageRestClient" class="com.jpizarro.th.server.user.view.rest.client.MessageRestClient">
-        <constructor-arg ref="restTemplate"/>
+        <constructor-arg ref="restTemplateMessage"/>
         <constructor-arg ref="credentials"/>
     </bean>
 

@@ -482,12 +482,36 @@
 				<artifactId>maven-jetty-plugin</artifactId>
                 <configuration>
 <!-- 				<webApp>${basedir}/target/myfunkywebapp</webApp> -->
-<!-- 		          <contextHandlers>             -->
-<!-- 		            <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext"> -->
-<!-- 		              <war>${basedir}../../user/thserver-user/target//myother.war</war> -->
-<!-- 		              <contextPath>/other</contextPath> -->
-<!-- 		            </contextHandler> -->
-<!-- 		          </contextHandlers> -->
+
+<!-- 		        <connectors> -->
+<!-- 		            <connector implementation= "org.eclipse.jetty.server.nio.SelectChannelConnector"> -->
+<!-- 		                <port>8071</port> -->
+<!-- 		                <name>instance_8071</name> -->
+<!-- 		            </connector> -->
+<!-- 		            <connector implementation= "org.eclipse.jetty.server.nio.SelectChannelConnector"> -->
+<!-- 		                <port>8072</port> -->
+<!-- 		                <name>instance_8072</name> -->
+<!-- 		            </connector> -->
+<!-- 		        </connectors> -->
+
+		          <contextHandlers>            
+		            <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
+		              <war>${basedir}/../../user/thserver-user/target/thserver-user-1.0-SNAPSHOT.war</war>
+		              <contextPath>/thserver-user</contextPath>
+		            </contextHandler>
+		            <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
+		              <war>${basedir}/../../team/thserver-team/target/thserver-team-1.0-SNAPSHOT.war</war>
+		              <contextPath>/thserver-team</contextPath>
+		            </contextHandler>
+		            <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
+		              <war>${basedir}/../../msg/thserver-msg/target/thserver-message-1.0-SNAPSHOT.war</war>
+		              <contextPath>/thserver-msg</contextPath>
+		            </contextHandler>
+		            <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
+		              <war>${basedir}/../../place/thserver-place/target/thserver-place-1.0-SNAPSHOT.war</war>
+		              <contextPath>/thserver-place</contextPath>
+		            </contextHandler>
+		          </contextHandlers>
                 </configuration>
 			</plugin>
 			<!--<plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-eclipse-plugin</artifactId> 
@@ -599,7 +623,7 @@
 					</requestLog>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>8075</port>
+							<port>8070</port>
 						</connector>
 					</connectors>
 				</configuration>

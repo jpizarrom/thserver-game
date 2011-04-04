@@ -21,7 +21,7 @@ public class TeamRestClient implements GenericController <TeamTO, Long> {
 	private Credentials credentials;
 	
 	private static final String HOST = "http://localhost";
-	private static final String PORT = ":8072";
+	private static final String PORT = ":8070";
 	private static final String APPNAME = "/thserver-team/app";
 	private static final String WSNAME = "/teams";
 	private static final String URL = HOST + PORT + APPNAME+ WSNAME;
