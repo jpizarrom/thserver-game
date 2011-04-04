@@ -36,7 +36,7 @@ public class WicketSession extends AuthenticatedWebSession {
             		new UsernamePasswordAuthenticationToken(username, password));
 			SecurityContextHolder.getContext().setAuthentication(authentication);
             authenticated = authentication.isAuthenticated();
-            this.loginResultTO = (LoginResultTO) authentication.getPrincipal();
+            loginResultTO = (LoginResultTO) authentication.getPrincipal();
         } catch (AuthenticationException e) {
         	System.out.println(e);
             authenticated = false;
@@ -64,8 +64,7 @@ public class WicketSession extends AuthenticatedWebSession {
 	}
 
 	public LoginResultTO getLoginResultTO() {
-		// TODO Auto-generated method stub
-		return null;
+		return loginResultTO;
 	}
 
 }

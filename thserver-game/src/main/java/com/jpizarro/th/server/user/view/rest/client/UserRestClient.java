@@ -8,11 +8,11 @@ import java.util.Map;
 import org.apache.commons.httpclient.Credentials;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.jpizarro.th.lib.user.entity.UserTO;
 import com.jpizarro.th.lib.user.entity.response.LoginResultTO;
+import com.jpizarro.th.lib.user.entity.response.UserRegisterTO;
 import com.jpizarro.th.lib.user.util.UserRestURL;
 import com.jpizarro.th.server.generic.view.rest.GenericController;
 
@@ -84,5 +84,10 @@ public class UserRestClient implements GenericController <UserTO, Long> {
         vars.put("username", username);
         vars.put("password", password);
         return restTemplate.getForObject(URL + UserRestURL.LOGIN+"?username={username}&password={password}", LoginResultTO.class, vars);
+	}
+	public boolean register(UserRegisterTO body) {
+        Map<String, String> vars = new HashMap<String, String>();
+        return restTemplate.postForEntity(URL+UserRestURL.REGISTER, body, Boolean.class).getBody();
+
 	}
 }

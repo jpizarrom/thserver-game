@@ -10,13 +10,14 @@ import com.jpizarro.th.lib.user.entity.response.UpdatePersonalInfoTO;
 import com.jpizarro.th.lib.user.entity.response.UserRegisterTO;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
+import com.jpizarro.th.server.generic.model.persistence.util.exceptions.NotImplementedException;
 //import com.jpizarro.th.server.user.model.entity.User;
 //import com.jpizarro.th.server.user.model.persistence.accessor.UserAccessor;
 import com.jpizarro.th.server.user.model.service.UserService;
 import com.jpizarro.th.server.user.model.service.util.exceptions.IncorrectPasswordException;
+import com.mysql.jdbc.NotImplemented;
 //import com.jpizarro.th.server.user.util.UserUtils;
 import com.thoughtworks.xstream.XStream;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -45,14 +46,15 @@ public class UserServiceImpl implements UserService{
 	public LoginResultTO login(String username, String password)
 			throws InstanceNotFoundException, IncorrectPasswordException {
 		// TODO Auto-generated method stub
-		LoginResultTO user = this.userRestClient.login(username, password);;
+		LoginResultTO user = userRestClient.login(username, password);;
 		return user;
 	}
 
 	@Transactional
 	public boolean register(UserRegisterTO usernameInfoTO)
-			throws DuplicateInstanceException {
-		throw new NotImplementedException();
+			throws DuplicateInstanceException {	
+		return userRestClient.register(usernameInfoTO);
+		
 	}
 
 	@Override

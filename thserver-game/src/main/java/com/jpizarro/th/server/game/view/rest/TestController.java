@@ -84,21 +84,21 @@ public class TestController{
 	}
 	@RequestMapping(method=RequestMethod.GET, value="/"+UserRestURL.ENTITY+UserRestURL.LOGIN)
 	@ResponseBody
-	public com.jpizarro.th.lib.game.entity.UserTO login(
+	public LoginResultTO login(
 			@RequestParam(value="username",required=true) String username, 
 			@RequestParam(value="password",required=true) String password
 			){
 		com.jpizarro.th.lib.game.entity.UserTO r = null;
         LoginResultTO lr = userRestClient.login(username, password);
 //        com.jpizarro.th.lib.team.entity.UserTO t = teamRestClient.getEntityUser(lr.getUserId());
-        try {
-			r = gameService.findUser(lr.getUserId());
-			r.setGameId(1);
-		} catch (InstanceNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        return r;
+//        try {
+//			r = gameService.findUser(lr.getUserId());
+//			r.setGameId(1);
+//		} catch (InstanceNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+        return lr;
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/"+TeamRestURL.ENTITY+TeamRestURL.ENTITY_ID)

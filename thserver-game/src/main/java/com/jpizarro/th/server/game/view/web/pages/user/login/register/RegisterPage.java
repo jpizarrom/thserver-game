@@ -63,17 +63,17 @@ public class RegisterPage extends BasePage {
 	            		password,
 	            		email
 	            		);
-//	            try {
-//					WicketApplication.get().getUserService().register(userInfoTO);
+	            try {
+					WicketApplication.get().getUserService().register(userInfoTO);
 					
 					if (WicketSession.get().signIn(username, password)){
 						setResponsePage(getApplication().getHomePage());
 					}else
 						error(getLocalizer().getString("register.errors.errorRegistering", RegisterPage.this));
-//				} catch (DuplicateInstanceException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+				} catch (DuplicateInstanceException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
             
             setRedirect(true);

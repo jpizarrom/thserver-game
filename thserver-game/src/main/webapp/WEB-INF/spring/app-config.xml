@@ -143,5 +143,5 @@
 		by Spring into the Web Service -->
 	<!-- <bean id="myBean" class="com.jpizarro.th.server.view.axis.MyBeanImpl"> 
 		<property name="val" value="Springe, emerge thyself" /> </bean> -->
-
+<import resource="rest-client.xml"/>
 </beans>

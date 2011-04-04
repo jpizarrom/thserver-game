@@ -1,5 +1,6 @@
 package com.jpizarro.th.server.game.view.web.pages.home.anonymous;
 
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 
 import com.jpizarro.th.server.game.view.web.pages.home.HomePage;

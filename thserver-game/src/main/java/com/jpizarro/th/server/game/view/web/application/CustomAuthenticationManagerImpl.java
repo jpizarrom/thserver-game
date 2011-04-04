@@ -15,12 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jpizarro.th.lib.user.entity.response.LoginResultTO;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
+import com.jpizarro.th.server.user.model.service.UserService;
 import com.jpizarro.th.server.user.model.service.util.exceptions.IncorrectPasswordException;
 
 @Service
 public class CustomAuthenticationManagerImpl implements CustomAuthenticationManager{
-//	@Autowired
-//	private UserService userService;
+	@Autowired
+	private UserService userService;
 	
 	@Transactional(readOnly = true)
 	public Authentication authenticate(Authentication authentication)
@@ -59,8 +60,8 @@ public class CustomAuthenticationManagerImpl implements CustomAuthenticationMana
 	
 	private LoginResultTO login(String username, String password)
 	throws InstanceNotFoundException, IncorrectPasswordException {
-//		return userService.login(username, password);
-		return new LoginResultTO(2, "ROLE_USER", username);
+		return userService.login(username, password);
+//		return new LoginResultTO(2, "ROLE_USER", username);
 
 	}
 }

@@ -21,6 +21,7 @@ import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 import com.jpizarro.th.server.game.view.web.pages.home.anonymous.AnonymousHomePage;
 import com.jpizarro.th.server.game.view.web.pages.home.user.UserHomePage;
 import com.jpizarro.th.server.game.view.web.session.WicketSession;
+import com.jpizarro.th.server.user.model.service.UserService;
 
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.
@@ -31,8 +32,8 @@ public class WicketApplication extends AuthenticatedWebApplication
 	@Autowired
 	private CustomAuthenticationManager customAuthenticationManager;
 	
-//	@Autowired
-//	private UserService userService;
+	@Autowired
+	private UserService userService;
 	
 //	@Autowired
 //	private GameService gameService;
@@ -81,11 +82,10 @@ public class WicketApplication extends AuthenticatedWebApplication
 //		return null;
 	}
 	
-//	@Override
-//	public Session newSession(Request request, Response response) {
-//	
-//		return new WicketSession(request);
-//	}
+	@Override
+	public Session newSession(Request request, Response response) {
+		return new WicketSession(request);
+	}
 	
 //	@Override
 //	protected IRequestCycleProcessor newRequestCycleProcessor() {
@@ -110,6 +110,14 @@ public class WicketApplication extends AuthenticatedWebApplication
 	@Override
 	protected Class<? extends AuthenticatedWebSession> getWebSessionClass() {
 		return WicketSession.class;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public UserService getUserService() {
+		return userService;
 	}
 
 }

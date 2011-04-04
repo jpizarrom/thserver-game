@@ -9,6 +9,7 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.3.xsd
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
     <bean id="httpClientParams" class="org.apache.commons.httpclient.params.HttpClientParams">
         <property name="authenticationPreemptive" value="true"/>
         <property name="connectionManagerClass"
@@ -25,23 +26,24 @@
         <constructor-arg ref="httpClient"/>
     </bean>
  
-    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
-        <constructor-arg ref="httpClientFactory"/>
+<!--     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"> -->
+<!--         <constructor-arg ref="httpClientFactory"/> -->
  
-        <property name="messageConverters">
-            <list>
-                <ref bean="xmlMessageConverter" />
-                <bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
-            </list>
-        </property>
-    </bean>
+<!--         <property name="messageConverters"> -->
+<!--             <list> -->
+<!--                 <ref bean="xmlMessageConverter" /> -->
+<!--                 <bean class="org.springframework.http.converter.FormHttpMessageConverter"/> -->
+<!--             </list> -->
+<!--         </property> -->
+<!--     </bean> -->
 
 <!--  User -->
  	<bean id="xstreamMarshallerUser" class="org.springframework.oxm.xstream.XStreamMarshaller">
 		<property name="autodetectAnnotations" value="true" />
 			<property name="annotatedClasses">
 				<list>				
-					<value>com.jpizarro.th.lib.user.entity.UserTO</value>									
+					<value>com.jpizarro.th.lib.user.entity.UserTO</value>	
+					<value>com.jpizarro.th.lib.user.entity.response.LoginResultTO</value>								
 				</list>
 			</property>
 	</bean>
