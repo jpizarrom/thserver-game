@@ -20,6 +20,7 @@ import org.hibernate.annotations.AccessType;
 @Entity
 public class Team {
 	private long teamId;
+	private long teamRefId;
 	private Game game;
 	
 	private Set<Place> placesICanSee = new HashSet<Place>();
@@ -94,4 +95,13 @@ public class Team {
 	public void addPlaceIHave(Place place){
 		this.placesIHave.add(place);
 	}
+
+	public void setTeamRefId(long teamRefId) {
+		this.teamRefId = teamRefId;
+	}
+
+	public long getTeamRefId() {
+		return teamRefId;
+	}
+	
 }

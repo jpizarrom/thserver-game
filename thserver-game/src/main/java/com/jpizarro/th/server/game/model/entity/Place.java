@@ -26,6 +26,7 @@ import com.jpizarro.th.server.game.model.entity.Game;
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public class Place {
 	private long placeId;
+	private long placeRefId;
 	
 	private Game game;
 	private String type = new String();
@@ -123,4 +124,13 @@ public class Place {
 	public void addUserCanSeeMe(User user) {
 		this.usersCanSeeMe.add(user);
 	}
+
+	public void setPlaceRefId(long placeRefId) {
+		this.placeRefId = placeRefId;
+	}
+
+	public long getPlaceRefId() {
+		return placeRefId;
+	}
+	
 }

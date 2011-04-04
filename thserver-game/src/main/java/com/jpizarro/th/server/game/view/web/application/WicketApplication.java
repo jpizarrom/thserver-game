@@ -23,6 +23,7 @@ import com.jpizarro.th.server.game.view.web.pages.home.anonymous.AnonymousHomePa
 import com.jpizarro.th.server.game.view.web.pages.home.user.UserHomePage;
 import com.jpizarro.th.server.game.view.web.session.WicketSession;
 import com.jpizarro.th.server.user.model.service.UserService;
+import com.jpizarro.th.server.team.model.service.TeamService;
 
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.
@@ -35,6 +36,9 @@ public class WicketApplication extends AuthenticatedWebApplication
 	
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private TeamService teamService;
 	
 	@Autowired
 	private GameService gameService;

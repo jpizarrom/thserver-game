@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserTO find(Long id) throws InstanceNotFoundException {
-		throw new NotImplementedException();
+		return userRestClient.getEntity(id);
 	}
 
 	@Override
@@ -91,13 +91,13 @@ public class UserServiceImpl implements UserService{
 	@Override
 	@Transactional
 	public UserTO update(UserTO entity) throws InstanceNotFoundException {
-		throw new NotImplementedException();
+		return userRestClient.updateEntity(entity.getUserId(), entity);
 	}
 
 	@Override
 	@Transactional
 	public void remove(Long id) throws InstanceNotFoundException {
-		throw new NotImplementedException();
+		userRestClient.removeEntity(id);
 	}
 
 	@Override

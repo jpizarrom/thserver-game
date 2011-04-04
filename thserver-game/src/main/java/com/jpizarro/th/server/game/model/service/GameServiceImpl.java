@@ -231,6 +231,11 @@ public class GameServiceImpl implements GameService {
 			h.setGame(g);
 			this.placeAccessor.create(h);
 		}
+		for (int i = 0;i < g.getMaxTeams();i++) {
+			Team t  = new Team();
+			t.setGame(g);
+			this.teamAccessor.create(t);
+		}
 
 		
 		try {
