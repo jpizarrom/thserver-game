@@ -1,6 +1,7 @@
 package com.jpizarro.th.server.user.view.rest.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.jpizarro.th.lib.place.entity.PlaceTO;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
@@ -8,6 +9,7 @@ import com.jpizarro.th.server.generic.model.persistence.util.exceptions.Instance
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.NotImplementedException;
 import com.jpizarro.th.server.place.model.service.PlaceService;
 
+@Service
 public class PlaceServiceImpl implements PlaceService{
 	@Autowired
 	private PlaceRestClient placeRestClient;

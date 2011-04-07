@@ -52,6 +52,16 @@ public class CreateGamePage extends BasePage {
 			//			placeTO.setType("HIN");
 //			
 			items.add(placeTO);
+			
+			com.jpizarro.th.lib.place.entity.PlaceTO p;
+			p = new com.jpizarro.th.lib.place.entity.PlaceTO(); 
+			try {
+				p = WicketApplication.get().getPlaceService().create(p);
+				System.out.println(p.getPlaceId());
+			} catch (DuplicateInstanceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		TeamTO t;
