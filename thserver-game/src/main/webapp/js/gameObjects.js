@@ -1,10 +1,14 @@
-function Hint(id, marker) {
+function Hint(id, marker, name, description) {
 	this.id = id;
 	this.marker = marker;
+	this.name = name;
+	this.description = description;
 }
-function Goal(id, marker) {
+function Goal(id, marker, name, description) {
 	this.id = id;
 	this.marker = marker;
+	this.name = name;
+	this.description = description;
 }
 
 function Game(maxTeams, maxUserPerTeam, latitude, longitude, city) {

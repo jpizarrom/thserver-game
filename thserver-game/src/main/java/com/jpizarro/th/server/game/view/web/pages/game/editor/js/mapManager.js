@@ -110,8 +110,13 @@ function selectCity(index) {
 function addHint(event) {
 	id = game.items.length + 1;
 	marker = placeMarker(event.latLng, id, hintImage);	
+	name = '';
+	description = '';
 	var item = new Hint(id,
-			marker);
+			marker,
+			name,
+			description
+			);
 	game.items[game.items.length] = item;
 	refreshItemsList();
 //	selectItem(item);
@@ -152,10 +157,23 @@ function addItemToList(item) {
 		'<tr class="itemRow unselected" id="row_' + item.id + '">' +
 		getUneditableRowContentHtml(item) + '</tr>');
 }
+function getEditableRowContentHtml(item) {
+	return '<td onclick="selectItemById(' + item.id + ')">' + item.id + '</td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><div class="itemIcon"><img src="' + item.marker.icon +'"/></div></td>' +
+//		'<td onclick="selectItemById(' + item.id + ')"><input id="points_' + item.id + '" type="text" maxlength="6" class="itemInput" value="' + item.points +'"/></td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><input id="name_' + item.id + '" type="text" maxlength="6" class="itemInput" value="' + item.name +'"/></td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><input id="description_' + item.id + '" type="text" maxlength="6" class="itemInput" value="' + item.description +'"/></td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><input id="lat_' + item.id + '" type="text" maxlength="8" class="itemInput" value="' + item.marker.position.lat().toFixed(6) +'"/></td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><input id="lng_' + item.id + '" type="text" maxlength="8" class="itemInput" value="' + item.marker.position.lng().toFixed(6) +'"/></td>' +
+		'<td><div id="deleteItem_' + item.id + '" class="littleLink"><a href="#" onclick="deleteItem(' + item.id + ')">delete</a></div></td>' + 
+		'<td><div id="saveItem_' + item.id + '" class="littleLink"><a href="#" onclick="saveItem(' + item.id + ')">save</a></div></td>';
+}
 function getUneditableRowContentHtml(item) {
 	return '<td onclick="selectItemById(' + item.id + ')">' + item.id + '</td>' +
 		'<td onclick="selectItemById(' + item.id + ')"><div class="itemIcon"><img src="' + item.marker.icon +'"/></div></td>' +
 //		'<td onclick="selectItemById(' + item.id + ')" id="points_' + item.id + '"><span class="itemInfo">' + item.points +'</td>' +
+		'<td onclick="selectItemById(' + item.id + ')" id="name_' + item.id + '"><span class="itemInfo">' + item.name +'</td>' +
+		'<td onclick="selectItemById(' + item.id + ')" id="description_' + item.id + '"><span class="itemInfo">' + item.description +'</td>' +
 		'<td onclick="selectItemById(' + item.id + ')"><span id="lat_' + item.id + '" class="itemInfo">' + item.marker.position.lat().toFixed(6) +'</td>' +
 		'<td onclick="selectItemById(' + item.id + ')"><span id="lng_' + item.id + '" class="itemInfo">' + item.marker.position.lng().toFixed(6) +'</td>' +
 		'<td><div id="deleteItem_' + item.id + '" class="littleLink"><a href="#" onclick="deleteItem(' + item.id + ')">delete</a></div></td>' + 
@@ -179,8 +197,31 @@ function deleteItem(id) {
 		refreshItemsList();
 	}
 }
-
-
+function editItem(id) {
+	item = getItem(game.items, id);
+//	$('#points_' + id).val(item.points);
+	$('#name_' + id).val(item.name);
+	$('#description_' + id).val(item.description);
+	$('#row_' + id).html(getEditableRowContentHtml(item));
+//	$('#points_' + id).focus();
+	for (var i in game.items) {
+		if ($('#editItem_' + game.items[i].id) != null) {
+			$('#editItem_' + game.items[i].id + ' a').hide();
+		}
+	}
+}
+function saveItem(id) {
+	item = getItem(game.items, id);
+//	item.points = $('#points_' + id).val();
+	item.name = $('#name_' + id).val();
+	item.description = $('#description_' + id).val();
+	$('#row_' + id).html(getUneditableRowContentHtml(item));
+	for (var i in game.items) {
+		if ($('#editItem_' + game.items[i].id) != null) {
+			$('#editItem_' + game.items[i].id + ' a').show();
+		}
+	}
+}
 /**
  * Returns the item associated to a marker
  */
@@ -226,6 +267,8 @@ function createGame() {
 			parameters['itemLatitude_' + item.id] = (item.marker.position.lat()*1000000).toFixed(0);
 			parameters['itemLongitude_' + item.id] = (item.marker.position.lng()*1000000).toFixed(0);
 			parameters['itemPoints_' + item.id] = item.points;
+			parameters['itemName_' + item.id] = item.name;
+			parameters['itemDescription_' + item.id] = item.description;
 		}
 	}
 	parameters['city'] = game.city;

@@ -56,6 +56,11 @@ public class CreateGamePage extends BasePage {
 			com.jpizarro.th.lib.place.entity.PlaceTO p;
 			p = new com.jpizarro.th.lib.place.entity.PlaceTO(); 
 			try {
+				p.setLatitude(pageParameters.getInt("itemLatitude_" + String.valueOf(i)));
+				p.setLongitude(pageParameters.getInt("itemLongitude_" + String.valueOf(i)));
+				p.setName(pageParameters.getString("itemName_" + String.valueOf(i)));
+				p.setDescription(pageParameters.getString("itemDescription_" + String.valueOf(i)));
+				
 				p = WicketApplication.get().getPlaceService().create(p);
 				System.out.println(p.getPlaceId());
 			} catch (DuplicateInstanceException e) {
