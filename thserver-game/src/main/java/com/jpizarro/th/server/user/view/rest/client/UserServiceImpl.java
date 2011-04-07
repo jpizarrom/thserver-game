@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	@Transactional
 	public UserTO create(UserTO entity) throws DuplicateInstanceException {
-		throw new NotImplementedException();		
+		throw new NotImplementedException();	
 	}
 
 	@Override

@@ -23,6 +23,7 @@ import com.jpizarro.th.server.game.view.web.pages.home.anonymous.AnonymousHomePa
 import com.jpizarro.th.server.game.view.web.pages.home.user.UserHomePage;
 import com.jpizarro.th.server.game.view.web.session.WicketSession;
 import com.jpizarro.th.server.user.model.service.UserService;
+import com.jpizarro.th.server.place.model.service.PlaceService;
 import com.jpizarro.th.server.team.model.service.TeamService;
 
 /**
@@ -142,6 +143,14 @@ public class WicketApplication extends AuthenticatedWebApplication
 
 	public TeamService getTeamService() {
 		return teamService;
+	}
+
+	public void setPlaceService(PlaceService placeService) {
+		this.placeService = placeService;
+	}
+
+	public PlaceService getPlaceService() {
+		return placeService;
 	}
 	
 
