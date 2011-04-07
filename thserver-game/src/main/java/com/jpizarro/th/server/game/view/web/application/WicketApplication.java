@@ -41,6 +41,9 @@ public class WicketApplication extends AuthenticatedWebApplication
 	private TeamService teamService;
 	
 	@Autowired
+	private PlaceService placeService;
+	
+	@Autowired
 	private GameService gameService;
 		
     public CustomAuthenticationManager getCustomAuthenticationManager() {
@@ -131,6 +134,14 @@ public class WicketApplication extends AuthenticatedWebApplication
 
 	public GameService getGameService() {
 		return gameService;
+	}
+
+	public void setTeamService(TeamService teamService) {
+		this.teamService = teamService;
+	}
+
+	public TeamService getTeamService() {
+		return teamService;
 	}
 	
 

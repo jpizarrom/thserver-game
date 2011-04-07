@@ -14,6 +14,7 @@ import com.jpizarro.th.lib.game.entity.GameTO;
 import com.jpizarro.th.lib.game.entity.GoalTO;
 import com.jpizarro.th.lib.game.entity.HintTO;
 import com.jpizarro.th.lib.game.entity.PlaceTO;
+import com.jpizarro.th.lib.team.entity.TeamTO;
 import com.jpizarro.th.server.game.view.web.application.WicketApplication;
 import com.jpizarro.th.server.game.view.web.pages.BasePage;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
@@ -47,9 +48,21 @@ public class CreateGamePage extends BasePage {
 //			placeTO.setName("name");
 //			placeTO.setDescription("description");
 			placeTO.setType(type);
-//			placeTO.setType("HIN");
+			
+			//			placeTO.setType("HIN");
 //			
 			items.add(placeTO);
+		}
+		
+		TeamTO t;
+		for (int i = 0; i< maxTeams;i++){
+			try {
+				t = new TeamTO();
+				WicketApplication.get().getTeamService().create(t);
+			} catch (DuplicateInstanceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		CreateGameTO createGameTO = new CreateGameTO();
