@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
+import com.jpizarro.th.lib.game.entity.HintTO;
 import com.jpizarro.th.lib.game.entity.PlaceTO;
 import com.jpizarro.th.lib.game.entity.TeamTO;
 import com.jpizarro.th.lib.game.entity.UserTO;
@@ -21,6 +22,7 @@ import com.jpizarro.th.lib.game.entity.list.TeamsTO;
 import com.jpizarro.th.lib.game.entity.response.GenericGameResponseTO;
 import com.jpizarro.th.lib.game.entity.response.InGameUserInfoTO;
 import com.jpizarro.th.server.game.model.entity.Game;
+import com.jpizarro.th.server.game.model.entity.Goal;
 import com.jpizarro.th.server.game.model.entity.Hint;
 import com.jpizarro.th.server.game.model.entity.Place;
 import com.jpizarro.th.server.game.model.entity.Team;
@@ -227,9 +229,13 @@ public class GameServiceImpl implements GameService {
 		gameAccessor.create(g);
 		Set<Place> places = new HashSet<Place>();
 		for (PlaceTO itemTO : createGameTO.getPlaces()) {
-			Hint h = new Hint();
-			h.setGame(g);
-			this.placeAccessor.create(h);
+			Place p = null;
+			if (itemTO instanceof HintTO)
+				 p = new Hint();
+			else
+				 p = new Goal();
+			p.setGame(g);
+			this.placeAccessor.create(p);
 		}
 		for (int i = 0;i < g.getMaxTeams();i++) {
 			Team t  = new Team();

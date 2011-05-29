@@ -23,6 +23,7 @@ var viewURL = '${VIEW_URL}';
 $(document).ready(function() {
 	game = new Game();
 	$('#addHintButton').removeAttr('disabled');
+	$('#addGoalButton').removeAttr('disabled');
 	
 	geocoder = new google.maps.Geocoder();
 	var latlng = new google.maps.LatLng(-35.422753, -71.657266);
@@ -108,11 +109,27 @@ function selectCity(index) {
 }
 
 function addHint(event) {
+	alert('addHint');
 	id = game.items.length + 1;
 	marker = placeMarker(event.latLng, id, hintImage);	
 	name = '';
 	description = '';
 	var item = new Hint(id,
+			marker,
+			name,
+			description
+			);
+	game.items[game.items.length] = item;
+	refreshItemsList();
+//	selectItem(item);
+}
+function addGoal(event) {
+	alert('addGoal');
+	id = game.items.length + 1;
+	marker = placeMarker(event.latLng, id, hintImage);	
+	name = '';
+	description = '';
+	var item = new Goal(id,
 			marker,
 			name,
 			description
@@ -263,6 +280,7 @@ function createGame() {
 			else {
 				parameters['type_' + item.id] = 'HIN';
 			}
+			alert(parameters['type_' + item.id]);
 			parameters['itemId_' + item.id] = item.id;
 			parameters['itemLatitude_' + item.id] = (item.marker.position.lat()*1000000).toFixed(0);
 			parameters['itemLongitude_' + item.id] = (item.marker.position.lng()*1000000).toFixed(0);

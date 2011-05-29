@@ -37,7 +37,8 @@ public class CreateGamePage extends BasePage {
 		for (int i = 1;i <= numberOfItems; i++) {
 			String type = pageParameters.getString("type_" + String.valueOf(i));
 			PlaceTO placeTO;
-			if (type.equals("COI"))
+			
+			if (type.equals("HIN"))
 				placeTO = new HintTO();
 			else
 				placeTO = new GoalTO();
@@ -48,6 +49,7 @@ public class CreateGamePage extends BasePage {
 //			placeTO.setName("name");
 //			placeTO.setDescription("description");
 			placeTO.setType(type);
+			System.out.println(placeTO.getType());
 			
 			//			placeTO.setType("HIN");
 //			
