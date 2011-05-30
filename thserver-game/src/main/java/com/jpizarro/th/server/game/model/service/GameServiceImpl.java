@@ -279,4 +279,11 @@ public class GameServiceImpl implements GameService {
 		return GameUtils.userTOFromUser(u);
 	}
 
+	@Override
+	public GamesTO findGamesByTeam(Long id) {
+		// TODO Auto-generated method stub
+		gameAccessor.
+		return null;
+	}
+
 }

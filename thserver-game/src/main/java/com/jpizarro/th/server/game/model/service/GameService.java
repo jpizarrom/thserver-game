@@ -28,6 +28,8 @@ public interface GameService extends GenericService <GameTO, Long>{
 	public GamesTO findGamesByLocation(Integer latitude, Integer longitude, Integer accurate, 
 			Integer startIndex, Integer count);
 	
+	public GamesTO findGamesByTeam(Long id);
+	
 	public Integer countActiveGames();
 	
 	public Integer countFinishedGames();

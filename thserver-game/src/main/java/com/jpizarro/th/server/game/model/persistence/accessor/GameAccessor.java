@@ -3,6 +3,7 @@ package com.jpizarro.th.server.game.model.persistence.accessor;
 import java.util.List;
 
 import com.jpizarro.th.lib.game.entity.list.GameCTO;
+import com.jpizarro.th.lib.game.entity.list.TeamsTO;
 import com.jpizarro.th.server.game.model.entity.Game;
 import com.jpizarro.th.server.generic.model.persistence.accessor.GenericAccessor;
 
@@ -12,6 +13,8 @@ public interface GameAccessor extends GenericAccessor<Game, Long> {
 	
 	public GameCTO findNotFinishedByLocation(int latitude, int longitude, 
 			int accurate, int startIndex, int count);
+	
+	public GameCTO findByTeam(Long id);
 	
 	public List<String> findCitiesWithGames();
 	

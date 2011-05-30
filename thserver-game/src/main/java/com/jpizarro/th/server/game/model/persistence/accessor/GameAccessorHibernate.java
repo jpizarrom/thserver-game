@@ -8,6 +8,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.jpizarro.th.lib.game.entity.list.GameCTO;
+import com.jpizarro.th.lib.game.entity.list.TeamsTO;
 import com.jpizarro.th.server.game.model.entity.Game;
 import com.jpizarro.th.server.generic.model.persistence.accessor.GenericAccessorHibernate;
 
@@ -158,6 +159,28 @@ implements GameAccessor {
 		criteria.addOrder(Order.asc("city"));
 		criteria.add(Restrictions.eq("finished", true));
 		return new Integer(criteria.list().size());
+	}
+
+	@Override
+	public GameCTO findByTeam(Long id) {
+		Calendar currentTime = Calendar.getInstance();
+		Criteria criteria = getSession().createCriteria(Game.class);
+		criteria.addOrder(Order.asc("gameId"));
+//		criteria.setFirstResult(startIndex);
+//		criteria.setMaxResults(count + 1);
+//		criteria.add(Restrictions.le("startDate", currentTime));
+//		criteria.add(Restrictions.ne("finished", true));
+//		criteria.add(Restrictions.("teams", ("%" + city + "%")));
+		criteria.createCriteria("teams").add( Restrictions.eq("teamId", id) );
+		
+		List resultList = criteria.list();
+		
+		boolean hasMore = false;
+//		if (resultList.size() == count + 1) {
+//			resultList = resultList.subList(0, resultList.size() - 1);
+//			hasMore = true;
+//		}
+		return new GameCTO(resultList, hasMore);
 	}
 
 }
