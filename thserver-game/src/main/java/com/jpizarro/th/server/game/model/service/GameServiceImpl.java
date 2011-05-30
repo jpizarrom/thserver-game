@@ -51,6 +51,8 @@ public class GameServiceImpl implements GameService {
 	
 	@Autowired
 	private PlaceAccessor placeAccessor;
+	
+	final public int COUNT = 15;
 
 	@Override
 	@Transactional
@@ -100,7 +102,7 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public GamesTO findGamesByCity(String city, Integer startIndex, Integer count) {
 		if (startIndex == null) startIndex = 0;
-		if (count == null) count = 5;
+		if (count == null) count = COUNT;
 		
 		GameCTO gameCTO = gameAccessor.findNotFinishedByCity(city, 
 				startIndex, count);
@@ -115,7 +117,7 @@ public class GameServiceImpl implements GameService {
 	public GamesTO findGamesByLocation(Integer latitude, Integer longitude,
 			Integer accurate, Integer startIndex, Integer count) {
 		if (startIndex == null) startIndex = 0;
-		if (count == null) count = 5;
+		if (count == null) count = COUNT;
 		
 		GameCTO gameCTO = gameAccessor.findNotFinishedByLocation(
 				latitude, longitude, accurate, startIndex, count);
@@ -145,7 +147,7 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public GamesTO findActiveGames(Integer startIndex, Integer count) {
 		if (startIndex == null) startIndex = 0;
-		if (count == null) count = 5;
+		if (count == null) count = COUNT;
 
 		GameCTO gameCTO = this.gameAccessor.findActiveGames(startIndex, count);
 		GamesTO gameTOList = new GamesTO();
@@ -159,7 +161,7 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public GamesTO findNotFinishedGames(Integer startIndex, Integer count) {
 		if (startIndex == null) startIndex = 0;
-		if (count == null) count = 5;
+		if (count == null) count = COUNT;
 
 		GameCTO gameCTO = this.gameAccessor.findNotFinishedGames(startIndex, count);
 		GamesTO gameTOList = new GamesTO();
@@ -172,7 +174,7 @@ public class GameServiceImpl implements GameService {
 	
 	public GamesTO findFinishedGames(Integer startIndex, Integer count) {
 		if (startIndex == null) startIndex = 0;
-		if (count == null) count = 5;
+		if (count == null) count = COUNT;
 
 		GameCTO gameCTO = this.gameAccessor.findFinishedGames(startIndex, count);
 		GamesTO gameTOList = new GamesTO();

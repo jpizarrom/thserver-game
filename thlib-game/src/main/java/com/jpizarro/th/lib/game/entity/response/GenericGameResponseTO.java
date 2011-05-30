@@ -3,6 +3,7 @@ package com.jpizarro.th.lib.game.entity.response;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -15,7 +16,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("gamestatus")
 @Root
 public class GenericGameResponseTO implements Serializable {
-
 	/**
 	 * 
 	 */
@@ -37,8 +37,9 @@ public class GenericGameResponseTO implements Serializable {
 	@ElementList(required=false)
 	private List<HintTO> teamSeeHintTOList = new ArrayList<HintTO>();
 	
-	@Element(required=false)
+//	@Element(required=false)
 //	private GoalTO goal;
+	@ElementList(required=false)
 	private List<GoalTO> goals = new ArrayList<GoalTO>();
 //	private List<MessageTO> myMessages = new ArrayList<MessageTO>();
 	

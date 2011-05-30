@@ -1,9 +1,12 @@
 package com.jpizarro.th.lib.game.entity;
 
+import org.simpleframework.xml.Element;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("goal")
 public class GoalTO extends PlaceTO {
+	@Element(required=false)
 	protected String TYPE = "GOA";
 
 	public GoalTO() {
