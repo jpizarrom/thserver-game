@@ -4,7 +4,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("goal")
 public class GoalTO extends PlaceTO {
-	protected String TYPE = "GOAL";
+	protected String TYPE = "GOA";
 
 	public GoalTO() {
 		super();

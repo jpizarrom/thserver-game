@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
+import com.jpizarro.th.lib.game.entity.GoalTO;
+import com.jpizarro.th.lib.game.entity.HintTO;
 import com.jpizarro.th.lib.game.entity.list.CitiesTO;
 import com.jpizarro.th.lib.game.entity.list.GamesTO;
 import com.jpizarro.th.lib.game.entity.list.TeamsTO;
@@ -25,6 +27,7 @@ import com.jpizarro.th.server.game.model.service.GameService;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
 import com.jpizarro.th.server.generic.view.rest.GenericController;
+import com.jpizarro.th.server.user.view.rest.client.PlaceRestClient;
 import com.jpizarro.th.server.user.view.rest.client.UserRestClient;
 import com.jpizarro.th.lib.game.util.GameRestURL;
 
@@ -35,6 +38,9 @@ import es.sonxurxo.androidrunner.model.service.game.util.exception.TimeOutExcept
 public class GameController implements GenericController <GameTO, Long>{
 	@Autowired
 	private GameService gameService;
+	@Autowired
+	private PlaceRestClient placeRestClient;
+	
 	private String XML_VIEW_NAME = "users";
 	
 	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.ENTITY_ID,
@@ -191,11 +197,30 @@ public class GameController implements GenericController <GameTO, Long>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public GenericGameResponseTO startOrContinueGame(Long gameId, Long userId,
-			Long teamId) throws InstanceNotFoundException, TimeOutException {
+	
+	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.START_OR_CONTINUEGAME_URL)
+	@ResponseBody
+	public GenericGameResponseTO startOrContinueGame(
+			@PathVariable(value="gameId") Long gameId, 
+			@RequestParam(value="userId",required=false) Long userId,
+			@RequestParam(value="teamId",required=false) Long teamId
+			) throws InstanceNotFoundException, TimeOutException {
 		// TODO Auto-generated method stub
-		return null;
+//		
+		GenericGameResponseTO ggto = gameService.startOrContinueGame(gameId, userId, teamId);
+		
+		for(HintTO h:ggto.getHideHints()){
+			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(h.getPlaceId());
+			h.setLatitude(pto.getLatitude());
+			h.setLongitude(pto.getLongitude());
+		}
+		for(GoalTO h:ggto.getGoals()){
+			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(h.getPlaceId());
+			h.setLatitude(pto.getLatitude());
+			h.setLongitude(pto.getLongitude());
+		}
+		return ggto;
+//		return null;
 	}
 
 	@RequestMapping(method=RequestMethod.POST)

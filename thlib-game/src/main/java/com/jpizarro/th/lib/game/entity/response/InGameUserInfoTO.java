@@ -2,6 +2,13 @@ package com.jpizarro.th.lib.game.entity.response;
 
 import java.io.Serializable;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("InGameUserInfoTO")
+@Root
 public class InGameUserInfoTO implements Serializable {
 
 	/**
@@ -9,8 +16,13 @@ public class InGameUserInfoTO implements Serializable {
 	 */
 	private static final long serialVersionUID = -4241092982460666213L;
 	
+	@Element(required=false)
 	private String username;
+	
+	@Element(required=false)
 	private int latitude;
+	
+	@Element(required=false)
 	private int longitude;
 	
 	public InGameUserInfoTO() {

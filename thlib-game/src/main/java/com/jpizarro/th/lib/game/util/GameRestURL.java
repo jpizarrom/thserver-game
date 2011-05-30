@@ -23,29 +23,29 @@ public class GameRestURL {
 	public static final String COUNT_FINISHED_GAMES = "/countFinishedGames";
 	public static final String COUNT_NOTFINISHED_GAMES = "/countNotFinishedGames";
 
-//	private static final String CITY_PARAMETER = "city";
-//	private static final String START_INDEX_PARAMETER = "startIndex";
-//	private static final String COUNT_PARAMETER = "count";
-//	private static final String GAME_ID_PARAMETER = "gameId";
-//	private static final String TEAM_ID_PARAMETER = "teamId";
+//	public static final String CITY_PARAMETER = "city";
+//	public static final String START_INDEX_PARAMETER = "startIndex";
+//	public static final String COUNT_PARAMETER = "count";
+//	public static final String GAME_ID_PARAMETER = "gameId";
+//	public static final String TEAM_ID_PARAMETER = "teamId";
 //
-//	private static final String LOGOUT_URL = "logout";
+//	public static final String LOGOUT_URL = "logout";
 //
-//	private static final String START_OR_CONTINUEGAME_URL = "GameState";
+	public static final String START_OR_CONTINUEGAME_URL = "/GameState/{gameId}";
 //
-//	private static final String UPDATE_LOCATION_URL = "updateLocation";
-//	private static final String LATITUDE_PARAMETER = "latitude";
-//	private static final String LONGITUDE_PARAMETER = "longitude";
+//	public static final String UPDATE_LOCATION_URL = "updateLocation";
+//	public static final String LATITUDE_PARAMETER = "latitude";
+//	public static final String LONGITUDE_PARAMETER = "longitude";
 //
-//	private static final String SEND_MESSAGE_URL = "sendMessage";
-//	private static final String RECEIVER_USER_PARAMETER = "receiverUser";
-//	private static final String BODY_PARAMETER = "body";
+//	public static final String SEND_MESSAGE_URL = "sendMessage";
+//	public static final String RECEIVER_USER_PARAMETER = "receiverUser";
+//	public static final String BODY_PARAMETER = "body";
 //
 	public static final String FIND_TEAMS_BY_GAME= "/{gameId}/teams";
-//	private static final String FIND_TEAM_BY_ID_URL = "findTeamById";
-//	private static final String JOIN_GAME_URL = "joinGame";
+//	public static final String FIND_TEAM_BY_ID_URL = "findTeamById";
+//	public static final String JOIN_GAME_URL = "joinGame";
 //
-//	private static final String TAKE_PLACE_URL = "takePlace";
-//	private static final String PLACE_ID_PARAMETER = "placeId";
+//	public static final String TAKE_PLACE_URL = "takePlace";
+//	public static final String PLACE_ID_PARAMETER = "placeId";
 
 }

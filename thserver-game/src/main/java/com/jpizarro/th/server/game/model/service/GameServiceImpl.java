@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
+import com.jpizarro.th.lib.game.entity.GoalTO;
 import com.jpizarro.th.lib.game.entity.HintTO;
 import com.jpizarro.th.lib.game.entity.PlaceTO;
 import com.jpizarro.th.lib.game.entity.TeamTO;
@@ -210,15 +211,108 @@ public class GameServiceImpl implements GameService {
 	@Transactional
 	public GenericGameResponseTO startOrContinueGame(Long gameId, Long userId, Long teamId)
 			throws InstanceNotFoundException, TimeOutException {
-		User user = userAccessor.find(userId);
+		Game game = gameAccessor.find(gameId);
+//		User user = userAccessor.find(userId);
 		Team team = teamAccessor.find(teamId);
 		GenericGameResponseTO ggrTO = new GenericGameResponseTO();
-		Game game = team.getGame();
+//		Game game = team.getGame();
 		
-		if (!game.isFinished() ) {		
+		if (!game.isFinished() ) {
+			// Places
+			getInGamePlaces(ggrTO, game, null, team);
 		}
 		
 		return ggrTO;
+	}
+	private void getInGamePlaces(GenericGameResponseTO ggrTO, Game game, User user, Team team) {
+		// TODO Auto-generated method stub
+		// Places of the team 
+//		Team team = user.getTeam();
+//		Game game = team.getGame();
+		
+		List<HintTO> hints = new ArrayList<HintTO>();
+		for( Place p: team.getPlacesIHave() ){
+			if( p instanceof Hint ){
+				HintTO h = new HintTO();
+				h.setPlaceId(p.getPlaceId());
+//				HintTO h = new HintTO(p.getPlaceId(),
+////						p.getLatitude(),
+////						p.getLongitude(),
+////						p.getName(),
+////						p.getDescription(),
+//						p.getType());
+				hints.add(h);
+			}
+//				else{
+//				ggrTO.setGoalTO(new GoalTO(p));
+//			}
+		}
+		ggrTO.setHints(hints);
+		
+//		// user see places
+//		List<HintTO> userSeeHints = new ArrayList<HintTO>();
+//		for( Place p: user.getPlacesICanSee() ){
+//			if( p.getType().endsWith("HIN") ){
+////				HintTO h = new HintTO(p.getPlaceId(),
+////						p.getLatitude(),
+////						p.getLongitude(),
+////						p.getName(),
+////						p.getDescription(),
+////						p.getType());
+////				userSeeHints.add(h);
+//			}
+//		}
+//		ggrTO.setUserSeeHintTOList(userSeeHints);
+		
+		// team see places
+		List<HintTO> teamSeeHints = new ArrayList<HintTO>();
+		for( Place p: team.getPlacesICanSee() ){
+			if( p.getType().endsWith("HIN") ){
+//				HintTO h = new HintTO(p.getPlaceId(),
+//						p.getLatitude(),
+//						p.getLongitude(),
+//						p.getName(),
+//						p.getDescription(),
+//						p.getType());
+//				teamSeeHints.add(h);
+			}
+		}
+		ggrTO.setTeamSeeHintTOList(teamSeeHints);
+		
+		// Rest of Places
+		List<HintTO> hideHints = new ArrayList<HintTO>();
+		for( Place p: game.getPlaces() ){
+			if( p.getType().endsWith("HIN") 
+					&& !team.getPlacesIHave().contains(p)
+					&& p.getTeamsHaveMe().size() == 0 
+					&& p.getTeamsCanSeeMe().size() == 0 
+					&& p.getUsersCanSeeMe().size() == 0
+					){
+				HintTO h = new HintTO();
+				h.setPlaceId(p.getPlaceId());
+//				h.setLatitude(1);
+//				HintTO h = new HintTO(p.getPlaceId(),
+//						p.getLatitude(),
+//						p.getLongitude(),
+//						p.getName(),
+//						p.getDescription(),
+//						p.getType());
+				hideHints.add(h);
+			} if ( p.getType().endsWith("GOA") ){
+				GoalTO goal = new GoalTO();
+				goal.setPlaceId(p.getPlaceId());
+//				GoalTO goal = new GoalTO(p.getPlaceId(),
+//						p.getLatitude(),
+//						p.getLongitude(),
+//						p.getName(),
+//						p.getDescription(),
+//						p.getType());
+//				ggrTO.setGoal(goal);
+				ggrTO.getGoals().add(goal);
+			}
+		}
+		ggrTO.setHideHints(hideHints);
+		
 	}
 
 	@Override
@@ -230,10 +324,11 @@ public class GameServiceImpl implements GameService {
 		Set<Place> places = new HashSet<Place>();
 		for (PlaceTO itemTO : createGameTO.getPlaces()) {
 			Place p = null;
-			if (itemTO instanceof HintTO)
+			if (itemTO.getType().equals("HIN"))
 				 p = new Hint();
 			else
 				 p = new Goal();
+			p.setType(itemTO.getType());
 			p.setGame(g);
 			this.placeAccessor.create(p);
 		}
@@ -282,7 +377,7 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public GamesTO findGamesByTeam(Long id) {
 		// TODO Auto-generated method stub
-		gameAccessor.
+//		gameAccessor.
 		return null;
 	}
 
