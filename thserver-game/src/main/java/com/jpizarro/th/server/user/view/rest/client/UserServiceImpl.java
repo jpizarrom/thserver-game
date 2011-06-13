@@ -105,4 +105,10 @@ public class UserServiceImpl implements UserService{
 		throw new NotImplementedException();
 	}
 
+	@Override
+	public boolean updateLocation(Long arg0, int arg1, int arg2)
+			throws InstanceNotFoundException {
+		return userRestClient.updateLocation(arg0, arg1, arg2);
+	}
+
 }

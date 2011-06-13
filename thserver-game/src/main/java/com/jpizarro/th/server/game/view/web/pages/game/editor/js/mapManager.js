@@ -109,7 +109,7 @@ function selectCity(index) {
 }
 
 function addHint(event) {
-	alert('addHint');
+	alert('addHint '+event.latLng);
 	id = game.items.length + 1;
 	marker = placeMarker(event.latLng, id, hintImage);	
 	name = '';

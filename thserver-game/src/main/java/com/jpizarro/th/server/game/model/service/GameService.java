@@ -45,7 +45,7 @@ public interface GameService extends GenericService <GameTO, Long>{
 	
 	public TeamsTO findTeamsByGame(Long gameId) throws InstanceNotFoundException;
 	
-	public GenericGameResponseTO takePlace(String username, Long placeId, 
+	public GenericGameResponseTO takePlace(Long userId, Long placeId, Long teamId, Long gameId,
 			InGameUserInfoTO inGameUserInfoTO)
 	throws InstanceNotFoundException, DuplicateInstanceException;
 	

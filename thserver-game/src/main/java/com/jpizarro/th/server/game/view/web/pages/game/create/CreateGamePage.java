@@ -63,8 +63,12 @@ public class CreateGamePage extends BasePage {
 				p.setName(pageParameters.getString("itemName_" + String.valueOf(i)));
 				p.setDescription(pageParameters.getString("itemDescription_" + String.valueOf(i)));
 				
+				System.out.println(p.getLatitude());
+				System.out.println(p.getLongitude());
 				p = WicketApplication.get().getPlaceService().create(p);
 				System.out.println(p.getPlaceId());
+				System.out.println(p.getLatitude());
+				System.out.println(p.getLongitude());
 			} catch (DuplicateInstanceException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

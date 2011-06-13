@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.httpclient.Credentials;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
@@ -76,8 +77,8 @@ public class UserRestClient implements GenericController <UserTO, Long> {
 	}
 	
 	public LoginResultTO login(
-			@RequestParam(value="username",required=true) String username, 
-			@RequestParam(value="password",required=true) String password
+			String username, 
+			String password
 			){
 		URI url;
 		Map<String, String> vars = new HashMap<String, String>();
@@ -88,6 +89,18 @@ public class UserRestClient implements GenericController <UserTO, Long> {
 	public boolean register(UserRegisterTO body) {
         Map<String, String> vars = new HashMap<String, String>();
         return restTemplate.postForEntity(URL+UserRestURL.REGISTER, body, Boolean.class).getBody();
+
+	}
+	public boolean updateLocation(
+			Long id,
+			int latitude, 
+			int longitude
+			) {
+        Map<String, String> vars = new HashMap<String, String>();
+        vars.put("id", String.valueOf(id));
+        vars.put("latitude", String.valueOf(latitude));
+        vars.put("longitude", String.valueOf(longitude));
+        return restTemplate.getForObject(URL+UserRestURL.ENTITY_ID+UserRestURL.UPDATE_LOCATION+"?latitude={latitude}&longitude={longitude}", Boolean.class, vars);
 
 	}
 }

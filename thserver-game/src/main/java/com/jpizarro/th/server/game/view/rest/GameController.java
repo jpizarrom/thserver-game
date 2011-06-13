@@ -191,11 +191,20 @@ public class GameController implements GenericController <GameTO, Long>{
 		return null;
 	}
 
-	public GenericGameResponseTO takePlace(String username, Long placeId,
-			InGameUserInfoTO inGameUserInfoTO)
-			throws InstanceNotFoundException, DuplicateInstanceException {
+	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.ENTITY_ID+"/takePlace/{placeId}")
+	@ResponseBody
+	public GenericGameResponseTO takePlace(
+			@PathVariable(value="id") Long gameId, 
+			@PathVariable Long placeId,
+			@RequestParam(value="userId",required=false) Long userId,
+			@RequestParam(value="teamId",required=false) Long teamId
+			)
+			throws InstanceNotFoundException, DuplicateInstanceException, TimeOutException {
 		// TODO Auto-generated method stub
-		return null;
+//		InGameUserInfoTO inGamePlayerInfoTO = new InGameUserInfoTO(username, latitude, longitude);
+		gameService.takePlace(userId, placeId, teamId, gameId, null);
+		return startOrContinueGame(gameId, userId, teamId);
+		
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.START_OR_CONTINUEGAME_URL)
@@ -208,6 +217,12 @@ public class GameController implements GenericController <GameTO, Long>{
 		// TODO Auto-generated method stub
 //		
 		GenericGameResponseTO ggto = gameService.startOrContinueGame(gameId, userId, teamId);
+		
+		for(HintTO h:ggto.getHints()){
+			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(h.getPlaceId());
+			h.setLatitude(pto.getLatitude());
+			h.setLongitude(pto.getLongitude());
+		}
 		
 		for(HintTO h:ggto.getHideHints()){
 			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(h.getPlaceId());

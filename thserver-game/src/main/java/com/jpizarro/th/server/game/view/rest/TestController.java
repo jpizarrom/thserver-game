@@ -100,6 +100,18 @@ public class TestController{
 //		}
         return lr;
 	}
+
+	@RequestMapping(method=RequestMethod.GET, value="/"+UserRestURL.ENTITY+UserRestURL.ENTITY_ID+UserRestURL.UPDATE_LOCATION)
+	@ResponseBody
+	public boolean updateLocation(
+			@PathVariable Long id,
+			@RequestParam(value="latitude",required=true) int latitude, 
+			@RequestParam(value="longitude",required=true) int longitude
+			){
+		boolean lr = userRestClient.updateLocation(id, latitude, longitude);
+
+        return lr;
+	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/"+TeamRestURL.ENTITY+TeamRestURL.ENTITY_ID)
 	@ResponseBody

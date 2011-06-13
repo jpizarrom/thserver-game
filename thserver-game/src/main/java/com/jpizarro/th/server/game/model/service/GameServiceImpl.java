@@ -202,11 +202,24 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	@Transactional
-	public GenericGameResponseTO takePlace(String username, Long placeId,
+	public GenericGameResponseTO takePlace(Long userId, Long placeId, Long teamId, Long gameId, 
 			InGameUserInfoTO inGameUserInfoTO)
 			throws InstanceNotFoundException, DuplicateInstanceException {
-		// TODO Auto-generated method stub
-		return null;
+
+		Place place = placeAccessor.find( placeId );
+		User user = userAccessor.find(userId);
+		Team team = teamAccessor.find(teamId);
+		Game game = gameAccessor.find(gameId);
+		GenericGameResponseTO ggrTO = null;
+		
+		boolean getsThePlace = true; //user.getPlacesICanSee().contains(place);
+		if (getsThePlace) {
+//			user.getPlacesICanSee().remove(place);
+			team.getPlacesIHave().add(place);
+			place.getTeamsHaveMe().add(team);
+		}
+		
+		return ggrTO;
 	}
 
 	@Override
