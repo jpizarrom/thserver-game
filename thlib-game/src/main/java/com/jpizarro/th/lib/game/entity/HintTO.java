@@ -7,7 +7,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("hint")
 public class HintTO extends PlaceTO{
 	@Element(required=false)
-	protected String TYPE = "HIN";
+	public static final String TYPE = "HIN";
 
 	public HintTO() {
 		super();
