@@ -1,5 +1,6 @@
 package com.jpizarro.th.server.game.view.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import com.jpizarro.th.server.generic.model.persistence.util.exceptions.Duplicat
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
 import com.jpizarro.th.server.generic.view.rest.GenericController;
 import com.jpizarro.th.server.user.view.rest.client.PlaceRestClient;
+import com.jpizarro.th.server.user.view.rest.client.TeamRestClient;
 import com.jpizarro.th.server.user.view.rest.client.UserRestClient;
 import com.jpizarro.th.lib.game.util.GameRestURL;
 
@@ -40,6 +42,9 @@ public class GameController implements GenericController <GameTO, Long>{
 	private GameService gameService;
 	@Autowired
 	private PlaceRestClient placeRestClient;
+	
+	@Autowired
+	private TeamRestClient teamRestClient;
 	
 	private String XML_VIEW_NAME = "users";
 	
@@ -214,9 +219,25 @@ public class GameController implements GenericController <GameTO, Long>{
 			@RequestParam(value="userId",required=false) Long userId,
 			@RequestParam(value="teamId",required=false) Long teamId
 			) throws InstanceNotFoundException, TimeOutException {
-		// TODO Auto-generated method stub
-//		
+		
 		GenericGameResponseTO ggto = gameService.startOrContinueGame(gameId, userId, teamId);
+		
+		com.jpizarro.th.lib.team.entity.list.UsersTO users = teamRestClient.getUsersByTeam(teamId);
+		
+		List<InGameUserInfoTO> inGameUserInfoTOs = new ArrayList<InGameUserInfoTO>();
+
+		// TODO check if user is part of the team
+
+		for (com.jpizarro.th.lib.team.entity.UserTO user: users.getUsers()){
+			InGameUserInfoTO in = new InGameUserInfoTO();
+			in.setUsername(String.valueOf(user.getUserId()));
+			// TODO add lat,lon
+			
+			inGameUserInfoTOs.add(in);
+		}
+		
+		ggto.setInGameUserInfoTOs(inGameUserInfoTOs);
+		
 		
 		for(HintTO h:ggto.getHints()){
 			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(h.getPlaceId());

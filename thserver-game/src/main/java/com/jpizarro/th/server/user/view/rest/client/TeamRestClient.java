@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import com.jpizarro.th.lib.team.entity.TeamTO;
 import com.jpizarro.th.lib.team.util.TeamRestURL;
 import com.jpizarro.th.lib.team.entity.UserTO;
+import com.jpizarro.th.lib.team.entity.list.UsersTO;
 import com.jpizarro.th.server.generic.view.rest.GenericController;
 
 @Service
@@ -85,5 +86,11 @@ public class TeamRestClient implements GenericController <TeamTO, Long> {
         vars.put("id", String.valueOf(id));
         vars.put("userid", String.valueOf(userid));
         return restTemplate.getForObject(URL + TeamRestURL.ADD_USER_TO_TEAM, TeamTO.class, vars);
+	}
+	
+	public UsersTO getUsersByTeam(Long id) {
+		Map<String, String> vars = new HashMap<String, String>();
+		vars.put("id", String.valueOf(id));
+		return restTemplate.getForObject(URL + TeamRestURL.USERS_BY_TEAM, UsersTO.class, vars);
 	}
 }
