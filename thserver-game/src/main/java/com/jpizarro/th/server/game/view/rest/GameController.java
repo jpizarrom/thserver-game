@@ -222,17 +222,23 @@ public class GameController implements GenericController <GameTO, Long>{
 			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(h.getPlaceId());
 			h.setLatitude(pto.getLatitude());
 			h.setLongitude(pto.getLongitude());
+			h.setName(pto.getName());
+			h.setDescription(pto.getDescription());
 		}
 		
 		for(HintTO h:ggto.getHideHints()){
 			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(h.getPlaceId());
 			h.setLatitude(pto.getLatitude());
 			h.setLongitude(pto.getLongitude());
+			h.setName(pto.getName());
+			h.setDescription(pto.getDescription());
 		}
 		for(GoalTO h:ggto.getGoals()){
 			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(h.getPlaceId());
 			h.setLatitude(pto.getLatitude());
 			h.setLongitude(pto.getLongitude());
+			h.setName(pto.getName());
+			h.setDescription(pto.getDescription());
 		}
 		return ggto;
 //		return null;
