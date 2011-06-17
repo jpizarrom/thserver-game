@@ -210,10 +210,19 @@ public class GameServiceImpl implements GameService {
 		User user = userAccessor.find(userId);
 		Team team = teamAccessor.find(teamId);
 		Game game = gameAccessor.find(gameId);
-		GenericGameResponseTO ggrTO = null;
+		GenericGameResponseTO ggrTO = new GenericGameResponseTO();
+		
+		if(game.isFinished()){
+			ggrTO.setHasFinished(true);
+			return ggrTO;
+		}
 		
 		boolean getsThePlace = true; //user.getPlacesICanSee().contains(place);
 		if (getsThePlace) {
+			if ( place.getType().endsWith("GOA")  ){
+				game.setFinished(true);
+				ggrTO.setHasFinished(true);
+			}
 //			user.getPlacesICanSee().remove(place);
 			team.getPlacesIHave().add(place);
 			place.getTeamsHaveMe().add(team);
@@ -235,6 +244,8 @@ public class GameServiceImpl implements GameService {
 		if (!game.isFinished() ) {
 			// Places
 			getInGamePlaces(ggrTO, game, null, team);
+		}else{
+			ggrTO.setHasFinished(true);
 		}
 		
 		return ggrTO;
