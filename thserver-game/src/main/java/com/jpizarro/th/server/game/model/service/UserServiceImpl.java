@@ -3,6 +3,7 @@ package com.jpizarro.th.server.game.model.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jpizarro.th.lib.game.entity.TeamTO;
 import com.jpizarro.th.lib.game.entity.UserTO;
 import com.jpizarro.th.lib.game.entity.list.GameCTO;
 import com.jpizarro.th.server.game.model.entity.Game;
@@ -48,8 +49,13 @@ public class UserServiceImpl implements UserService {
 		for (com.jpizarro.th.lib.team.entity.TeamTO tto: tu.getTeams()){
 			GameCTO gcto = gameAccessor.findByTeam(tto.getTeamId());
 			for (Game g : gcto.getGameList()){
-				to.setGameId(g.getGameId());
-				to.setTeamId(tto.getTeamId());
+				TeamTO t = new TeamTO(); 
+				t.setTeamId(tto.getTeamId());
+				t.setGameId(g.getGameId());
+				to.getTeams().add(t);
+				
+//				to.setGameId(g.getGameId());
+//				to.setTeamId(tto.getTeamId());
 			}
 		}
 		return to;

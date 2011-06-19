@@ -1,8 +1,11 @@
 package com.jpizarro.th.lib.game.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
@@ -13,10 +16,13 @@ public class UserTO implements Serializable{
 
 	@Element(required=false)
 	private long userId;
-	@Element(required=false)
-	private long teamId;
-	@Element(required=false)
-	private long gameId;
+//	@Element(required=false)
+//	private long teamId;
+//	@Element(required=false)
+//	private long gameId;
+	
+	@ElementList(required=false)
+	private List<TeamTO> teams = new ArrayList<TeamTO>();
 
 	public void setUserId(long userId) {
 		this.userId = userId;
@@ -26,19 +32,12 @@ public class UserTO implements Serializable{
 		return userId;
 	}
 
-	public void setTeamId(long teamId) {
-		this.teamId = teamId;
+	public List<TeamTO> getTeams() {
+		return teams;
 	}
 
-	public long getTeamId() {
-		return teamId;
+	public void setTeams(List<TeamTO> teams) {
+		this.teams = teams;
 	}
-
-	public void setGameId(long gameId) {
-		this.gameId = gameId;
-	}
-
-	public long getGameId() {
-		return gameId;
-	}
+	
 }

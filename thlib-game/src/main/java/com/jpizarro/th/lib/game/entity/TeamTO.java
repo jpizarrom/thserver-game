@@ -13,6 +13,9 @@ public class TeamTO implements Serializable {
 
 	@Element(required=false)
 	private long teamId;
+	
+	@Element(required=false)
+	private long gameId;
 
 	public void setTeamId(long teamId) {
 		this.teamId = teamId;
@@ -20,6 +23,14 @@ public class TeamTO implements Serializable {
 
 	public long getTeamId() {
 		return teamId;
+	}
+
+	public long getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(long gameId) {
+		this.gameId = gameId;
 	}
 
 }
