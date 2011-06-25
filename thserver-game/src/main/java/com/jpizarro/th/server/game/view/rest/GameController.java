@@ -46,6 +46,9 @@ public class GameController implements GenericController <GameTO, Long>{
 	@Autowired
 	private TeamRestClient teamRestClient;
 	
+	@Autowired
+	private UserRestClient userRestClient;
+	
 	private String XML_VIEW_NAME = "users";
 	
 	@RequestMapping(method=RequestMethod.GET, value=GameRestURL.ENTITY_ID,
@@ -231,7 +234,12 @@ public class GameController implements GenericController <GameTO, Long>{
 		for (com.jpizarro.th.lib.team.entity.UserTO user: users.getUsers()){
 			InGameUserInfoTO in = new InGameUserInfoTO();
 			in.setUsername(String.valueOf(user.getUserId()));
+			
 			// TODO add lat,lon
+			com.jpizarro.th.lib.user.entity.UserTO uu = userRestClient.getEntity(user.getUserId());
+			in.setLatitude(uu.getLatitude());
+			in.setLongitude(uu.getLongitude());
+			
 			
 			inGameUserInfoTOs.add(in);
 		}
