@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 03-07-2011 a las 20:37:58
+-- Tiempo de generación: 03-07-2011 a las 21:06:28
 -- Versión del servidor: 5.1.49
 -- Versión de PHP: 5.3.3-7
 
@@ -54,8 +54,7 @@ INSERT INTO `Goal` (`placeId`) VALUES
 (28),
 (33),
 (34),
-(37),
-(39),
+(40),
 (42),
 (44),
 (49),
@@ -93,8 +92,9 @@ INSERT INTO `Hint` (`placeId`) VALUES
 (32),
 (35),
 (36),
+(37),
 (38),
-(40),
+(39),
 (41),
 (43),
 (45),
@@ -145,12 +145,12 @@ INSERT INTO `Place` (`placeId`, `placeRefId`, `type`, `gameId`) VALUES
 (34, 0, 'GOA', 12),
 (35, 0, 'HIN', 12),
 (36, 0, 'HIN', 13),
-(37, 0, 'GOA', 13),
+(37, 0, 'HIN', 13),
 (38, 0, 'HIN', 13),
-(39, 0, 'GOA', 13),
-(40, 0, 'HIN', 13),
+(39, 0, 'HIN', 13),
+(40, 0, 'GOA', 13),
 (41, 0, 'HIN', 13),
-(42, 0, 'GOA', 14),
+(42, 0, 'HIN', 14),
 (43, 0, 'HIN', 14),
 (44, 0, 'GOA', 14),
 (45, 0, 'HIN', 14),
@@ -197,12 +197,6 @@ INSERT INTO `Team` (`teamId`, `teamRefId`, `gameId`) VALUES
 -- Volcar la base de datos para la tabla `TeamHasPlace`
 --
 
-INSERT INTO `TeamHasPlace` (`teamId`, `placeId`) VALUES
-(31, 24),
-(31, 25),
-(31, 26),
-(31, 27),
-(31, 29);
 
 --
 -- Volcar la base de datos para la tabla `TeamSeePlace`
