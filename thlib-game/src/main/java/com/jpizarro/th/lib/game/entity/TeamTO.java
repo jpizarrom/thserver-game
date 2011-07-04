@@ -16,6 +16,9 @@ public class TeamTO implements Serializable {
 	
 	@Element(required=false)
 	private long gameId;
+	
+	@Element(required=false)
+	private GameTO game;
 
 	public void setTeamId(long teamId) {
 		this.teamId = teamId;
@@ -31,6 +34,14 @@ public class TeamTO implements Serializable {
 
 	public void setGameId(long gameId) {
 		this.gameId = gameId;
+	}
+
+	public GameTO getGame() {
+		return game;
+	}
+
+	public void setGame(GameTO game) {
+		this.game = game;
 	}
 
 }
