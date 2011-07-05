@@ -20,6 +20,7 @@ import com.jpizarro.th.lib.game.entity.list.TeamsTO;
 import com.jpizarro.th.lib.game.entity.response.GenericGameResponseTO;
 import com.jpizarro.th.lib.game.entity.response.InGameUserInfoTO;
 import com.jpizarro.th.lib.message.entity.MessageTO;
+import com.jpizarro.th.lib.message.util.MessageRestURL;
 import com.jpizarro.th.lib.place.entity.PlaceTO;
 import com.jpizarro.th.lib.team.entity.TeamTO;
 import com.jpizarro.th.lib.team.util.TeamRestURL;
@@ -112,7 +113,7 @@ public class TestController{
 
         return lr;
 	}
-	
+	///////////////////////////////////////////////places
 	@RequestMapping(method=RequestMethod.GET, value="/"+TeamRestURL.ENTITY+TeamRestURL.ENTITY_ID)
 	@ResponseBody
 	public TeamTO getEntityTeam(@PathVariable Long id) {
@@ -148,7 +149,7 @@ public class TestController{
 		body.setDescription("juan desc");
 		return teamRestClient.updateEntity(id, body);
 	}
-	
+	///////////////////////////////////////////////places
 	@RequestMapping(method=RequestMethod.GET, value="/places/{id}",
 			headers="Accept=application/xml")
 	@ResponseBody
@@ -179,31 +180,32 @@ public class TestController{
 		body.setDescription("juan desc");
 		return placeRestClient.updateEntity(id, body);
 	}
-	
-	@RequestMapping(method=RequestMethod.GET, value="/messages/{id}",
+	///////////////////////////////////////////////messages
+	@RequestMapping(method=RequestMethod.GET, value="/"+MessageRestURL.ENTITY+MessageRestURL.ENTITY_ID,
 			headers="Accept=application/xml")
 	@ResponseBody
 	public MessageTO getEntityMessage(@PathVariable Long id) {
 		return messageRestClient.getEntity(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/messages/{id}",
+	@RequestMapping(method=RequestMethod.DELETE, value="/"+MessageRestURL.ENTITY+MessageRestURL.ENTITY_ID,
 			headers="Accept=application/xml")
 	@ResponseBody
 	public Object removeEntityMessage(@PathVariable Long id) {
 		return messageRestClient.removeEntity(id);
 	}
 
-	@RequestMapping(method=RequestMethod.POST, value="/messages",
+	@RequestMapping(method=RequestMethod.POST, value="/"+MessageRestURL.ENTITY,
 			headers="Accept=application/xml")
 	@ResponseBody
-	public Object addEntityMessage() {
-		MessageTO to = new MessageTO();
-		to.setMessageBody("joteiro");
-		to.setSender(1);
-		return messageRestClient.addEntity(to);
+	public Object addEntityMessage(@RequestBody MessageTO msg) {
+//		MessageTO to = new MessageTO();
+//		to.setMessageBody("joteiro");
+//		to.setSender(1);
+		return messageRestClient.addEntity(msg);
 	}
-	@RequestMapping(method=RequestMethod.PUT, value="/messages/{id}")
+	@RequestMapping(method=RequestMethod.PUT, value="/"+MessageRestURL.ENTITY+MessageRestURL.ENTITY_ID
+			)
 	@ResponseBody
 	public MessageTO updateEntityMessage(@PathVariable Long id) {
 		MessageTO body = new MessageTO();

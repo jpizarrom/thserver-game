@@ -505,7 +505,7 @@
 		            </contextHandler>
 		            <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
 		              <war>${basedir}/../../msg/thserver-msg/target/thserver-message-1.0-SNAPSHOT.war</war>
-		              <contextPath>/thserver-msg</contextPath>
+		              <contextPath>/thserver-message</contextPath>
 		            </contextHandler>
 		            <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
 		              <war>${basedir}/../../place/thserver-place/target/thserver-place-1.0-SNAPSHOT.war</war>
