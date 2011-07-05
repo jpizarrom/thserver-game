@@ -21,6 +21,9 @@ public class UserTO implements Serializable{
 //	@Element(required=false)
 //	private long gameId;
 	
+	@Element(required=false)
+	private com.jpizarro.th.lib.user.entity.UserTO user;
+	
 	@ElementList(required=false)
 	private List<TeamTO> teams = new ArrayList<TeamTO>();
 
@@ -39,5 +42,14 @@ public class UserTO implements Serializable{
 	public void setTeams(List<TeamTO> teams) {
 		this.teams = teams;
 	}
+
+	public com.jpizarro.th.lib.user.entity.UserTO getUser() {
+		return user;
+	}
+
+	public void setUser(com.jpizarro.th.lib.user.entity.UserTO user) {
+		this.user = user;
+	}
+	
 	
 }

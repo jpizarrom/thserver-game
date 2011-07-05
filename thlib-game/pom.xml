@@ -82,6 +82,12 @@
 <!--		  	<artifactId>thlib-generic</artifactId>-->
 <!--		  	<version>1.0-SNAPSHOT</version>-->
 <!--  		</dependency>-->
+		<dependency>
+		    <groupId>com.jpizarro.th</groupId>
+		    <artifactId>thlib-user</artifactId>
+            <version>1.0-SNAPSHOT</version>
+		</dependency>
+
 		<!-- Using Simple for XML marshaling -->
 		<dependency>
 			<groupId>org.simpleframework</groupId>

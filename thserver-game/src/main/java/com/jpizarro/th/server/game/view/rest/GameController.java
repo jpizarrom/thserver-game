@@ -233,10 +233,12 @@ public class GameController implements GenericController <GameTO, Long>{
 
 		for (com.jpizarro.th.lib.team.entity.UserTO user: users.getUsers()){
 			InGameUserInfoTO in = new InGameUserInfoTO();
-			in.setUsername(String.valueOf(user.getUserId()));
+//			in.setUsername(String.valueOf(user.getUserId()));
 			
 			// TODO add lat,lon
 			com.jpizarro.th.lib.user.entity.UserTO uu = userRestClient.getEntity(user.getUserId());
+			
+			in.setUsername( uu.getUsername() );
 			in.setLatitude(uu.getLatitude());
 			in.setLongitude(uu.getLongitude());
 			
