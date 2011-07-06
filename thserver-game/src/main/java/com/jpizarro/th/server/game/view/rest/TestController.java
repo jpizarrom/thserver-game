@@ -1,7 +1,11 @@
 package com.jpizarro.th.server.game.view.rest;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -195,14 +199,42 @@ public class TestController{
 		return messageRestClient.removeEntity(id);
 	}
 
-	@RequestMapping(method=RequestMethod.POST, value="/"+MessageRestURL.ENTITY,
-			headers="Accept=application/xml")
+	@RequestMapping(method=RequestMethod.POST, value="/"+MessageRestURL.ENTITY
+//			,headers="Accept=application/xml"
+				)
 	@ResponseBody
 	public Object addEntityMessage(@RequestBody MessageTO msg) {
+		System.out.println(msg.getReceivers());
+		System.out.println(msg.getSender());
+		System.out.println(msg.getMessageBody());
+//		Serializer serializer = new Persister();
+//		OutputStream b = new OutputStream()
+//	    {
+//	        private StringBuilder string = new StringBuilder();
+//	        @Override
+//	        public void write(int b) throws IOException {
+//	            this.string.append((char) b );
+//	        }
+//
+//	        //Netbeans IDE automatically overrides this toString()
+//	        public String toString(){
+//	            return this.string.toString();
+//	        }
+//	    };
+//		try {
+//			serializer.write(msg, b);
+//			System.out.println(b.toString());
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		msg.getReceivers().clear();
 //		MessageTO to = new MessageTO();
 //		to.setMessageBody("joteiro");
 //		to.setSender(1);
 		return messageRestClient.addEntity(msg);
+//		return null;
 	}
 	@RequestMapping(method=RequestMethod.PUT, value="/"+MessageRestURL.ENTITY+MessageRestURL.ENTITY_ID
 			)
