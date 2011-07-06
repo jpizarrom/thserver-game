@@ -125,12 +125,13 @@
 			<property name="annotatedClasses">
 				<list>				
 					<value>com.jpizarro.th.lib.message.entity.MessageTO</value>
+					<value>com.jpizarro.th.lib.message.entity.UserTO</value>
 				</list>
 			</property>
 	</bean>
 	<bean id="xmlMessageConverterMessage"
 		class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
-		<constructor-arg ref="xstreamMarshallerPlace" />
+		<constructor-arg ref="xstreamMarshallerMessage" />
 	</bean>
     <bean id="restTemplateMessage" class="org.springframework.web.client.RestTemplate">
         <constructor-arg ref="httpClientFactory"/>

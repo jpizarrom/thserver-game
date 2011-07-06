@@ -113,7 +113,7 @@ public class TestController{
 
         return lr;
 	}
-	///////////////////////////////////////////////places
+	///////////////////////////////////////////////teams
 	@RequestMapping(method=RequestMethod.GET, value="/"+TeamRestURL.ENTITY+TeamRestURL.ENTITY_ID)
 	@ResponseBody
 	public TeamTO getEntityTeam(@PathVariable Long id) {
@@ -181,8 +181,8 @@ public class TestController{
 		return placeRestClient.updateEntity(id, body);
 	}
 	///////////////////////////////////////////////messages
-	@RequestMapping(method=RequestMethod.GET, value="/"+MessageRestURL.ENTITY+MessageRestURL.ENTITY_ID,
-			headers="Accept=application/xml")
+	@RequestMapping(method=RequestMethod.GET, value="/"+MessageRestURL.ENTITY+MessageRestURL.ENTITY_ID
+			)
 	@ResponseBody
 	public MessageTO getEntityMessage(@PathVariable Long id) {
 		return messageRestClient.getEntity(id);
