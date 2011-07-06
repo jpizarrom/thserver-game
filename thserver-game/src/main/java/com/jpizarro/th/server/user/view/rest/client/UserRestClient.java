@@ -46,6 +46,11 @@ public class UserRestClient implements GenericController <UserTO, Long> {
         vars.put("id", String.valueOf(id));
         return restTemplate.getForObject(UTLENTITY, UserTO.class, vars);
     }
+	public UserTO getEntity(String username) {
+        Map<String, String> vars = new HashMap<String, String>();
+        vars.put("username", username);
+        return restTemplate.getForObject(URL+UserRestURL.FIND_USER_BY_USERNAME, UserTO.class, vars);
+    }
 
 	@Override
 	public List<UserTO> getEntities() {

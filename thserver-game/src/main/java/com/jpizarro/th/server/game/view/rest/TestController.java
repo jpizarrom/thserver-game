@@ -60,8 +60,16 @@ public class TestController{
 	
 	@RequestMapping(method=RequestMethod.GET, value="/"+UserRestURL.ENTITY+UserRestURL.ENTITY_ID)
 	@ResponseBody
-	public UserTO getEntityRest(@PathVariable Long id) {
+	public UserTO getEntityUser(@PathVariable Long id) {
 		return userRestClient.getEntity(id);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/"+UserRestURL.ENTITY+UserRestURL.FIND_USER_BY_USERNAME)
+	@ResponseBody
+	public UserTO getEntityUser(@PathVariable String username) {
+//		return userRestClient.getEntity(id);
+		return userRestClient.getEntity(username);
+//		return null;
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/"+UserRestURL.ENTITY+UserRestURL.ENTITY_ID,
