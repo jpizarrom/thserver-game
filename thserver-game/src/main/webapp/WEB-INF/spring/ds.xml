@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:cloud="http://schema.cloudfoundry.org/spring"
+       xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	   http://schema.cloudfoundry.org/spring http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
+       http://www.springframework.org/schema/cloud http://www.springframework.org/schema/cloud/spring-cloud.xsd
+       ">
+
+    <beans  profile="default">
+		<bean id="dataSource"
+			class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+			p:driverClassName="${datasource.driver}" p:url="${datasource.url}"
+			p:username="${datasource.username}" p:password="${datasource.password}" />
+    </beans>
+
+    <beans profile="cloud">
+		<cloud:data-source id="dataSource" service-name="thserver-game-db"/>
+<!-- 	<jdbc:initialize-database data-source="dataSource"> -->
+<!--         <jdbc:script location="classpath:/sql/MySQLCreateTables.sql"/> -->
+<!--         <jdbc:script location="classpath:/sql/MySQLInserts.sql"/> -->
+<!-- 	</jdbc:initialize-database> -->
+    </beans>
+
+</beans>
