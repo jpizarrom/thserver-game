@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9.2deb1
+-- version 3.4.3.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 03-07-2011 a las 21:06:28
+-- Tiempo de generación: 11-08-2011 a las 05:45:55
 -- Versión del servidor: 5.1.49
--- Versión de PHP: 5.3.3-7
+-- Versión de PHP: 5.3.6-13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -20,7 +21,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 --
--- Volcar la base de datos para la tabla `Game`
+-- Volcado de datos para la tabla `Game`
 --
 
 INSERT INTO `Game` (`gameId`, `city`, `description`, `finishDate`, `finished`, `latitude`, `longitude`, `maxTeams`, `maxUserPerTeam`, `name`, `startDate`) VALUES
@@ -38,10 +39,15 @@ INSERT INTO `Game` (`gameId`, `city`, `description`, `finishDate`, `finished`, `
 (12, 'Talca', NULL, '2011-06-17 09:02:53', b'0', -35431303, -71658736, 2, 3, 'Oficina', '2011-06-17 09:02:53'),
 (13, 'Talca', NULL, '2011-06-17 13:20:30', b'0', -35403042, -71634355, 3, 2, 'Utal', '2011-06-17 13:20:30'),
 (14, 'Talca', NULL, '2011-06-17 15:59:18', b'0', -35422543, -71653704, 3, 2, '8 or 3 n', '2011-06-17 15:59:18'),
-(15, 'Santa Cruz', NULL, '2011-06-25 12:40:30', b'0', -34635486, -71360463, 3, 5, NULL, '2011-06-25 12:40:30');
+(15, 'Santa Cruz', NULL, '2011-06-25 12:40:30', b'0', -34635486, -71360463, 3, 5, NULL, '2011-06-25 12:40:30'),
+(16, 'Talca', NULL, '2011-07-06 00:41:01', b'0', -35437719, -71655549, 2, 2, NULL, '2011-07-06 00:41:01'),
+(17, 'Talca', NULL, '2011-07-06 00:42:00', b'0', -35421494, -71652116, 2, 2, NULL, '2011-07-06 00:42:00'),
+(18, 'Talca', NULL, '2011-07-06 00:43:08', b'0', -35408343, -71646966, 2, 2, NULL, '2011-07-06 00:43:08'),
+(19, 'Talca', NULL, '2011-07-11 13:10:13', b'1', -35427658, -71658060, 4, 2, 'Varoli Pizza', '2011-07-11 13:10:13'),
+(20, 'Talca', NULL, '2011-07-11 13:31:05', b'0', -35422893, -71663102, 3, 5, 'Varoli Pizza 2', '2011-07-11 13:31:05');
 
 --
--- Volcar la base de datos para la tabla `Goal`
+-- Volcado de datos para la tabla `Goal`
 --
 
 INSERT INTO `Goal` (`placeId`) VALUES
@@ -58,10 +64,12 @@ INSERT INTO `Goal` (`placeId`) VALUES
 (42),
 (44),
 (49),
-(51);
+(51),
+(65),
+(70);
 
 --
--- Volcar la base de datos para la tabla `Hint`
+-- Volcado de datos para la tabla `Hint`
 --
 
 INSERT INTO `Hint` (`placeId`) VALUES
@@ -102,10 +110,26 @@ INSERT INTO `Hint` (`placeId`) VALUES
 (47),
 (48),
 (50),
-(52);
+(52),
+(53),
+(54),
+(55),
+(56),
+(57),
+(58),
+(59),
+(60),
+(61),
+(62),
+(63),
+(64),
+(66),
+(67),
+(68),
+(69);
 
 --
--- Volcar la base de datos para la tabla `Place`
+-- Volcado de datos para la tabla `Place`
 --
 
 INSERT INTO `Place` (`placeId`, `placeRefId`, `type`, `gameId`) VALUES
@@ -160,10 +184,28 @@ INSERT INTO `Place` (`placeId`, `placeRefId`, `type`, `gameId`) VALUES
 (49, 0, 'GOA', 15),
 (50, 0, 'HIN', 15),
 (51, 0, 'GOA', 15),
-(52, 0, 'HIN', 15);
+(52, 0, 'HIN', 15),
+(53, 0, 'HIN', 16),
+(54, 0, 'HIN', 17),
+(55, 0, 'HIN', 18),
+(56, 0, 'HIN', 18),
+(57, 0, 'HIN', 18),
+(58, 0, 'HIN', 19),
+(59, 0, 'HIN', 19),
+(60, 0, 'HIN', 19),
+(61, 0, 'HIN', 19),
+(62, 0, 'HIN', 19),
+(63, 0, 'HIN', 19),
+(64, 0, 'HIN', 19),
+(65, 0, 'GOA', 19),
+(66, 0, 'HIN', 20),
+(67, 0, 'HIN', 20),
+(68, 0, 'HIN', 20),
+(69, 0, 'HIN', 20),
+(70, 0, 'GOA', 20);
 
 --
--- Volcar la base de datos para la tabla `Team`
+-- Volcado de datos para la tabla `Team`
 --
 
 INSERT INTO `Team` (`teamId`, `teamRefId`, `gameId`) VALUES
@@ -191,27 +233,43 @@ INSERT INTO `Team` (`teamId`, `teamRefId`, `gameId`) VALUES
 (41, 0, 14),
 (42, 0, 15),
 (43, 0, 15),
-(44, 0, 15);
+(44, 0, 15),
+(45, 0, 16),
+(46, 0, 16),
+(47, 0, 17),
+(48, 0, 17),
+(49, 0, 18),
+(50, 0, 18),
+(51, 0, 19),
+(52, 0, 19),
+(53, 0, 19),
+(54, 0, 19),
+(55, 0, 20),
+(56, 0, 20),
+(57, 0, 20);
 
 --
--- Volcar la base de datos para la tabla `TeamHasPlace`
+-- Volcado de datos para la tabla `TeamHasPlace`
 --
 
+INSERT INTO `TeamHasPlace` (`teamId`, `placeId`) VALUES
+(52, 58),
+(52, 59),
+(52, 60),
+(52, 61),
+(52, 62),
+(52, 63),
+(52, 64),
+(52, 65);
 
 --
--- Volcar la base de datos para la tabla `TeamSeePlace`
---
-
-
---
--- Volcar la base de datos para la tabla `User`
+-- Volcado de datos para la tabla `User`
 --
 
 INSERT INTO `User` (`userId`) VALUES
 (1),
 (2);
 
---
--- Volcar la base de datos para la tabla `UserSeePlace`
---
-
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

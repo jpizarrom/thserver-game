@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9.2deb1
+-- version 3.4.3.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 03-07-2011 a las 20:37:42
+-- Tiempo de generación: 11-08-2011 a las 05:45:00
 -- Versión del servidor: 5.1.49
--- Versión de PHP: 5.3.3-7
+-- Versión de PHP: 5.3.6-13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -38,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `Game` (
   `name` varchar(255) DEFAULT NULL,
   `startDate` datetime DEFAULT NULL,
   PRIMARY KEY (`gameId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 -- --------------------------------------------------------
 
@@ -77,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `Place` (
   `gameId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`placeId`),
   KEY `FK499E8E7DF764F96` (`gameId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `Team` (
   `gameId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`teamId`),
   KEY `FK27B67DDF764F96` (`gameId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
 
 -- --------------------------------------------------------
 
@@ -147,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `UserSeePlace` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Filtros para las tablas descargadas (dump)
+-- Restricciones para tablas volcadas
 --
 
 --
@@ -194,3 +195,7 @@ ALTER TABLE `TeamSeePlace`
 ALTER TABLE `UserSeePlace`
   ADD CONSTRAINT `FK15F5917FF85AFD08` FOREIGN KEY (`userId`) REFERENCES `User` (`userId`),
   ADD CONSTRAINT `FK15F5917FFE0A9D32` FOREIGN KEY (`placeId`) REFERENCES `Place` (`placeId`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
