@@ -19,8 +19,14 @@ import org.springframework.stereotype.Component;
 //import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 
 import com.jpizarro.th.server.game.model.service.GameService;
+import com.jpizarro.th.server.game.view.web.pages.game.create.CreateGamePage;
+import com.jpizarro.th.server.game.view.web.pages.game.details.GameDetailsPage;
+import com.jpizarro.th.server.game.view.web.pages.game.editor.GameEditorPage;
+import com.jpizarro.th.server.game.view.web.pages.game.list.notfinished.NotFinishedGamesListPage;
 import com.jpizarro.th.server.game.view.web.pages.home.anonymous.AnonymousHomePage;
 import com.jpizarro.th.server.game.view.web.pages.home.user.UserHomePage;
+import com.jpizarro.th.server.game.view.web.pages.user.login.LoginPage;
+import com.jpizarro.th.server.game.view.web.pages.user.login.register.RegisterPage;
 import com.jpizarro.th.server.game.view.web.session.WicketSession;
 import com.jpizarro.th.server.user.model.service.UserService;
 import com.jpizarro.th.server.place.model.service.PlaceService;
@@ -66,6 +72,18 @@ public class WicketApplication extends AuthenticatedWebApplication
 		
 //		new AnnotatedMountScanner().scanPackage("com.jpizarro.th.server").mount(this);
 
+		mountBookmarkablePage("/login", LoginPage.class);
+		mountBookmarkablePage("/register", RegisterPage.class);
+		mountBookmarkablePage("/user/home", UserHomePage.class);
+//		/admin/home
+		
+		mountBookmarkablePage("/create", CreateGamePage.class);
+		mountBookmarkablePage("/edit", GameEditorPage.class);
+		mountBookmarkablePage("/gameDetails", GameDetailsPage.class);
+		mountBookmarkablePage("/notFinishedGames", NotFinishedGamesListPage.class);
+//		activeGames
+//		finishedGames
+		
 //		getApplicationSettings().setAccessDeniedPage(LoginPage.class);
 		/*
          * Remove wicket tags from result HTML
