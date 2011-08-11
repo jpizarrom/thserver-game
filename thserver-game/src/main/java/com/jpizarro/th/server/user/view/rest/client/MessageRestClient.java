@@ -19,9 +19,14 @@ public class MessageRestClient implements GenericController <MessageTO, Long> {
 	private RestTemplate restTemplate;
 	private Credentials credentials;
 	
-	private static final String HOST = "http://localhost";
-	private static final String PORT = ":8070";
-	private static final String APPNAME = "/thserver-message/app";
+//	private static final String HOST = "http://localhost";
+//	private static final String PORT = ":8070";
+//	private static final String APPNAME = "/thserver-message/app";
+	
+	private static final String HOST = "http://thserver-message.cloudfoundry.com";
+	private static final String PORT = "";
+	private static final String APPNAME = "/app";
+	
 	private static final String WSNAME = "/messages";
 	private static final String URL = HOST + PORT + APPNAME+ WSNAME;
 	

@@ -21,9 +21,14 @@ public class TeamRestClient implements GenericController <TeamTO, Long> {
 	private RestTemplate restTemplate;
 	private Credentials credentials;
 	
-	private static final String HOST = "http://localhost";
-	private static final String PORT = ":8070";
-	private static final String APPNAME = "/thserver-team/app";
+//	private static final String HOST = "http://localhost";
+//	private static final String PORT = ":8070";
+//	private static final String APPNAME = "/thserver-team/app";
+	
+	private static final String HOST = "http://thserver-team.cloudfoundry.com";
+	private static final String PORT = "";
+	private static final String APPNAME = "/app";
+	
 	private static final String WSNAME = "/teams";
 	private static final String URL = HOST + PORT + APPNAME+ WSNAME;
 	

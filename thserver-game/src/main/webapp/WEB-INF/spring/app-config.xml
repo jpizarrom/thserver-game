@@ -33,10 +33,10 @@
 <!-- 		p:driverClassName="${datasource.driver}" p:url="${datasource.url}" -->
 <!-- 		p:username="${datasource.username}" p:password="${datasource.password}" /> -->
 	<cloud:data-source id="dataSource" service-name="thserver-game-db"/>
-<!-- 	<jdbc:initialize-database data-source="dataSource"> -->
-<!--         <jdbc:script location="classpath:/sql/MySQLCreateTables.sql"/> -->
-<!--         <jdbc:script location="classpath:/sql/MySQLInserts.sql"/> -->
-<!-- 	</jdbc:initialize-database> -->
+	<jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="classpath:/sql/MySQLCreateTables.sql"/>
+        <jdbc:script location="classpath:/sql/MySQLInserts.sql"/>
+	</jdbc:initialize-database>
 
 	<!-- Hibernate Session Factory -->
 	<bean id="sessionFactory"
