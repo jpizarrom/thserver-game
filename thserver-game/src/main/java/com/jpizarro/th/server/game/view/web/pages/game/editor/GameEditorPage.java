@@ -8,12 +8,12 @@ import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.collections.MiniMap;
 import org.apache.wicket.util.template.TextTemplateHeaderContributor;
-import org.wicketstuff.annotation.mount.MountPath;
+//import org.wicketstuff.annotation.mount.MountPath;
 
 import com.jpizarro.th.server.game.view.web.components.map.googlemaps.MapPanel;
 import com.jpizarro.th.server.game.view.web.pages.BasePage;
 
-@MountPath(path = "edit")
+//@MountPath(path = "edit")
 @AuthorizeInstantiation( { "ROLE_USER" })
 public class GameEditorPage extends BasePage {
 	

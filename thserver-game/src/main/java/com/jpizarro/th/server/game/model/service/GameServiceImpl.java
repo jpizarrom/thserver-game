@@ -52,7 +52,7 @@ public class GameServiceImpl implements GameService {
 	@Autowired
 	private PlaceAccessor placeAccessor;
 	
-	final public int COUNT = 15;
+	final public int COUNT = 35;
 
 	@Override
 	@Transactional

@@ -7,7 +7,7 @@ import java.util.Set;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
-import org.wicketstuff.annotation.mount.MountPath;
+//import org.wicketstuff.annotation.mount.MountPath;
 
 import com.jpizarro.th.lib.game.entity.CreateGameTO;
 import com.jpizarro.th.lib.game.entity.GameTO;
@@ -19,7 +19,7 @@ import com.jpizarro.th.server.game.view.web.application.WicketApplication;
 import com.jpizarro.th.server.game.view.web.pages.BasePage;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
 
-@MountPath(path = "create")
+//@MountPath(path = "create")
 @AuthorizeInstantiation( { "ROLE_USER" })
 public class CreateGamePage extends BasePage {
 

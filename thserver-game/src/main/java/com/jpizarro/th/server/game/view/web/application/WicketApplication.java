@@ -16,7 +16,7 @@ import org.apache.wicket.request.IRequestCycleProcessor;
 import org.apache.wicket.request.target.coding.MixedParamUrlCodingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
+//import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 
 import com.jpizarro.th.server.game.model.service.GameService;
 import com.jpizarro.th.server.game.view.web.pages.home.anonymous.AnonymousHomePage;
@@ -64,7 +64,7 @@ public class WicketApplication extends AuthenticatedWebApplication
 		// TODO Auto-generated method stub
 		super.init();
 		
-		new AnnotatedMountScanner().scanPackage("com.jpizarro.th.server").mount(this);
+//		new AnnotatedMountScanner().scanPackage("com.jpizarro.th.server").mount(this);
 
 //		getApplicationSettings().setAccessDeniedPage(LoginPage.class);
 		/*

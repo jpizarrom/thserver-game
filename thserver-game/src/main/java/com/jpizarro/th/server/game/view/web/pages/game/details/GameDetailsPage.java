@@ -2,8 +2,8 @@ package com.jpizarro.th.server.game.view.web.pages.game.details;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
-import org.wicketstuff.annotation.mount.MountPath;
-import org.wicketstuff.annotation.strategy.MountMixedParam;
+//import org.wicketstuff.annotation.mount.MountPath;
+//import org.wicketstuff.annotation.strategy.MountMixedParam;
 
 import com.jpizarro.th.lib.game.entity.GameTO;
 import com.jpizarro.th.server.game.model.service.GameService;
@@ -13,8 +13,8 @@ import com.jpizarro.th.server.game.view.web.pages.BasePage;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
 
 @AuthorizeInstantiation("ROLE_USER")
-@MountPath(path = "gameDetails")
-@MountMixedParam(parameterNames={"gameId"})
+//@MountPath(path = "gameDetails")
+//@MountMixedParam(parameterNames={"gameId"})
 public class GameDetailsPage extends BasePage {
 
 	public GameDetailsPage(PageParameters parameters) {

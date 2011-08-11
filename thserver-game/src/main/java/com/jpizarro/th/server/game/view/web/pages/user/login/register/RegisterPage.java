@@ -9,7 +9,7 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.wicketstuff.annotation.mount.MountPath;
+//import org.wicketstuff.annotation.mount.MountPath;
 
 import com.jpizarro.th.lib.user.entity.response.UserRegisterTO;
 import com.jpizarro.th.server.game.view.web.application.WicketApplication;
@@ -17,7 +17,7 @@ import com.jpizarro.th.server.game.view.web.pages.BasePage;
 import com.jpizarro.th.server.game.view.web.session.WicketSession;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
 
-@MountPath(path = "register")
+//@MountPath(path = "register")
 public class RegisterPage extends BasePage {
 
 	public RegisterPage() {

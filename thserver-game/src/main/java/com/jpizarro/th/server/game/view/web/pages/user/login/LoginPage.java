@@ -9,12 +9,12 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.wicketstuff.annotation.mount.MountPath;
+//import org.wicketstuff.annotation.mount.MountPath;
 
 import com.jpizarro.th.server.game.view.web.pages.BasePage;
 import com.jpizarro.th.server.game.view.web.session.WicketSession;
 
-@MountPath(path = "login")
+//@MountPath(path = "login")
 public class LoginPage extends BasePage {
 
 	public LoginPage() {
