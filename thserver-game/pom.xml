@@ -116,18 +116,18 @@
 					com.mysql.jdbc.Driver
         </jdbcDriver.className>
 				<!-- Data source properties -->
-				<dataSource.url>jdbc:mysql://localhost/memoria2</dataSource.url>
+				<dataSource.url>jdbc:mysql://localhost/memoria2-game</dataSource.url>
 				<dataSource.user>gpsgame</dataSource.user>
 				<dataSource.password>okxnt6s3ixtpc</dataSource.password>
-<!--				<dataSource.createTablesScript>-->
-<!--					MySQLCreateTables.sql-->
-<!--        		</dataSource.createTablesScript>-->
+				<dataSource.createTablesScript>
+					MySQLCreateTables.sql
+       			</dataSource.createTablesScript>
 				<dataSource.insertsScript>
-						MySQLInserts.sql
+					MySQLInserts.sql
 	        	</dataSource.insertsScript>
 				<!-- Hibernate properties -->
 				<hibernate.dialect>
-					org.hibernate.dialect.MySQLDialect
+					org.hibernate.dialect.MySQLInnoDBDialect
         </hibernate.dialect>
 			</properties>
 		</profile>
@@ -572,18 +572,39 @@
 					<autocommit>true</autocommit>
 					<onError>continue</onError>
 					<orderFile>ascending</orderFile>
-					<fileset>
-						<basedir>${basedir}</basedir>
-						<includes>
-<!--							<include>-->
-<!--								src/sql/${dataSource.createTablesScript}-->
-<!--	          				</include>-->
-							<include>
-								src/sql/${dataSource.insertsScript}
-	          				</include>
-						</includes>
-					</fileset>
+<!-- 					<fileset> -->
+<!-- 						<basedir>${basedir}</basedir> -->
+<!-- 						<includes> -->
+<!-- 							<include> -->
+<!-- 									src/main/resources/sql/${dataSource.createTablesScript} -->
+<!-- 		          				</include> -->
+<!-- 								<include> -->
+<!-- 									src/main/resources/sql/${dataSource.insertsScript} -->
+<!-- 	          				</include> -->
+<!-- 						</includes> -->
+<!-- 					</fileset> -->
 				</configuration>
+
+				  <executions>
+				    <execution>
+				      <id>default-cli</id>
+				      <configuration>
+				        <orderFile>ascending</orderFile>
+						<fileset>
+							<basedir>${basedir}</basedir>
+							<includes>
+<!-- 								<include> -->
+<!-- 									src/main/resources/sql/${dataSource.createTablesScript} -->
+<!-- 		          				</include> -->
+								<include>
+									src/main/resources/sql/${dataSource.insertsScript}
+		          				</include>
+							</includes>
+						</fileset>
+				      </configuration>
+				    </execution>
+				  </executions>
+
 			</plugin>
 
 
