@@ -250,7 +250,11 @@ public class GameController implements GenericController <GameTO, Long>{
 		
 		
 		for(HintTO h:ggto.getHints()){
-			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(h.getPlaceId());
+			long pid = h.getPlaceId();
+			if (h.getPlaceRefId() > 0)
+				pid = h.getPlaceRefId();
+			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(pid);
+			
 			h.setLatitude(pto.getLatitude());
 			h.setLongitude(pto.getLongitude());
 			h.setName(pto.getName());
@@ -258,14 +262,22 @@ public class GameController implements GenericController <GameTO, Long>{
 		}
 		
 		for(HintTO h:ggto.getHideHints()){
-			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(h.getPlaceId());
+			long pid = h.getPlaceId();
+			if (h.getPlaceRefId() > 0)
+				pid = h.getPlaceRefId();
+			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(pid);
+			
 			h.setLatitude(pto.getLatitude());
 			h.setLongitude(pto.getLongitude());
 			h.setName(pto.getName());
 			h.setDescription(pto.getDescription());
 		}
 		for(GoalTO h:ggto.getGoals()){
-			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(h.getPlaceId());
+			long pid = h.getPlaceId();
+			if (h.getPlaceRefId() > 0)
+				pid = h.getPlaceRefId();
+			com.jpizarro.th.lib.place.entity.PlaceTO pto = placeRestClient.getEntity(pid);
+			
 			h.setLatitude(pto.getLatitude());
 			h.setLongitude(pto.getLongitude());
 			h.setName(pto.getName());

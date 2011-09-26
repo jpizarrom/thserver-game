@@ -209,7 +209,7 @@ function selectCity(index) {
 }
 
 function addHint(event) {
-	alert('addHint');
+//	alert('addHint');
 	var lonlat = map.getLonLatFromViewPortPx(event.xy);
 //	var lonlat = olonlat.transform(
 //    		new OpenLayers.Projection("EPSG:900913"), // to Spherical Mercator Projection
@@ -230,7 +230,7 @@ function addHint(event) {
 //	selectItem(item);
 }
 function addGoal(event) {
-	alert('addGoal');
+//	alert('addGoal');
 	var lonlat = map.getLonLatFromViewPortPx(event.xy);
 	id = game.items.length + 1;
 	marker = placeMarker(lonlat, id, hintImage);	
@@ -390,8 +390,9 @@ function createGame() {
 			else {
 				parameters['type_' + item.id] = 'HIN';
 			}
-//			alert(parameters['type_' + item.id]);
+			
 			parameters['itemId_' + item.id] = item.id;
+			alert(parameters['itemId_' + item.id] + ' ' +parameters['type_' + item.id]);
 			
 			var lonlat = item.marker.lonlat.transform(
 					new OpenLayers.Projection("EPSG:900913"), // to Spherical Mercator Projection

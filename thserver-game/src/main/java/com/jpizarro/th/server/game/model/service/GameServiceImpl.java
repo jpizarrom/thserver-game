@@ -261,6 +261,7 @@ public class GameServiceImpl implements GameService {
 			if( p instanceof Hint ){
 				HintTO h = new HintTO();
 				h.setPlaceId(p.getPlaceId());
+				h.setPlaceRefId(p.getPlaceRefId());
 //				HintTO h = new HintTO(p.getPlaceId(),
 ////						p.getLatitude(),
 ////						p.getLongitude(),
@@ -316,6 +317,7 @@ public class GameServiceImpl implements GameService {
 					){
 				HintTO h = new HintTO();
 				h.setPlaceId(p.getPlaceId());
+				h.setPlaceRefId(p.getPlaceRefId());
 //				h.setLatitude(1);
 //				HintTO h = new HintTO(p.getPlaceId(),
 //						p.getLatitude(),
@@ -327,6 +329,7 @@ public class GameServiceImpl implements GameService {
 			} if ( p.getType().endsWith("GOA") ){
 				GoalTO goal = new GoalTO();
 				goal.setPlaceId(p.getPlaceId());
+				goal.setPlaceRefId(p.getPlaceRefId());
 //				GoalTO goal = new GoalTO(p.getPlaceId(),
 //						p.getLatitude(),
 //						p.getLongitude(),
@@ -355,6 +358,7 @@ public class GameServiceImpl implements GameService {
 			else
 				 p = new Goal();
 			p.setType(itemTO.getType());
+			p.setPlaceRefId(itemTO.getPlaceRefId());
 			p.setGame(g);
 			this.placeAccessor.create(p);
 		}

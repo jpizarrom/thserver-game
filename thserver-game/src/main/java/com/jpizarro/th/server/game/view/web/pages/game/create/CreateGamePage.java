@@ -49,11 +49,10 @@ public class CreateGamePage extends BasePage {
 //			placeTO.setName("name");
 //			placeTO.setDescription("description");
 			placeTO.setType(type);
-			System.out.println(placeTO.getType());
+			System.out.println(pageParameters.getLong("itemId_" + String.valueOf(i)) + " " + placeTO.getType());
 			
 			//			placeTO.setType("HIN");
 //			
-			items.add(placeTO);
 			
 			com.jpizarro.th.lib.place.entity.PlaceTO p;
 			p = new com.jpizarro.th.lib.place.entity.PlaceTO(); 
@@ -63,16 +62,20 @@ public class CreateGamePage extends BasePage {
 				p.setName(pageParameters.getString("itemName_" + String.valueOf(i)));
 				p.setDescription(pageParameters.getString("itemDescription_" + String.valueOf(i)));
 				
-				System.out.println(p.getLatitude());
-				System.out.println(p.getLongitude());
+//				System.out.println(p.getLatitude());
+//				System.out.println(p.getLongitude());
 				p = WicketApplication.get().getPlaceService().create(p);
+				placeTO.setPlaceRefId(p.getPlaceId());
 				System.out.println(p.getPlaceId());
-				System.out.println(p.getLatitude());
-				System.out.println(p.getLongitude());
+				System.out.println(placeTO.getPlaceId());
+//				System.out.println(placeTO.getType());
+//				System.out.println(p.getLatitude());
+//				System.out.println(p.getLongitude());
 			} catch (DuplicateInstanceException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			items.add(placeTO);
 		}
 		
 		TeamTO t;
