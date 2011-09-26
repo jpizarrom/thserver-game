@@ -14,6 +14,9 @@ body {
 	margin:auto;
 	width:1000px;
 }
+.selectLanguage{
+	float:left;
+}
 #main {
 	background-color:#CCCCEE;
 	min-height:449px;
