@@ -17,6 +17,9 @@ public class PlaceTO implements Serializable {
 	private long placeId;
 	
 	@Element(required=false)
+	private long placeRefId;
+	
+	@Element(required=false)
 	private String type = new String();
 	
 	@Element(required=false)
@@ -48,6 +51,14 @@ public class PlaceTO implements Serializable {
 
 	public void setPlaceId(long placeId) {
 		this.placeId = placeId;
+	}
+
+	public long getPlaceRefId() {
+		return placeRefId;
+	}
+
+	public void setPlaceRefId(long placeRefId) {
+		this.placeRefId = placeRefId;
 	}
 
 	public void setType(String type) {
