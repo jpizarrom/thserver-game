@@ -79,7 +79,12 @@ public class WicketApplication extends AuthenticatedWebApplication
 		
 		mountBookmarkablePage("/create", CreateGamePage.class);
 		mountBookmarkablePage("/edit", GameEditorPage.class);
-		mountBookmarkablePage("/gameDetails", GameDetailsPage.class);
+		
+//		mountBookmarkablePage("/gameDetails", GameDetailsPage.class);
+		MixedParamUrlCodingStrategy productURLS = 
+				new MixedParamUrlCodingStrategy("/gameDetails",GameDetailsPage.class, new String[]{"gameId"});
+		mount(productURLS);
+		
 		mountBookmarkablePage("/notFinishedGames", NotFinishedGamesListPage.class);
 //		activeGames
 //		finishedGames

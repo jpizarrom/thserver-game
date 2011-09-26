@@ -12,10 +12,11 @@ import org.apache.wicket.model.Model;
 //import org.wicketstuff.annotation.mount.MountPath;
 
 import com.jpizarro.th.server.game.view.web.pages.BasePage;
+import com.jpizarro.th.server.game.view.web.pages.home.HomePage;
 import com.jpizarro.th.server.game.view.web.session.WicketSession;
 
 //@MountPath(path = "login")
-public class LoginPage extends BasePage {
+public class LoginPage extends HomePage {
 
 	public LoginPage() {
 		super();

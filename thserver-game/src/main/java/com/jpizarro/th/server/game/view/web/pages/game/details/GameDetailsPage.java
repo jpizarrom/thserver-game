@@ -10,15 +10,17 @@ import com.jpizarro.th.server.game.model.service.GameService;
 import com.jpizarro.th.server.game.view.web.application.WicketApplication;
 import com.jpizarro.th.server.game.view.web.components.game.details.GameDetailsPanel;
 import com.jpizarro.th.server.game.view.web.pages.BasePage;
+import com.jpizarro.th.server.game.view.web.pages.home.HomePage;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
 
 @AuthorizeInstantiation("ROLE_USER")
 //@MountPath(path = "gameDetails")
 //@MountMixedParam(parameterNames={"gameId"})
-public class GameDetailsPage extends BasePage {
+public class GameDetailsPage extends HomePage {
 
 	public GameDetailsPage(PageParameters parameters) {
-		super(parameters);
+//		super(parameters);
+		super();
 		long gameId = parameters.getLong("gameId");
 
 		GameService gameService = WicketApplication.get().getGameService();

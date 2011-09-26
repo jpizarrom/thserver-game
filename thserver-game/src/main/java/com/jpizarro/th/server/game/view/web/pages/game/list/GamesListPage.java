@@ -12,10 +12,11 @@ import com.jpizarro.th.lib.game.entity.GameTO;
 import com.jpizarro.th.server.game.view.web.application.WicketApplication;
 import com.jpizarro.th.server.game.view.web.components.game.list.GameListPanel;
 import com.jpizarro.th.server.game.view.web.pages.BasePage;
+import com.jpizarro.th.server.game.view.web.pages.home.HomePage;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
 
 @AuthorizeInstantiation("ROLE_USER")
-public class GamesListPage extends BasePage {
+public class GamesListPage extends HomePage {
 	
 	private static final int RESULTS_PER_PAGE = 5;
 	
@@ -37,7 +38,8 @@ public class GamesListPage extends BasePage {
 
 
 	public GamesListPage(PageParameters parameters, STRATEGY strategy) {
-		super(parameters);
+//		super(parameters);
+		super();
 		// TODO Auto-generated constructor stub
 		add(new GameListPanel("gamesPanel", new GameProvider(strategy), GamesListPage.RESULTS_PER_PAGE));
 	}
