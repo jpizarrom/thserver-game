@@ -5,7 +5,8 @@ import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
 
-import com.jpizarro.th.server.game.view.web.components.map.googlemaps.MapPanel;
+//import com.jpizarro.th.server.game.view.web.components.map.googlemaps.MapPanel;
+import com.jpizarro.th.server.game.view.web.components.map.osm.MapPanel;
 import com.jpizarro.th.server.game.view.web.pages.BasePage;
 
 /**
