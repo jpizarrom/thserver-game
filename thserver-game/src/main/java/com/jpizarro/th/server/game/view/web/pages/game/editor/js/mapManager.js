@@ -1,4 +1,6 @@
 var map;
+var markers;
+
 var game;
 
 var selectedItem;
@@ -46,21 +48,21 @@ $(document).ready(function() {
 //		};
 //	map = new google.maps.Map(document.getElementById('mapCanvas'), myOptions);
 
-	function OSMMapType() {}
-	OSMMapType.prototype = {
-		tileSize: new google.maps.Size(256,256),
-		maxZoom: 18,
-		getTile: function(coord, zoom, ownerDocument) {
-			var tileUrl = 'http://tile.openstreetmap.org/' + zoom + '/' + coord.x + '/' + coord.y + '.png';
-
-			var tile = ownerDocument.createElement('img');
-			tile.width = this.tileSize.width;
-			tile.height = this.tileSize.height;
-			tile.src = tileUrl;
-
-			return tile;
-		}
-	};
+//	function OSMMapType() {}
+//	OSMMapType.prototype = {
+//		tileSize: new google.maps.Size(256,256),
+//		maxZoom: 18,
+//		getTile: function(coord, zoom, ownerDocument) {
+//			var tileUrl = 'http://tile.openstreetmap.org/' + zoom + '/' + coord.x + '/' + coord.y + '.png';
+//
+//			var tile = ownerDocument.createElement('img');
+//			tile.width = this.tileSize.width;
+//			tile.height = this.tileSize.height;
+//			tile.src = tileUrl;
+//
+//			return tile;
+//		}
+//	};
 //	map.mapTypes.set('osm', new OSMMapType());
 //	map.setMapTypeId('osm');
 	
@@ -103,6 +105,27 @@ $(document).ready(function() {
         }
 
     });
+
+	map = new OpenLayers.Map("mapCanvas");
+
+    var mapnik = new OpenLayers.Layer.OSM();
+    map.addLayer(mapnik);
+    
+    markers = new OpenLayers.Layer.Markers( "Markers" );
+    map.addLayer(markers);
+    
+    var size = new OpenLayers.Size(21,25);
+    var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+    var icon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png',size,offset);
+    markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(0,0),icon));
+
+    map.setCenter(new OpenLayers.LonLat(-71.657266, -35.422753) // Center of the map
+    	.transform(
+    		new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+    		new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
+	    ), 13 // Zoom level
+    );
+    
 	var click = new OpenLayers.Control.Click();
 	map.addControl(click);
 	click.activate();
