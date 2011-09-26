@@ -37,13 +37,13 @@ public class GameEditorPage extends BasePage {
 		
 //		add(HeaderContributor.forJavaScript(MapPanel.MAPS_API_URL));
 		
-		add(HeaderContributor.forJavaScript(new ResourceReference(
-				GameEditorPage.class, MAP_MANAGER_URL)));
+//		add(HeaderContributor.forJavaScript(new ResourceReference(
+//				GameEditorPage.class, MAP_MANAGER_URL)));
 		
 		add(HeaderContributor.forJavaScript(GAME_OBJECTS_URL));
 		
-//		add(TextTemplateHeaderContributor.forJavaScript(
-//				MapPanel.class, MAP_MANAGER_URL,null));
+		add(TextTemplateHeaderContributor.forJavaScript(
+				MapPanel.class, MAP_MANAGER_URL,null));
 		
 		add(TextTemplateHeaderContributor.forJavaScript(
 				GameEditorPage.class, MAP_MANAGER_URL, new Model(
