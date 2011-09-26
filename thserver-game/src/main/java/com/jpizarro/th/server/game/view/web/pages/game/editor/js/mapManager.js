@@ -31,19 +31,19 @@ $(document).ready(function() {
 	$('#addGoalButton').removeAttr('disabled');
 	
 	geocoder = new google.maps.Geocoder();
-	var latlng = new google.maps.LatLng(-35.422753, -71.657266);
-	
-	var myOptions = {
-			zoom: 12,
-			center: latlng,
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			mapTypeControl: true,
-			navigationControl: true,
-			navigationControlOptions: {
-				style: google.maps.NavigationControlStyle.ZOOM_PAN,
-				position: google.maps.ControlPosition.LEFT
-			}
-		};
+//	var latlng = new google.maps.LatLng(-35.422753, -71.657266);
+//	
+//	var myOptions = {
+//			zoom: 12,
+//			center: latlng,
+//			mapTypeId: google.maps.MapTypeId.ROADMAP,
+//			mapTypeControl: true,
+//			navigationControl: true,
+//			navigationControlOptions: {
+//				style: google.maps.NavigationControlStyle.ZOOM_PAN,
+//				position: google.maps.ControlPosition.LEFT
+//			}
+//		};
 //	map = new google.maps.Map(document.getElementById('mapCanvas'), myOptions);
 
 	function OSMMapType() {}
@@ -367,7 +367,7 @@ function createGame() {
 			else {
 				parameters['type_' + item.id] = 'HIN';
 			}
-			alert(parameters['type_' + item.id]);
+//			alert(parameters['type_' + item.id]);
 			parameters['itemId_' + item.id] = item.id;
 			
 			var lonlat = item.marker.lonlat.transform(
@@ -375,9 +375,10 @@ function createGame() {
 					new OpenLayers.Projection("EPSG:4326") // transform from WGS 1984
 			);
 			
-			parameters['itemLatitude_' + item.id] = (lonlat.lat*1000000);
-			alert(parameters['itemLatitude_' + item.id]);
-			parameters['itemLongitude_' + item.id] = (item.marker.position.lng()*1000000).toFixed(0);
+			parameters['itemLatitude_' + item.id] = (lonlat.lat*1000000).toFixed(0);
+//			alert(parameters['itemLatitude_' + item.id]);
+			parameters['itemLongitude_' + item.id] = (lonlat.lon*1000000).toFixed(0);
+//			alert(parameters['itemLongitude_' + item.id]);
 			
 			parameters['itemPoints_' + item.id] = item.points;
 			parameters['itemName_' + item.id] = item.name;
@@ -391,12 +392,12 @@ function createGame() {
 	parameters['maxUserPerTeam'] = game.maxUserPerTeam;
 	parameters['numberOfItems'] = game.getItems().length;
 	
-//	$.ajax({
-//		url : createURL,
-//		type : 'POST',
-//		data : parameters,
-//		success: parseResult
-//	});
+	$.ajax({
+		url : createURL,
+		type : 'POST',
+		data : parameters,
+		success: parseResult
+	});
 }
 function parseResult(data) {
 	window.location = viewURL + data;
