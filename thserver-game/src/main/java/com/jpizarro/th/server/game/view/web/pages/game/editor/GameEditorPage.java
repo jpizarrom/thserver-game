@@ -19,7 +19,7 @@ import com.jpizarro.th.server.game.view.web.pages.game.create.CreateGamePage;
 import com.jpizarro.th.server.game.view.web.pages.game.details.GameDetailsPage;
 
 //@MountPath(path = "edit")
-@AuthorizeInstantiation( { "ROLE_USER" })
+@AuthorizeInstantiation( { "ROLE_USER", "ROLE_ADMIN"})
 public class GameEditorPage extends BasePage {
 	
 	private static final String GOOGLE_MAPS_API_URL = "http://maps.google.com/maps/api/js?sensor=false";

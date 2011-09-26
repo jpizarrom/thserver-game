@@ -34,6 +34,7 @@ public class GameTO implements Serializable{
 	@XStreamConverter(CalendarConverter.class)
 	@Element(required=false)
 	private GregorianCalendar finishDate;
+	
 	@Element(required=false)
 	private String city;
 	

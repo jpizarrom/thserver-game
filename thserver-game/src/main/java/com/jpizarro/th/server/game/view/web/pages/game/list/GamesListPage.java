@@ -15,7 +15,7 @@ import com.jpizarro.th.server.game.view.web.pages.BasePage;
 import com.jpizarro.th.server.game.view.web.pages.home.HomePage;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.InstanceNotFoundException;
 
-@AuthorizeInstantiation("ROLE_USER")
+//@AuthorizeInstantiation("ROLE_USER")
 public class GamesListPage extends HomePage {
 	
 	private static final int RESULTS_PER_PAGE = 5;

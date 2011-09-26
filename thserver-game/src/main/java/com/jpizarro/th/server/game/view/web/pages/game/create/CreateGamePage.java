@@ -20,7 +20,7 @@ import com.jpizarro.th.server.game.view.web.pages.BasePage;
 import com.jpizarro.th.server.generic.model.persistence.util.exceptions.DuplicateInstanceException;
 
 //@MountPath(path = "create")
-@AuthorizeInstantiation( { "ROLE_USER" })
+@AuthorizeInstantiation( { "ROLE_USER", "ROLE_ADMIN"})
 public class CreateGamePage extends BasePage {
 
 	public CreateGamePage(PageParameters pageParameters) {

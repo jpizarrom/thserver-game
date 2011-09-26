@@ -6,6 +6,8 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.jpizarro.th.server.game.view.web.application.WicketApplication;
+import com.jpizarro.th.server.game.view.web.pages.game.editor.GameEditorPage;
+import com.jpizarro.th.server.game.view.web.pages.game.list.notfinished.NotFinishedGamesListPage;
 import com.jpizarro.th.server.game.view.web.session.WicketSession;
 
 public class UserDetailsPanel extends Panel {
@@ -17,6 +19,10 @@ public class UserDetailsPanel extends Panel {
 		super(id);
 		this.add(new Label("login", username));
 		this.add(new BookmarkablePageLink("homePageLink", WicketApplication.get().getHomePage()));
+		
+		this.add(new BookmarkablePageLink("seeGamesPageLink", NotFinishedGamesListPage.class ));
+		this.add(new BookmarkablePageLink("createGamePageLink", GameEditorPage.class ));
+		
 		this.add(new Link("logoutLink") {
 			@Override
 			public void onClick() {

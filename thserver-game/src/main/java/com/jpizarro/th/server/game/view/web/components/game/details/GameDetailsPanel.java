@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 import com.jpizarro.th.lib.game.entity.GameTO;
 import com.jpizarro.th.server.game.view.web.pages.game.details.GameDetailsPage;
+import com.jpizarro.th.server.game.view.web.session.WicketSession;
 
 public class GameDetailsPanel extends Panel {
 
@@ -20,24 +21,25 @@ public class GameDetailsPanel extends Panel {
 		add(new Label("maxUsers", String.valueOf(gameTO.getMaxUserPerTeam()*gameTO.getMaxTeams())));
 		WebMarkupContainer holder = new WebMarkupContainer("currentUsersHolder") {
 			
-//			@Override
-//			public boolean isVisible() {
+			@Override
+			public boolean isVisible() {
 ////				Calendar now = Calendar.getInstance();
 ////				return gameTO.getStartDate().before(now) && gameTO.getFinishDate().after(now);
-//				return true;
-//			}
+				return true;
+			}
 		};
 		holder.add(new Label("currentUsers", String.valueOf(gameTO.getCurrentUsers())));
 		add(holder);
 		
 		WebMarkupContainer currentlyActiveContainer = new WebMarkupContainer("currentlyActiveDiv") {
 			
-//			@Override
-//			public boolean isVisible() {
-//				
-//				Calendar now = Calendar.getInstance();
-//				return gameTO.getStartDate().before(now) && gameTO.getFinishDate().after(now);
-//			}
+			@Override
+			public boolean isVisible() {
+				
+				Calendar now = Calendar.getInstance();
+//				return gameTO.getStartDate().before(now) && ( gameTO.getFinishDate()==null || gameTO.getFinishDate().after(now));
+				return WicketSession.get().getRoles().hasRole("ROLE_USER");
+			}
         };
         PageParameters linkParameters = new PageParameters();
         linkParameters.put("gameId", new Long(gameTO.getGameId()));
