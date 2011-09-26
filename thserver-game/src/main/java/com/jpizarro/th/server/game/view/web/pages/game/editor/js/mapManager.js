@@ -20,6 +20,11 @@ var createURL = '${CREATE_URL}';
 
 var viewURL = '${VIEW_URL}';
 
+var hintIcon;
+
+var goalIcon;
+
+
 $(document).ready(function() {
 	game = new Game();
 	$('#addHintButton').removeAttr('disabled');
@@ -39,7 +44,7 @@ $(document).ready(function() {
 				position: google.maps.ControlPosition.LEFT
 			}
 		};
-	map = new google.maps.Map(document.getElementById('mapCanvas'), myOptions);
+//	map = new google.maps.Map(document.getElementById('mapCanvas'), myOptions);
 
 	function OSMMapType() {}
 	OSMMapType.prototype = {
@@ -56,23 +61,70 @@ $(document).ready(function() {
 			return tile;
 		}
 	};
-	map.mapTypes.set('osm', new OSMMapType());
-	map.setMapTypeId('osm');
+//	map.mapTypes.set('osm', new OSMMapType());
+//	map.setMapTypeId('osm');
 	
-	google.maps.event.addListener(map, 'click', function(event) {
-   		doOnClick(event);
-	});
+//	google.maps.event.addListener(map, 'click', function(event) {
+//   		doOnClick(event);
+//	});
+
+	OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
+        defaultHandlerOptions: {
+            'single': true,
+            'double': false,
+            'pixelTolerance': 0,
+            'stopSingle': false,
+            'stopDouble': false
+        },
+
+        initialize: function(options) {
+            this.handlerOptions = OpenLayers.Util.extend(
+                {}, this.defaultHandlerOptions
+            );
+            OpenLayers.Control.prototype.initialize.apply(
+                this, arguments
+            ); 
+            this.handler = new OpenLayers.Handler.Click(
+                this, {
+                    'click': this.trigger
+                }, this.handlerOptions
+            );
+        }, 
+
+        trigger: function(e) {
+//            var lonlat = map.getLonLatFromViewPortPx(e.xy);
+            var lonlat = map.getLonLatFromViewPortPx(e.xy).transform(
+            		new OpenLayers.Projection("EPSG:900913"), // to Spherical Mercator Projection
+            		new OpenLayers.Projection("EPSG:4326") // transform from WGS 1984
+        	    );
+//            alert("You clicked near " + lonlat.lat + " N, " +
+//                                      + lonlat.lon + " E");
+            doOnClick(e);
+        }
+
+    });
+	var click = new OpenLayers.Control.Click();
+	map.addControl(click);
+	click.activate();
+	
+	var size = new OpenLayers.Size(21,25);
+	var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+	hintIcon = new OpenLayers.Icon(hintImage, size, offset);
 	
 });
 function doOnClick(event) {
+//	alert("doOnClick");
 	if (selectedOnClickAction != null) {
+//		alert("selectedOnClickAction != null");
 		selectedOnClickAction(event);
 	}
 }
 function selectOnClickAction(action) {
+//	alert("selectOnClickAction");
 	selectedOnClickAction = action;
 }
 function changeCityClicked() {
+//	alert("changeCityClicked");
 	$('#citySpan').html('click anywhere on map');
 	$('#latitudeSpan').html('?');
 	$('#longitudeSpan').html('?');				
@@ -83,14 +135,20 @@ function changeCityClicked() {
 	selectOnClickAction(showCityOptions);
 }
 function showCityOptions(event) {
+//	alert("showCityOptions");
+    var lonlat = map.getLonLatFromViewPortPx(event.xy).transform(
+    		new OpenLayers.Projection("EPSG:900913"), // to Spherical Mercator Projection
+    		new OpenLayers.Projection("EPSG:4326") // transform from WGS 1984
+	    );
 	if (geocoder) {
-		geocoder.geocode({'latLng': event.latLng}, function(results, status) {
+		var latLng = new google.maps.LatLng(lonlat.lat, lonlat.lon);
+		geocoder.geocode({'latLng': latLng}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[1]) {
 					$('#cityOptionsDiv').html('');
 					$('#cityOptionsDiv').append('<span id="cityOptionsNote">We found some posible city names. Please select the one you want to be displayed: </span><br/>');
-					selectedLatitude = event.latLng.lat();
-					selectedLongitude = event.latLng.lng();
+					selectedLatitude = latLng.lat();
+					selectedLongitude = latLng.lng();
 					for (var i in results[1].address_components) {
 						$('#cityOptionsDiv').append('<input id="selectedCityId_' + i + '" type="radio" onclick="selectCity(' + i + ')" value="' + results[1].address_components[i].long_name + '"/><span>' + results[1].address_components[i].long_name + '</span><br/>');
 					}
@@ -128,9 +186,15 @@ function selectCity(index) {
 }
 
 function addHint(event) {
-	alert('addHint '+event.latLng);
+	alert('addHint');
+	var lonlat = map.getLonLatFromViewPortPx(event.xy);
+//	var lonlat = olonlat.transform(
+//    		new OpenLayers.Projection("EPSG:900913"), // to Spherical Mercator Projection
+//    		new OpenLayers.Projection("EPSG:4326") // transform from WGS 1984
+//	    );
+//	var latLng = new google.maps.LatLng(lonlat.lat, lonlat.lon);
 	id = game.items.length + 1;
-	marker = placeMarker(event.latLng, id, hintImage);	
+	marker = placeMarker(lonlat, id, hintImage);	
 	name = '';
 	description = '';
 	var item = new Hint(id,
@@ -144,8 +208,9 @@ function addHint(event) {
 }
 function addGoal(event) {
 	alert('addGoal');
+	var lonlat = map.getLonLatFromViewPortPx(event.xy);
 	id = game.items.length + 1;
-	marker = placeMarker(event.latLng, id, hintImage);	
+	marker = placeMarker(lonlat, id, hintImage);	
 	name = '';
 	description = '';
 	var item = new Goal(id,
@@ -158,13 +223,16 @@ function addGoal(event) {
 //	selectItem(item);
 }
 function placeMarker(position, itemId, image) {
-	var marker = new google.maps.Marker({
-		position : position, 
-		draggable : true,
-		map : map,
-		clickable : true,
-		icon : image
-	});
+	
+	var marker = new OpenLayers.Marker(position, hintIcon);
+	markers.addMarker(marker);
+//	var marker = new google.maps.Marker({
+//		position : position, 
+//		draggable : true,
+//		map : map,
+//		clickable : true,
+//		icon : image
+//	});
 //	google.maps.event.addListener(marker, 'click', function() {
 //		selectItem(getItem(game.items, itemId));
 //	});
@@ -206,12 +274,12 @@ function getEditableRowContentHtml(item) {
 }
 function getUneditableRowContentHtml(item) {
 	return '<td onclick="selectItemById(' + item.id + ')">' + item.id + '</td>' +
-		'<td onclick="selectItemById(' + item.id + ')"><div class="itemIcon"><img src="' + item.marker.icon +'"/></div></td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><div class="itemIcon"><img src="' + item.marker.icon.url +'"/></div></td>' +
 //		'<td onclick="selectItemById(' + item.id + ')" id="points_' + item.id + '"><span class="itemInfo">' + item.points +'</td>' +
 		'<td onclick="selectItemById(' + item.id + ')" id="name_' + item.id + '"><span class="itemInfo">' + item.name +'</td>' +
 		'<td onclick="selectItemById(' + item.id + ')" id="description_' + item.id + '"><span class="itemInfo">' + item.description +'</td>' +
-		'<td onclick="selectItemById(' + item.id + ')"><span id="lat_' + item.id + '" class="itemInfo">' + item.marker.position.lat().toFixed(6) +'</td>' +
-		'<td onclick="selectItemById(' + item.id + ')"><span id="lng_' + item.id + '" class="itemInfo">' + item.marker.position.lng().toFixed(6) +'</td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><span id="lat_' + item.id + '" class="itemInfo">' + item.marker.lonlat.lat +'</td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><span id="lng_' + item.id + '" class="itemInfo">' + item.marker.lonlat.lon +'</td>' +
 		'<td><div id="deleteItem_' + item.id + '" class="littleLink"><a href="#" onclick="deleteItem(' + item.id + ')">delete</a></div></td>' + 
 		'<td><div id="editItem_' + item.id + '" class="littleLink"><a href="#" onclick="editItem(' + item.id + ')">edit</a></div></td>';
 }
@@ -301,8 +369,16 @@ function createGame() {
 			}
 			alert(parameters['type_' + item.id]);
 			parameters['itemId_' + item.id] = item.id;
-			parameters['itemLatitude_' + item.id] = (item.marker.position.lat()*1000000).toFixed(0);
+			
+			var lonlat = item.marker.lonlat.transform(
+					new OpenLayers.Projection("EPSG:900913"), // to Spherical Mercator Projection
+					new OpenLayers.Projection("EPSG:4326") // transform from WGS 1984
+			);
+			
+			parameters['itemLatitude_' + item.id] = (lonlat.lat*1000000);
+			alert(parameters['itemLatitude_' + item.id]);
 			parameters['itemLongitude_' + item.id] = (item.marker.position.lng()*1000000).toFixed(0);
+			
 			parameters['itemPoints_' + item.id] = item.points;
 			parameters['itemName_' + item.id] = item.name;
 			parameters['itemDescription_' + item.id] = item.description;
@@ -314,12 +390,13 @@ function createGame() {
 	parameters['maxTeams'] = game.maxTeams;
 	parameters['maxUserPerTeam'] = game.maxUserPerTeam;
 	parameters['numberOfItems'] = game.getItems().length;
-	$.ajax({
-		url : createURL,
-		type : 'POST',
-		data : parameters,
-		success: parseResult
-	});
+	
+//	$.ajax({
+//		url : createURL,
+//		type : 'POST',
+//		data : parameters,
+//		success: parseResult
+//	});
 }
 function parseResult(data) {
 	window.location = viewURL + data;

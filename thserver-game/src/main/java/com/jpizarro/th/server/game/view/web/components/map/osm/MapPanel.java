@@ -13,7 +13,7 @@ public class MapPanel extends Panel {
 		super(id);
 		// TODO Auto-generated constructor stub
 		add(HeaderContributor.forJavaScript(MAPS_API_URL));
-    	add(HeaderContributor.forJavaScript(new ResourceReference(MapPanel.class, MAP_MANAGER_URL)));
+//    	add(HeaderContributor.forJavaScript(new ResourceReference(MapPanel.class, MAP_MANAGER_URL)));
 
 	}
 
