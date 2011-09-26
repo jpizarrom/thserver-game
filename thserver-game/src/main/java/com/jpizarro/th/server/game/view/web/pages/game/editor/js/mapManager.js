@@ -16,15 +16,19 @@ var selectedOnClickAction;
  * Paths to item images
  */
 
-var hintImage = '${COIN_IMG}';
+var sizeIcon;
+var offsetIcon;
+
+var hintImage = '${HINT_IMG}';
+var goalImage = '${GOAL_IMG}';
 
 var createURL = '${CREATE_URL}';
 
 var viewURL = '${VIEW_URL}';
 
-var hintIcon;
-
-var goalIcon;
+//var hintIcon;
+//
+//var goalIcon;
 
 
 $(document).ready(function() {
@@ -130,10 +134,8 @@ $(document).ready(function() {
 	map.addControl(click);
 	click.activate();
 	
-	var size = new OpenLayers.Size(21,25);
-	var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-	hintIcon = new OpenLayers.Icon(hintImage, size, offset);
-	
+	sizeIcon = new OpenLayers.Size(21,25);
+	offsetIcon = new OpenLayers.Pixel(-(sizeIcon.w/2), -sizeIcon.h);
 });
 function doOnClick(event) {
 //	alert("doOnClick");
@@ -233,7 +235,7 @@ function addGoal(event) {
 //	alert('addGoal');
 	var lonlat = map.getLonLatFromViewPortPx(event.xy);
 	id = game.items.length + 1;
-	marker = placeMarker(lonlat, id, hintImage);	
+	marker = placeMarker(lonlat, id, goalImage);	
 	name = '';
 	description = '';
 	var item = new Goal(id,
@@ -247,7 +249,8 @@ function addGoal(event) {
 }
 function placeMarker(position, itemId, image) {
 	
-	var marker = new OpenLayers.Marker(position, hintIcon);
+	var icon = new OpenLayers.Icon(image, sizeIcon, offsetIcon);
+	var marker = new OpenLayers.Marker(position, icon);
 	markers.addMarker(marker);
 //	var marker = new google.maps.Marker({
 //		position : position, 
@@ -286,12 +289,12 @@ function addItemToList(item) {
 }
 function getEditableRowContentHtml(item) {
 	return '<td onclick="selectItemById(' + item.id + ')">' + item.id + '</td>' +
-		'<td onclick="selectItemById(' + item.id + ')"><div class="itemIcon"><img src="' + item.marker.icon +'"/></div></td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><div class="itemIcon"><img src="' + item.marker.icon.url +'"/></div></td>' +
 //		'<td onclick="selectItemById(' + item.id + ')"><input id="points_' + item.id + '" type="text" maxlength="6" class="itemInput" value="' + item.points +'"/></td>' +
 		'<td onclick="selectItemById(' + item.id + ')"><input id="name_' + item.id + '" type="text" maxlength="6" class="itemInput" value="' + item.name +'"/></td>' +
 		'<td onclick="selectItemById(' + item.id + ')"><input id="description_' + item.id + '" type="text" maxlength="6" class="itemInput" value="' + item.description +'"/></td>' +
-		'<td onclick="selectItemById(' + item.id + ')"><input id="lat_' + item.id + '" type="text" maxlength="8" class="itemInput" value="' + item.marker.position.lat().toFixed(6) +'"/></td>' +
-		'<td onclick="selectItemById(' + item.id + ')"><input id="lng_' + item.id + '" type="text" maxlength="8" class="itemInput" value="' + item.marker.position.lng().toFixed(6) +'"/></td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><input id="lat_' + item.id + '" type="text" maxlength="8" class="itemInput" value="' + item.marker.lonlat.lat.toFixed(6) +'"/></td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><input id="lng_' + item.id + '" type="text" maxlength="8" class="itemInput" value="' + item.marker.lonlat.lon.toFixed(6) +'"/></td>' +
 		'<td><div id="deleteItem_' + item.id + '" class="littleLink"><a href="#" onclick="deleteItem(' + item.id + ')">delete</a></div></td>' + 
 		'<td><div id="saveItem_' + item.id + '" class="littleLink"><a href="#" onclick="saveItem(' + item.id + ')">save</a></div></td>';
 }
@@ -301,8 +304,8 @@ function getUneditableRowContentHtml(item) {
 //		'<td onclick="selectItemById(' + item.id + ')" id="points_' + item.id + '"><span class="itemInfo">' + item.points +'</td>' +
 		'<td onclick="selectItemById(' + item.id + ')" id="name_' + item.id + '"><span class="itemInfo">' + item.name +'</td>' +
 		'<td onclick="selectItemById(' + item.id + ')" id="description_' + item.id + '"><span class="itemInfo">' + item.description +'</td>' +
-		'<td onclick="selectItemById(' + item.id + ')"><span id="lat_' + item.id + '" class="itemInfo">' + item.marker.lonlat.lat +'</td>' +
-		'<td onclick="selectItemById(' + item.id + ')"><span id="lng_' + item.id + '" class="itemInfo">' + item.marker.lonlat.lon +'</td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><span id="lat_' + item.id + '" class="itemInfo">' + item.marker.lonlat.lat.toFixed(6) +'</td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><span id="lng_' + item.id + '" class="itemInfo">' + item.marker.lonlat.lon.toFixed(6) +'</td>' +
 		'<td><div id="deleteItem_' + item.id + '" class="littleLink"><a href="#" onclick="deleteItem(' + item.id + ')">delete</a></div></td>' + 
 		'<td><div id="editItem_' + item.id + '" class="littleLink"><a href="#" onclick="editItem(' + item.id + ')">edit</a></div></td>';
 }

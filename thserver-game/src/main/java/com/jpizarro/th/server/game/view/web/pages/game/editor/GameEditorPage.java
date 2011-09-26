@@ -59,7 +59,7 @@ public class GameEditorPage extends BasePage {
 	}
 	
 	private MiniMap getVariablesMap() {
-		MiniMap variables = new MiniMap(5);
+		MiniMap variables = new MiniMap(7);
 		HttpServletRequest request = getWebRequestCycle().getWebRequest()
 		.getHttpServletRequest();
 		String contextPath = request.getContextPath();
@@ -76,6 +76,9 @@ public class GameEditorPage extends BasePage {
 		String viewURL = "/"+urlFor(GameDetailsPage.class, null).toString();
 		
 		variables.put("COIN_IMG", contextPath + "/images/coin.png");
+		variables.put("HINT_IMG", contextPath + "/images/hint.png");
+		variables.put("GOAL_IMG", contextPath + "/images/goal.png");
+		
 		variables.put("QUESTION_IMG", contextPath + "/images/question.png");
 		variables.put("BONUS_IMG", contextPath + "/images/bonus.png");
 		
