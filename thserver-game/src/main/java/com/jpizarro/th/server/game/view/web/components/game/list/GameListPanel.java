@@ -42,8 +42,8 @@ public class GameListPanel extends Panel{
 		gameListBox.setOutputMarkupId(true);
 		add(gameListBox);
 		
-//		VerticalFancyPaginator paginationLinks = new VerticalFancyPaginator("paginationLinks", gameList);
-//		add(paginationLinks);
+		VerticalFancyPaginator paginationLinks = new VerticalFancyPaginator("paginationLinks", gameList);
+		add(paginationLinks);
 		
 //		PagingNavigator pager = new PagingNavigator("paginationLinks", gameList);
 //        add(pager);
