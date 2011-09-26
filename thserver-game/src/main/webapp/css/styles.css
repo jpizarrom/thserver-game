@@ -255,6 +255,10 @@ div.button-center {
 #viewActiveGames-button:active {
 	background-image: none;
 }
+
+div.game-list {
+	margin-top: -30px;
+}
 li.gameDetails, div.gameDetails {
 	background-color:#E0E0E0;
 	height:190px;
@@ -416,6 +420,7 @@ div.leftSubSection, div.rightSubSection {
 }
 div.rightSubSection {
 	width : 57.5%;
+/* 	width : 39.5%; */
 	clear : right;
 	float : right;
 }
@@ -423,6 +428,7 @@ div.leftSubSection {
 	clear : left;
 	float : left;
 	width : 39.5%;
+/* 	width : 57.5%; */
 }
 div.topSection div.rightSubSection {
 /* 	height : 335px; */
