@@ -101,8 +101,20 @@
 					<div id="itemsContent" class="subSectionContent">
 					
 						<div id="addHint">
-							<input id="addHintButton" type="button" value="Add Hint" onclick="selectOnClickAction(addHint)"/>
-							<input id="addGoalButton" type="button" value="Add Goal" onclick="selectOnClickAction(addGoal)"/>
+							<input id="addHintButton" type="button" wicket:message="value:gameEditor.addHint" onclick="selectOnClickAction(addHint)"/>
+							<input id="addGoalButton" type="button" wicket:message="value:gameEditor.addGoal" onclick="selectOnClickAction(addGoal)"/>
+<!-- 							<div class="left-button-div"> -->
+<!-- 								<wicket:message key="gameEditor.addHintIntro"/> -->
+<!-- 								<a id="addHintButton" href="#" onclick="selectOnClickAction(addHint)"> -->
+<!-- 									<wicket:message key="gameEditor.addHint"/> -->
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 							<div class="left-button-div"> -->
+<!-- 								<wicket:message key="gameEditor.addGoalIntro"/> -->
+<!-- 								<a id="addGoalButton" href="#" onclick="selectOnClickAction(addGoal)"> -->
+<!-- 									<wicket:message key="gameEditor.addGoal"/> -->
+<!-- 								</a> -->
+<!-- 							</div> -->
 						</div>
 						<table id="itemsTable" cellpadding="0" cellspacing="0" border="1" class="itemsTable">
 								<tr>
@@ -138,7 +150,13 @@
 					<wicket:message key="gameEditor.create"/> :
 				</div>
 				<div id="itemsContent" class="subSectionContent">
-					<input type="button" id="submitButton" onclick="createGame()" value="Create Game!!"/>
+<!-- 					<input type="button" id="submitButton" onclick="createGame()" value="Create Game!!"/> -->
+					<div class="center-button-div">
+						<wicket:message key="gameEditor.createGameIntro"/>
+						<a id="createGame-button" href="#" onclick="createGame()">
+							<wicket:message key="gameEditor.createGame"/>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
