@@ -37,15 +37,22 @@ public abstract class BasePage extends WebPage {
 			add(new LoginPanel("loginPanel"));
 		}
 		add(new Label("title", getTitle()));
+		add(new Label("pageTitle", getPageTitle())); 
 		
 		List<Locale> supportedLanguages = new ArrayList<Locale>();
 		supportedLanguages.add(Locale.ENGLISH);
 		supportedLanguages.add(new Locale("es", "CL"));
 
-		PropertyModel<Locale> model = new PropertyModel<Locale>(getSession(), "locale");
+		//PropertyModel<Locale> model = new PropertyModel<Locale>(getSession(), "locale");
+		PropertyModel<Locale> model = new PropertyModel( BasePage.this, "session.locale" );
 		DropDownLocale selectLanguage = new DropDownLocale("selectLanguage", model, supportedLanguages);
 		add(selectLanguage);
 			
+	}
+
+	private String getPageTitle() {
+		// TODO Auto-generated method stub
+		return "Treasure Hunter";
 	}
 
 	protected abstract String getTitle();
