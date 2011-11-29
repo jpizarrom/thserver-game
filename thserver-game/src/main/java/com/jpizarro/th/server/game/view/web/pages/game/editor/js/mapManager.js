@@ -291,8 +291,8 @@ function getEditableRowContentHtml(item) {
 	return '<td onclick="selectItemById(' + item.id + ')">' + item.id + '</td>' +
 		'<td onclick="selectItemById(' + item.id + ')"><div class="itemIcon"><img src="' + item.marker.icon.url +'"/></div></td>' +
 //		'<td onclick="selectItemById(' + item.id + ')"><input id="points_' + item.id + '" type="text" maxlength="6" class="itemInput" value="' + item.points +'"/></td>' +
-		'<td onclick="selectItemById(' + item.id + ')"><input id="name_' + item.id + '" type="text" maxlength="6" class="itemInput" value="' + item.name +'"/></td>' +
-		'<td onclick="selectItemById(' + item.id + ')"><input id="description_' + item.id + '" type="text" maxlength="6" class="itemInput" value="' + item.description +'"/></td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><input id="name_' + item.id + '" type="text" maxlength="25" class="itemInput" value="' + item.name +'"/></td>' +
+		'<td onclick="selectItemById(' + item.id + ')"><input id="description_' + item.id + '" type="text" maxlength="250" class="itemInput" value="' + item.description +'"/></td>' +
 		'<td onclick="selectItemById(' + item.id + ')"><input id="lat_' + item.id + '" type="text" maxlength="8" class="itemInput" value="' + item.marker.lonlat.lat.toFixed(6) +'"/></td>' +
 		'<td onclick="selectItemById(' + item.id + ')"><input id="lng_' + item.id + '" type="text" maxlength="8" class="itemInput" value="' + item.marker.lonlat.lon.toFixed(6) +'"/></td>' +
 		'<td><div id="deleteItem_' + item.id + '" class="littleLink"><a href="#" onclick="deleteItem(' + item.id + ')">delete</a></div></td>' + 

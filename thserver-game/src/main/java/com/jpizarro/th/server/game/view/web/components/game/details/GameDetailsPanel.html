@@ -6,6 +6,25 @@
 
 <wicket:panel>
 	<div>
+
+		<div class="detailsLine">
+			<div class="label">
+		    	<wicket:message key="gameDetails.name"/>
+			</div>
+		    <div class="value">
+		    	<span wicket:id="name"></span>
+			</div>
+		</div>
+
+		<div class="detailsLine">
+			<div class="label">
+		    	<wicket:message key="gameDetails.ishasfinished"/>
+			</div>
+		    <div class="value">
+		    	<span wicket:id="ishasfinished"></span>
+			</div>
+		</div>
+		
 		<div class="detailsLine">
 			<div class="label">
 		    	<wicket:message key="gameDetails.city"/>
@@ -14,6 +33,16 @@
 		    	<span wicket:id="city"></span>
 			</div>
 		</div>
+
+		<div class="detailsLine">
+			<div class="label">
+		    	<wicket:message key="gameDetails.description"/>
+			</div>
+		    <div class="value">
+		    	<span wicket:id="description"></span>
+			</div>
+		</div>
+
 		<div class="detailsLine">
 			<div class="label">
 		    	<wicket:message key="gameDetails.maxUsers"/>
@@ -31,11 +60,11 @@
 			</div>
 		</div>
 		
-		<div class="center-button-div" wicket:id="currentlyActiveDiv">
-			<a id="details-button" href="#" wicket:id="gameDetailsPageLink">
-				<span wicket:id="gameDetailsPageLinkText"></span>
-			</a>
-		</div>
+<!-- 		<div class="center-button-div" wicket:id="currentlyActiveDiv"> -->
+<!-- 			<a id="details-button" href="#" wicket:id="gameDetailsPageLink"> -->
+<!-- 				<span wicket:id="gameDetailsPageLinkText"></span> -->
+<!-- 			</a> -->
+<!-- 		</div> -->
 		
 	</div>
 </wicket:panel>

@@ -9,7 +9,7 @@ import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 
 import com.jpizarro.th.lib.game.entity.GameTO;
-import com.jpizarro.th.server.game.view.web.components.game.details.GameDetailsPanel;
+import com.jpizarro.th.server.game.view.web.components.game.details.list.GameDetailsPanel;
 import com.jpizarro.th.server.game.view.web.components.paginator.VerticalFancyPaginator;
 import com.jpizarro.th.server.game.view.web.pages.game.list.GamesListPage;
 

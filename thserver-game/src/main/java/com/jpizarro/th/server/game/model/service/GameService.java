@@ -52,6 +52,9 @@ public interface GameService extends GenericService <GameTO, Long>{
 	public GenericGameResponseTO startOrContinueGame(Long gameId, Long userId, Long teamId)
 	throws InstanceNotFoundException, TimeOutException;
 	
+	public GenericGameResponseTO startOrContinueGame(long gameId)
+	throws InstanceNotFoundException, TimeOutException;
+	
 	public GameTO createGame(CreateGameTO createGameTO)
 	throws DuplicateInstanceException;
 

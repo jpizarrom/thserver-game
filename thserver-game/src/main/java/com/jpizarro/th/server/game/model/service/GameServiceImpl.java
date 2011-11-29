@@ -250,6 +250,22 @@ public class GameServiceImpl implements GameService {
 		
 		return ggrTO;
 	}
+	
+	@Override
+	public GenericGameResponseTO startOrContinueGame(long gameId)
+			throws InstanceNotFoundException, TimeOutException {
+		// TODO Auto-generated method stub
+		Game game = gameAccessor.find(gameId);
+		GenericGameResponseTO ggrTO = new GenericGameResponseTO();
+		if (!game.isFinished() ) {
+			// Places
+//			getInGamePlaces(ggrTO, game, null, team);
+		}else{
+			ggrTO.setHasFinished(true);
+		}
+		return ggrTO;
+	}
+
 	private void getInGamePlaces(GenericGameResponseTO ggrTO, Game game, User user, Team team) {
 		// TODO Auto-generated method stub
 		// Places of the team 
