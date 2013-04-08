@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns:wicket="http://wicket.apache.org/">
+<body>
+
+<wicket:panel>
+	<div>
+		<div class="detailsLine">
+			<div class="label">
+		    	<wicket:message key="gameDetails.city"/>
+			</div>
+		    <div class="value">
+		    	<span wicket:id="city"></span>
+			</div>
+		</div>
+		<div class="detailsLine">
+			<div class="label">
+		    	<wicket:message key="gameDetails.maxUsers"/>
+			</div>
+		    <div class="value">
+		    	<span wicket:id="maxUsers"></span>
+			</div>
+		</div>
+		<div class="detailsLine" wicket:id="currentUsersHolder">
+			<div class="label">
+		    	<wicket:message key="gameDetails.currentUsers"/>
+			</div>
+		    <div class="value">
+		    	<span wicket:id="currentUsers"></span>
+			</div>
+		</div>
+		
+		<div class="center-button-div" wicket:id="currentlyActiveDiv">
+			<a id="details-button" href="#" wicket:id="gameDetailsPageLink">
+				<span wicket:id="gameDetailsPageLinkText"></span>
+			</a>
+		</div>
+		
+	</div>
+</wicket:panel>
+
+</body>
+</html>
