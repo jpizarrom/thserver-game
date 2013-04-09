@@ -1,4 +1,4 @@
-# Treasure hunting
+# Treasure Hunter
 
 A multiplayer collaborative GPS game(proof of concept) implementing a SOA architecture, developed as part of a Computer Science Thesis http://dspace.utalca.cl/handle/1950/8674
 
