@@ -1,16 +1,18 @@
 Treasure hunting
 
-A multiplayer collaborative GPS game(proof of concept) implementing an SOA architecture, developed as part of a Computer Science Thesis http://dspace.utalca.cl/handle/1950/8674
+A multiplayer collaborative GPS game(proof of concept) implementing a SOA architecture, developed as part of a Computer Science Thesis http://dspace.utalca.cl/handle/1950/8674
 
 
 Try http://thserver-game.cloudfoundry.com/
 
-It's composed by 5 services:
+It's composed by 5 services and an Android client:
 * http://thserver-user.cloudfoundry.com/	-	https://github.com/jpizarrom/thserver-user
 * http://thserver-team.cloudfoundry.com/	-	https://github.com/jpizarrom/thserver-team
 * http://thserver-place.cloudfoundry.com/	-	https://github.com/jpizarrom/thserver-place
 * http://thserver-message.cloudfoundry.com/	-	https://github.com/jpizarrom/thserver-message
 * http://thserver-game.cloudfoundry.com/	-	https://github.com/jpizarrom/thserver-game
+
+* Android client https://github.com/jpizarrom/thclient
 
 
 Bases on:
