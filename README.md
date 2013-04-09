@@ -6,11 +6,11 @@ A multiplayer collaborative GPS game(proof of concept) implementing an SOA archi
 Try http://thserver-game.cloudfoundry.com/
 
 It's composed by 5 services:
-* http://thserver-user.cloudfoundry.com/	https://github.com/jpizarrom/thserver-user
-* http://thserver-team.cloudfoundry.com/	https://github.com/jpizarrom/thserver-team
-* http://thserver-place.cloudfoundry.com/	https://github.com/jpizarrom/thserver-place
-* http://thserver-message.cloudfoundry.com/	https://github.com/jpizarrom/thserver-message
-* http://thserver-game.cloudfoundry.com/	https://github.com/jpizarrom/thserver-game
+* http://thserver-user.cloudfoundry.com/	-	https://github.com/jpizarrom/thserver-user
+* http://thserver-team.cloudfoundry.com/	-	https://github.com/jpizarrom/thserver-team
+* http://thserver-place.cloudfoundry.com/	-	https://github.com/jpizarrom/thserver-place
+* http://thserver-message.cloudfoundry.com/	-	https://github.com/jpizarrom/thserver-message
+* http://thserver-game.cloudfoundry.com/	-	https://github.com/jpizarrom/thserver-game
 
 
 Bases on:
