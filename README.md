@@ -20,7 +20,7 @@ http://youtu.be/IsscoCBuBCI
 * Android client https://github.com/jpizarrom/thclient
 
 
-## Bases on:
+## Based on:
 * Android runner. http://code.google.com/p/androidrunner/
 * Apache axis2. http://axis.apache.org/axis2/java/core
 * Hibernate. http://www.hibernate.org/
